@@ -70,7 +70,7 @@
             z-index: 1;
         }
 
-        /* Центральное полотно с прозрачностью 96% */
+        /* Центральное полотно */
         .site-wrapper {
             background-color: rgba(219, 229, 239, 0.96);
             background-image: 
@@ -99,6 +99,9 @@
             padding: 75px 0 45px;
             text-align: center;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .decorative-line {
@@ -124,15 +127,32 @@
             filter: drop-shadow(0 0 6px var(--neon-teal));
         }
 
+        /* Идеально выровненная плашка */
         .hero-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             font-family: var(--font-title);
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 3px;
             color: var(--ink-secondary);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            line-height: 1;
+        }
+
+        .hero-badge span {
+            letter-spacing: 3px;
+        }
+
+        .badge-separator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px 0 7px;
+            color: var(--neon-teal);
+            font-size: 0.6rem;
+            filter: drop-shadow(0 0 4px var(--neon-teal));
         }
 
         .hero h1 {
@@ -683,7 +703,7 @@
             letter-spacing: 0.8px;
         }
 
-        /* Адаптация под мобильные устройства */
+        /* Мобильная адаптация */
         @media (max-width: 768px) {
             body {
                 padding: 12px 8px 60px;
@@ -703,8 +723,14 @@
 
             .hero-badge {
                 font-size: 0.7rem;
+            }
+
+            .hero-badge span {
                 letter-spacing: 2px;
-                padding: 4px 14px;
+            }
+
+            .badge-separator {
+                margin: 0 8px 0 6px;
             }
 
             .choice-nav {
@@ -866,8 +892,13 @@
                 <div class="decorative-line">
                     <span class="diamond">◆</span>
                 </div>
-                <span class="hero-badge">Художница ◆ Писательница</span>
+                <div class="hero-badge">
+                    <span>ХУДОЖНИЦА</span>
+                    <span class="badge-separator">◆</span>
+                    <span>ПИСАТЕЛЬНИЦА</span>
+                </div>
                 <h1>FIONA MORAN</h1>
+                <p>Привет! Меня зовут Фиона, я художница и писательница.</p>
                 
                 <div class="choice-nav">
                     <button class="choice-btn active" onclick="switchTab('books', event)">
