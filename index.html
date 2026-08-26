@@ -11,9 +11,6 @@
     <style>
         :root {
             --bg-deep: #060911;
-            --bg-canvas: #dbe5ef;
-            --card-surface: rgba(255, 255, 255, 0.75);
-            --card-surface-hover: rgba(255, 255, 255, 0.95);
             --ink-primary: #101a2e;
             --ink-secondary: #24334f;
             --text-muted: #4e5e77;
@@ -61,7 +58,7 @@
             overflow-x: hidden;
         }
 
-        /* Холст с лесом, звездами и светящимися бирюзовыми огоньками */
+        /* Холст с лесом и огоньками */
         #forestCanvas {
             position: fixed;
             top: 0;
@@ -72,18 +69,20 @@
             z-index: 1;
         }
 
-        /* Центральное полотно */
+        /* Центральное полотно с 96% непрозрачностью и блюром */
         .site-wrapper {
-            background-color: var(--bg-canvas);
+            background-color: rgba(219, 229, 239, 0.96);
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.7) 0%, transparent 45%),
-                radial-gradient(circle at 90% 80%, rgba(182, 207, 232, 0.5) 0%, transparent 55%);
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(182, 207, 232, 0.45) 0%, transparent 55%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             max-width: 1040px;
             margin: 0 auto;
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 40px rgba(45, 212, 191, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             position: relative;
             z-index: 2;
         }
@@ -164,7 +163,7 @@
         }
 
         .choice-btn {
-            background: var(--card-surface);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-ice);
             color: var(--ink-primary);
@@ -234,7 +233,7 @@
         }
 
         .folder-card {
-            background: var(--card-surface);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-ice);
             border-radius: var(--radius-md);
@@ -260,7 +259,7 @@
 
         .folder-card:hover {
             transform: translateY(-5px);
-            background: var(--card-surface-hover);
+            background: rgba(255, 255, 255, 0.95);
             border-color: var(--neon-teal);
             box-shadow: 0 16px 36px rgba(45, 212, 191, 0.2);
         }
@@ -310,8 +309,9 @@
         }
 
         .folder-modal-content {
-            background: var(--bg-canvas);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(219, 229, 239, 0.96);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: var(--radius-lg);
             width: 100%;
             max-width: 920px;
@@ -345,7 +345,7 @@
             position: absolute;
             top: 24px;
             right: 28px;
-            background: var(--card-surface);
+            background: rgba(255, 255, 255, 0.8);
             border: 1px solid var(--border-ice);
             color: var(--ink-primary);
             width: 38px;
@@ -372,7 +372,7 @@
         }
 
         .art-card {
-            background: var(--card-surface);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: var(--radius-sm);
             overflow: hidden;
             cursor: pointer;
@@ -423,7 +423,7 @@
         }
 
         .book-card {
-            background: var(--card-surface);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             border-radius: var(--radius-md);
             padding: 34px;
@@ -437,7 +437,7 @@
 
         .book-card:hover {
             transform: translateY(-4px);
-            background: var(--card-surface-hover);
+            background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 16px 36px rgba(45, 212, 191, 0.15);
             border-color: var(--border-highlight);
         }
@@ -485,7 +485,7 @@
             border-left: 2px solid var(--neon-teal);
             padding: 10px 16px;
             margin-bottom: 16px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.55);
             border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
             white-space: pre-line;
             line-height: 1.5;
@@ -530,7 +530,7 @@
         }
 
         .book-link.btn-alt {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.8);
             color: var(--ink-primary);
             border: 1px solid var(--border-ice);
         }
@@ -550,7 +550,7 @@
         }
 
         .social-card {
-            background: var(--card-surface);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             border-radius: var(--radius-md);
             padding: 30px 22px;
@@ -672,7 +672,7 @@
 
         /* Footer */
         .footer {
-            background: rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.45);
             border-top: 1px solid var(--border-ice);
             padding: 28px 0;
             text-align: center;
@@ -709,7 +709,6 @@
 </head>
 <body oncontextmenu="return false;">
 
-    <!-- Анимированный лес с бирюзовыми светлячками -->
     <canvas id="forestCanvas"></canvas>
 
     <div class="site-wrapper">
@@ -748,25 +747,21 @@
                 </div>
 
                 <div class="folders-grid">
-                    <!-- Папка 1 -->
                     <div class="folder-card" onclick="openFolder('characters')">
                         <div class="folder-title">Персонажи</div>
                         <div class="folder-desc">Концепты и образы</div>
                     </div>
 
-                    <!-- Папка 2 -->
                     <div class="folder-card" onclick="openFolder('arts')">
                         <div class="folder-title">Иллюстрации</div>
                         <div class="folder-desc">Сюжетные сцены и арты</div>
                     </div>
 
-                    <!-- Папка 3 -->
                     <div class="folder-card" onclick="openFolder('props')">
                         <div class="folder-title">Предметы</div>
                         <div class="folder-desc">Артефакты и детали</div>
                     </div>
 
-                    <!-- Папка 4 -->
                     <div class="folder-card" onclick="openFolder('covers')">
                         <div class="folder-title">Обложки</div>
                         <div class="folder-desc">Оформление книг</div>
@@ -857,7 +852,7 @@
                     <a href="https://www.tiktok.com/@fionazula" target="_blank" class="social-card">
                         <div class="social-svg-wrap">
                             <svg viewBox="0 0 24 24">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34 6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34-6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
                             </svg>
                         </div>
                         <div class="social-name">TikTok Арт</div>
@@ -868,7 +863,7 @@
                     <a href="https://www.tiktok.com/@fionkamoran" target="_blank" class="social-card">
                         <div class="social-svg-wrap">
                             <svg viewBox="0 0 24 24">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34 6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34-6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
                             </svg>
                         </div>
                         <div class="social-name">TikTok Книги</div>
@@ -984,7 +979,7 @@
 
     </div>
 
-    <!-- Скрипт генерации ночного леса и светлячков -->
+    <!-- Скрипт леса и светлячков -->
     <script>
         const canvas = document.getElementById('forestCanvas');
         const ctx = canvas.getContext('2d');
@@ -996,7 +991,6 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // Рисование силуэтного ночного леса
         function drawForestLayer(baseY, maxTreeHeight, color, treeStep, noiseOffset) {
             ctx.fillStyle = color;
             ctx.beginPath();
@@ -1009,7 +1003,6 @@
                 const peakX = x + treeStep * 0.5;
                 const peakY = baseY - treeH;
 
-                // Ярусы елей и ветвей
                 ctx.lineTo(x + treeStep * 0.15, baseY - treeH * 0.3);
                 ctx.lineTo(x + treeStep * 0.05, baseY - treeH * 0.25);
                 ctx.lineTo(x + treeStep * 0.25, baseY - treeH * 0.6);
@@ -1027,7 +1020,6 @@
             ctx.fill();
         }
 
-        // Класс бирюзовых огоньков-светлячков
         class TealWisp {
             constructor() {
                 this.reset();
@@ -1059,7 +1051,6 @@
             draw() {
                 const currentAlpha = Math.max(0.1, (Math.sin(this.pulse) + 1) * 0.5 * this.alpha);
                 
-                // Внешнее бирюзовое свечение (Glow)
                 const grad = ctx.createRadialGradient(
                     this.x, this.y, 0,
                     this.x, this.y, this.glowRadius
@@ -1073,7 +1064,6 @@
                 ctx.arc(this.x, this.y, this.glowRadius, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Яркое белое ядро огонька
                 ctx.fillStyle = `rgba(230, 255, 250, ${currentAlpha})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.baseRadius * 0.8, 0, Math.PI * 2);
@@ -1081,17 +1071,14 @@
             }
         }
 
-        // Создаем огоньки
         const wisps = [];
         for (let i = 0; i < 48; i++) {
             wisps.push(new TealWisp());
         }
 
-        // Анимационный цикл
         function renderScene() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // 1. Градиент ночного неба
             const skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
             skyGrad.addColorStop(0, '#060911');
             skyGrad.addColorStop(0.5, '#0b1424');
@@ -1099,16 +1086,10 @@
             ctx.fillStyle = skyGrad;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // 2. Дальний слой леса (туманный синий)
             drawForestLayer(canvas.height - 110, 180, '#0d182b', 38, 1.2);
-
-            // 3. Средний слой леса
             drawForestLayer(canvas.height - 60, 220, '#09111f', 48, 2.5);
-
-            // 4. Ближний глубокий силуэт леса
             drawForestLayer(canvas.height, 280, '#050a13', 60, 4.0);
 
-            // 5. Огоньки и светлячки, танцующие на ветвях
             wisps.forEach(w => {
                 w.update();
                 w.draw();
@@ -1118,7 +1099,6 @@
         }
         renderScene();
 
-        // Переключение вкладок
         function switchTab(sectionId, event) {
             const buttons = document.querySelectorAll('.choice-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
@@ -1140,7 +1120,6 @@
             contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Логика папок
         function openFolder(folderId) {
             const modal = document.getElementById('modal-' + folderId);
             if (modal) {
@@ -1165,7 +1144,6 @@
             }
         }
 
-        // Лайтбокс
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxCaption = document.getElementById('lightboxCaption');
