@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Фиона Моран</title>
+    <title>Фиона Моран | Портфолио</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
@@ -59,7 +59,7 @@
             overflow-x: hidden;
         }
 
-        /* Холст с лесом и огоньками */
+        /* Холст с высоким лесом и интерактивными огоньками */
         #forestCanvas {
             position: fixed;
             top: 0;
@@ -127,7 +127,6 @@
             filter: drop-shadow(0 0 6px var(--neon-teal));
         }
 
-        /* Идеально выровненная плашка */
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -1153,7 +1152,7 @@
             </div>
         </div>
 
-        <!-- Подвал с дополнительным пространством -->
+        <!-- Подвал -->
         <footer class="footer">
             <div class="container">
                 <p>© 2026 Fiona Moran ◆ Портфолио художницы и писательницы</p>
@@ -1162,7 +1161,7 @@
 
     </div>
 
-    <!-- Скрипт леса и светлячков с адаптацией -->
+    <!-- Скрипт высокого леса и интерактивных светлячков -->
     <script>
         const canvas = document.getElementById('forestCanvas');
         const ctx = canvas.getContext('2d');
@@ -1174,6 +1173,36 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
+        // Отслеживание курсора мыши и касаний
+        const mouse = {
+            x: -1000,
+            y: -1000,
+            radius: 140
+        };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        // Рисование высоких силуэтов леса
         function drawForestLayer(baseY, maxTreeHeight, color, treeStep, noiseOffset) {
             ctx.fillStyle = color;
             ctx.beginPath();
@@ -1181,20 +1210,25 @@
             ctx.lineTo(0, baseY);
 
             for (let x = 0; x <= canvas.width + treeStep; x += treeStep) {
-                const seed = Math.sin(x * 0.01 + noiseOffset);
-                const treeH = maxTreeHeight * (0.65 + 0.35 * Math.sin(x * 0.03 + seed));
+                const seed = Math.sin(x * 0.008 + noiseOffset);
+                
+                // Деревья по краям экрана поднимаются значительно выше
+                const distFromCenter = Math.abs(x - canvas.width * 0.5) / (canvas.width * 0.5);
+                const edgeBoost = 1 + Math.pow(distFromCenter, 1.4) * 0.55;
+                
+                const treeH = maxTreeHeight * edgeBoost * (0.7 + 0.3 * Math.sin(x * 0.025 + seed));
                 const peakX = x + treeStep * 0.5;
                 const peakY = baseY - treeH;
 
-                ctx.lineTo(x + treeStep * 0.15, baseY - treeH * 0.3);
-                ctx.lineTo(x + treeStep * 0.05, baseY - treeH * 0.25);
-                ctx.lineTo(x + treeStep * 0.25, baseY - treeH * 0.6);
-                ctx.lineTo(x + treeStep * 0.15, baseY - treeH * 0.55);
+                ctx.lineTo(x + treeStep * 0.15, baseY - treeH * 0.28);
+                ctx.lineTo(x + treeStep * 0.05, baseY - treeH * 0.23);
+                ctx.lineTo(x + treeStep * 0.25, baseY - treeH * 0.58);
+                ctx.lineTo(x + treeStep * 0.15, baseY - treeH * 0.52);
                 ctx.lineTo(peakX, peakY);
-                ctx.lineTo(x + treeStep * 0.85, baseY - treeH * 0.55);
-                ctx.lineTo(x + treeStep * 0.75, baseY - treeH * 0.6);
-                ctx.lineTo(x + treeStep * 0.95, baseY - treeH * 0.25);
-                ctx.lineTo(x + treeStep * 0.85, baseY - treeH * 0.3);
+                ctx.lineTo(x + treeStep * 0.85, baseY - treeH * 0.52);
+                ctx.lineTo(x + treeStep * 0.75, baseY - treeH * 0.58);
+                ctx.lineTo(x + treeStep * 0.95, baseY - treeH * 0.23);
+                ctx.lineTo(x + treeStep * 0.85, baseY - treeH * 0.28);
                 ctx.lineTo(x + treeStep, baseY);
             }
 
@@ -1203,43 +1237,68 @@
             ctx.fill();
         }
 
+        // Класс интерактивных светлячков
         class TealWisp {
             constructor() {
-                this.reset();
+                this.reset(true);
             }
 
-            reset() {
+            reset(initial = false) {
                 this.x = Math.random() * canvas.width;
-                this.y = canvas.height * 0.45 + Math.random() * (canvas.height * 0.55);
+                this.y = initial 
+                    ? Math.random() * canvas.height 
+                    : canvas.height * 0.2 + Math.random() * (canvas.height * 0.8);
                 this.baseRadius = Math.random() * 2 + 1.2;
                 this.glowRadius = this.baseRadius * (Math.random() * 5 + 5);
-                this.speedX = (Math.random() - 0.5) * 0.35;
-                this.speedY = - (Math.random() * 0.3 + 0.1);
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = - (Math.random() * 0.35 + 0.15);
                 this.pulseSpeed = Math.random() * 0.03 + 0.015;
                 this.pulse = Math.random() * Math.PI * 2;
-                this.alpha = Math.random() * 0.6 + 0.3;
+                this.alpha = Math.random() * 0.6 + 0.35;
+                
+                // Вектор разбегания от курсора
+                this.vx = 0;
+                this.vy = 0;
             }
 
             update() {
-                this.x += this.speedX + Math.sin(this.pulse) * 0.25;
-                this.y += this.speedY;
+                // Взаимодействие с курсором мыши (отталкивание)
+                const dx = this.x - mouse.x;
+                const dy = this.y - mouse.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < mouse.radius && dist > 0) {
+                    const force = (mouse.radius - dist) / mouse.radius;
+                    const angle = Math.atan2(dy, dx);
+                    // Импульс разбегания
+                    this.vx += Math.cos(angle) * force * 3.5;
+                    this.vy += Math.sin(angle) * force * 3.5;
+                }
+
+                // Плавное затухание скорости отталкивания
+                this.vx *= 0.92;
+                this.vy *= 0.92;
+
+                this.x += this.speedX + Math.sin(this.pulse) * 0.25 + this.vx;
+                this.y += this.speedY + this.vy;
                 this.pulse += this.pulseSpeed;
 
-                if (this.y < canvas.height * 0.2 || this.x < 0 || this.x > canvas.width) {
-                    this.reset();
-                    this.y = canvas.height - 20;
+                // Перезапуск при выходе за пределы экрана
+                if (this.y < -30 || this.x < -30 || this.x > canvas.width + 30) {
+                    this.reset(false);
+                    this.y = canvas.height + 10;
                 }
             }
 
             draw() {
-                const currentAlpha = Math.max(0.1, (Math.sin(this.pulse) + 1) * 0.5 * this.alpha);
+                const currentAlpha = Math.max(0.12, (Math.sin(this.pulse) + 1) * 0.5 * this.alpha);
                 
                 const grad = ctx.createRadialGradient(
                     this.x, this.y, 0,
                     this.x, this.y, this.glowRadius
                 );
-                grad.addColorStop(0, `rgba(45, 212, 191, ${currentAlpha * 0.9})`);
-                grad.addColorStop(0.3, `rgba(45, 212, 191, ${currentAlpha * 0.45})`);
+                grad.addColorStop(0, `rgba(45, 212, 191, ${currentAlpha * 0.95})`);
+                grad.addColorStop(0.35, `rgba(45, 212, 191, ${currentAlpha * 0.45})`);
                 grad.addColorStop(1, 'rgba(45, 212, 191, 0)');
 
                 ctx.fillStyle = grad;
@@ -1247,15 +1306,15 @@
                 ctx.arc(this.x, this.y, this.glowRadius, 0, Math.PI * 2);
                 ctx.fill();
 
-                ctx.fillStyle = `rgba(230, 255, 250, ${currentAlpha})`;
+                ctx.fillStyle = `rgba(235, 255, 252, ${currentAlpha})`;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.baseRadius * 0.8, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.baseRadius * 0.85, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
 
         const isMobile = window.innerWidth <= 768;
-        const wispCount = isMobile ? 25 : 48;
+        const wispCount = isMobile ? 32 : 65;
         const wisps = [];
         for (let i = 0; i < wispCount; i++) {
             wisps.push(new TealWisp());
@@ -1264,17 +1323,24 @@
         function renderScene() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            // 1. Градиент ночного неба
             const skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            skyGrad.addColorStop(0, '#060911');
-            skyGrad.addColorStop(0.5, '#0b1424');
-            skyGrad.addColorStop(1, '#111d33');
+            skyGrad.addColorStop(0, '#04070d');
+            skyGrad.addColorStop(0.4, '#091220');
+            skyGrad.addColorStop(1, '#0e192e');
             ctx.fillStyle = skyGrad;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            drawForestLayer(canvas.height - 110, 180, '#0d182b', 38, 1.2);
-            drawForestLayer(canvas.height - 60, 220, '#09111f', 48, 2.5);
-            drawForestLayer(canvas.height, 280, '#050a13', 60, 4.0);
+            // 2. Дальний высокий слой леса
+            drawForestLayer(canvas.height - 180, 420, '#0c182c', 38, 1.2);
 
+            // 3. Средний слой леса
+            drawForestLayer(canvas.height - 100, 480, '#08111f', 48, 2.5);
+
+            // 4. Ближний глубокий силуэт леса
+            drawForestLayer(canvas.height, 540, '#040812', 60, 4.0);
+
+            // 5. Огоньки с физикой мыши
             wisps.forEach(w => {
                 w.update();
                 w.draw();
