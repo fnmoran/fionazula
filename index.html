@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fionazula | Портфолио</title>
+    <title>Фиона Моран | Портфолио</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
@@ -69,7 +69,7 @@
             z-index: 1;
         }
 
-        /* Центральное полотно с 96% непрозрачностью и блюром */
+        /* Центральное полотно с 96% прозрачностью */
         .site-wrapper {
             background-color: rgba(219, 229, 239, 0.96);
             background-image: 
@@ -136,7 +136,7 @@
 
         .hero h1 {
             font-family: var(--font-title);
-            font-size: clamp(2.8rem, 6vw, 4.6rem);
+            font-size: clamp(2.6rem, 5.5vw, 4.2rem);
             font-weight: 700;
             color: var(--ink-primary);
             letter-spacing: 4px;
@@ -223,6 +223,131 @@
             letter-spacing: 3px;
             color: var(--ink-primary);
             text-transform: uppercase;
+        }
+
+        /* Книги */
+        .books-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .book-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-md);
+            padding: 34px;
+            display: grid;
+            grid-template-columns: 210px 1fr;
+            gap: 32px;
+            align-items: start;
+            border: 1px solid var(--border-ice);
+            transition: var(--transition);
+        }
+
+        .book-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 16px 36px rgba(45, 212, 191, 0.15);
+            border-color: var(--border-highlight);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 310px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            background-color: #c4d2e2;
+            box-shadow: 0 10px 25px rgba(16, 26, 46, 0.18);
+        }
+
+        .book-content h3 {
+            font-family: var(--font-title);
+            font-size: 1.85rem;
+            color: var(--ink-primary);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .genre-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .genre-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(16, 26, 46, 0.06);
+            color: var(--ink-secondary);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(16, 26, 46, 0.12);
+        }
+
+        .book-quote {
+            font-family: var(--font-italic);
+            font-size: 1.05rem;
+            color: var(--ink-primary);
+            border-left: 2px solid var(--neon-teal);
+            padding: 10px 16px;
+            margin-bottom: 16px;
+            background: rgba(255, 255, 255, 0.55);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            white-space: pre-line;
+            line-height: 1.5;
+        }
+
+        .book-synopsis {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.75;
+            margin-bottom: 24px;
+            white-space: pre-line;
+        }
+
+        .book-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .book-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 22px;
+            background: var(--accent-blue);
+            border-radius: var(--radius-sm);
+            color: #ffffff;
+            text-decoration: none;
+            font-family: var(--font-title);
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .book-link:hover {
+            background: #090f1c;
+            border-color: var(--neon-teal);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(45, 212, 191, 0.25);
+        }
+
+        .book-link.btn-alt {
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--ink-primary);
+            border: 1px solid var(--border-ice);
+        }
+
+        .book-link.btn-alt:hover {
+            background: #ffffff;
+            border-color: var(--neon-teal);
         }
 
         /* Папки-категории */
@@ -415,131 +540,6 @@
             opacity: 1;
         }
 
-        /* Книги */
-        .books-list {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .book-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-md);
-            padding: 34px;
-            display: grid;
-            grid-template-columns: 210px 1fr;
-            gap: 32px;
-            align-items: start;
-            border: 1px solid var(--border-ice);
-            transition: var(--transition);
-        }
-
-        .book-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 16px 36px rgba(45, 212, 191, 0.15);
-            border-color: var(--border-highlight);
-        }
-
-        .book-cover {
-            width: 100%;
-            height: 310px;
-            border-radius: var(--radius-sm);
-            object-fit: cover;
-            background-color: #c4d2e2;
-            box-shadow: 0 10px 25px rgba(16, 26, 46, 0.18);
-        }
-
-        .book-content h3 {
-            font-family: var(--font-title);
-            font-size: 1.85rem;
-            color: var(--ink-primary);
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .genre-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 18px;
-        }
-
-        .genre-tag {
-            font-size: 0.72rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(16, 26, 46, 0.06);
-            color: var(--ink-secondary);
-            padding: 4px 12px;
-            border-radius: var(--radius-sm);
-            border: 1px solid rgba(16, 26, 46, 0.12);
-        }
-
-        .book-quote {
-            font-family: var(--font-italic);
-            font-size: 1.05rem;
-            color: var(--ink-primary);
-            border-left: 2px solid var(--neon-teal);
-            padding: 10px 16px;
-            margin-bottom: 16px;
-            background: rgba(255, 255, 255, 0.55);
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            white-space: pre-line;
-            line-height: 1.5;
-        }
-
-        .book-synopsis {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            line-height: 1.75;
-            margin-bottom: 24px;
-            white-space: pre-line;
-        }
-
-        .book-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .book-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 22px;
-            background: var(--accent-blue);
-            border-radius: var(--radius-sm);
-            color: #ffffff;
-            text-decoration: none;
-            font-family: var(--font-title);
-            letter-spacing: 1px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: var(--transition);
-        }
-
-        .book-link:hover {
-            background: #090f1c;
-            border-color: var(--neon-teal);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(45, 212, 191, 0.25);
-        }
-
-        .book-link.btn-alt {
-            background: rgba(255, 255, 255, 0.8);
-            color: var(--ink-primary);
-            border: 1px solid var(--border-ice);
-        }
-
-        .book-link.btn-alt:hover {
-            background: #ffffff;
-            border-color: var(--neon-teal);
-        }
-
         /* Соцсети */
         .socials-grid {
             display: grid;
@@ -561,7 +561,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             border: 1px solid var(--border-ice);
         }
 
@@ -598,7 +598,7 @@
 
         .social-name {
             font-family: var(--font-title);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--ink-primary);
             letter-spacing: 1px;
@@ -606,8 +606,9 @@
         }
 
         .social-desc {
-            font-size: 0.82rem;
+            font-size: 0.84rem;
             color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* Лайтбокс */
@@ -720,15 +721,15 @@
                     <span class="diamond">◆</span>
                 </div>
                 <span class="hero-badge">Портфолио</span>
-                <h1>Fionazula</h1>
+                <h1>FIONA MORAN</h1>
                 <p>Привет! Меня зовут Фиона, я художница и писательница.</p>
                 
                 <div class="choice-nav">
-                    <button class="choice-btn active" onclick="switchTab('illustrations', event)">
-                        МОИ ИЛЛЮСТРАЦИИ
-                    </button>
-                    <button class="choice-btn" onclick="switchTab('books', event)">
+                    <button class="choice-btn active" onclick="switchTab('books', event)">
                         МОИ КНИГИ
+                    </button>
+                    <button class="choice-btn" onclick="switchTab('illustrations', event)">
+                        МОИ ИЛЛЮСТРАЦИИ
                     </button>
                     <button class="choice-btn" onclick="switchTab('socials', event)">
                         МОИ СОЦ СЕТИ
@@ -740,37 +741,8 @@
         <!-- Основной контент -->
         <main class="content-display container" id="contentArea">
 
-            <!-- СЕКЦИЯ: ИЛЛЮСТРАЦИИ -->
-            <section id="illustrations" class="portfolio-section active-section">
-                <div class="section-header">
-                    <h2>Галерея работ</h2>
-                </div>
-
-                <div class="folders-grid">
-                    <div class="folder-card" onclick="openFolder('characters')">
-                        <div class="folder-title">Персонажи</div>
-                        <div class="folder-desc">Концепты и образы</div>
-                    </div>
-
-                    <div class="folder-card" onclick="openFolder('arts')">
-                        <div class="folder-title">Иллюстрации</div>
-                        <div class="folder-desc">Сюжетные сцены и арты</div>
-                    </div>
-
-                    <div class="folder-card" onclick="openFolder('props')">
-                        <div class="folder-title">Предметы</div>
-                        <div class="folder-desc">Артефакты и детали</div>
-                    </div>
-
-                    <div class="folder-card" onclick="openFolder('covers')">
-                        <div class="folder-title">Обложки</div>
-                        <div class="folder-desc">Оформление книг</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- СЕКЦИЯ: КНИГИ -->
-            <section id="books" class="portfolio-section">
+            <!-- СЕКЦИЯ 1: КНИГИ (ТЕПЕРЬ ПЕРВАЯ) -->
+            <section id="books" class="portfolio-section active-section">
                 <div class="section-header">
                     <h2>Где меня можно почитать?</h2>
                 </div>
@@ -841,7 +813,36 @@
                 </div>
             </section>
 
-            <!-- СЕКЦИЯ: СОЦСЕТИ -->
+            <!-- СЕКЦИЯ 2: ИЛЛЮСТРАЦИИ -->
+            <section id="illustrations" class="portfolio-section">
+                <div class="section-header">
+                    <h2>Галерея работ</h2>
+                </div>
+
+                <div class="folders-grid">
+                    <div class="folder-card" onclick="openFolder('characters')">
+                        <div class="folder-title">Персонажи</div>
+                        <div class="folder-desc">Концепты и образы</div>
+                    </div>
+
+                    <div class="folder-card" onclick="openFolder('arts')">
+                        <div class="folder-title">Иллюстрации</div>
+                        <div class="folder-desc">Сюжетные сцены и арты</div>
+                    </div>
+
+                    <div class="folder-card" onclick="openFolder('props')">
+                        <div class="folder-title">Предметы</div>
+                        <div class="folder-desc">Артефакты и детали</div>
+                    </div>
+
+                    <div class="folder-card" onclick="openFolder('covers')">
+                        <div class="folder-title">Обложки</div>
+                        <div class="folder-desc">Оформление книг</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- СЕКЦИЯ 3: СОЦСЕТИ -->
             <section id="socials" class="portfolio-section">
                 <div class="section-header">
                     <h2>Связь и соцсети</h2>
@@ -852,22 +853,22 @@
                     <a href="https://www.tiktok.com/@fionazula" target="_blank" class="social-card">
                         <div class="social-svg-wrap">
                             <svg viewBox="0 0 24 24">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34-6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34 6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
                             </svg>
                         </div>
-                        <div class="social-name">TikTok Арт</div>
-                        <div class="social-desc">Иллюстрации и процессы @fionazula</div>
+                        <div class="social-name">TikTok</div>
+                        <div class="social-desc">Арт-аккаунт</div>
                     </a>
 
                     <!-- TikTok: Книги -->
                     <a href="https://www.tiktok.com/@fionkamoran" target="_blank" class="social-card">
                         <div class="social-svg-wrap">
                             <svg viewBox="0 0 24 24">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34-6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34 6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
                             </svg>
                         </div>
-                        <div class="social-name">TikTok Книги</div>
-                        <div class="social-desc">О книгах и текстах @fionkamoran</div>
+                        <div class="social-name">TikTok</div>
+                        <div class="social-desc">Писательский аккаунт</div>
                     </a>
 
                     <!-- Telegram -->
@@ -878,7 +879,7 @@
                             </svg>
                         </div>
                         <div class="social-name">Telegram</div>
-                        <div class="social-desc">Канал @fionamoran: новости и мысли</div>
+                        <div class="social-desc">Личный канал</div>
                     </a>
                 </div>
             </section>
@@ -973,7 +974,7 @@
         <!-- Подвал -->
         <footer class="footer">
             <div class="container">
-                <p>© 2026 Fionazula ◆ Портфолио художницы и писательницы</p>
+                <p>© 2026 Fiona Moran ◆ Портфолио художницы и писательницы</p>
             </div>
         </footer>
 
