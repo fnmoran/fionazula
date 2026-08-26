@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Фиона Моран | Портфолио</title>
+    <title>Фиона Моран</title>
+    
+    <!-- Иконка вкладки: светящийся бирюзовый кристалл-огонек -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23060911'/><circle cx='50' cy='50' r='30' fill='%232dd4bf' opacity='0.35'/><path d='M50 16 L80 50 L50 84 L20 50 Z' fill='%232dd4bf'/><path d='M50 28 L68 50 L50 72 L32 50 Z' fill='%23e6fffa'/></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
@@ -59,7 +63,7 @@
             overflow-x: hidden;
         }
 
-        /* Холст с высоким лесом и интерактивными огоньками */
+        /* Холст с лесом и огоньками */
         #forestCanvas {
             position: fixed;
             top: 0;
@@ -127,31 +131,19 @@
             filter: drop-shadow(0 0 6px var(--neon-teal));
         }
 
+        /* Выровненная плашка "пишу и рисую" */
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            display: block;
+            text-align: center;
             font-family: var(--font-title);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 4px;
             color: var(--ink-secondary);
             margin-bottom: 14px;
             line-height: 1;
-        }
-
-        .hero-badge span {
-            letter-spacing: 3px;
-        }
-
-        .badge-separator {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 10px 0 7px;
-            color: var(--neon-teal);
-            font-size: 0.6rem;
-            filter: drop-shadow(0 0 4px var(--neon-teal));
+            padding-left: 4px; /* Компенсирует оптический сдвиг от letter-spacing */
         }
 
         .hero h1 {
@@ -163,6 +155,7 @@
             line-height: 1.1;
             margin-bottom: 16px;
             text-transform: uppercase;
+            padding-left: 4px;
         }
 
         .hero p {
@@ -721,15 +714,8 @@
             }
 
             .hero-badge {
-                font-size: 0.7rem;
-            }
-
-            .hero-badge span {
-                letter-spacing: 2px;
-            }
-
-            .badge-separator {
-                margin: 0 8px 0 6px;
+                font-size: 0.72rem;
+                letter-spacing: 3px;
             }
 
             .choice-nav {
@@ -891,13 +877,9 @@
                 <div class="decorative-line">
                     <span class="diamond">◆</span>
                 </div>
-                <div class="hero-badge">
-                    <span>ХУДОЖНИЦА</span>
-                    <span class="badge-separator">◆</span>
-                    <span>ПИСАТЕЛЬНИЦА</span>
-                </div>
+                <div class="hero-badge">пишу и рисую</div>
                 <h1>FIONA MORAN</h1>
-                <p>Привет! Меня зовут Фиона, я художница и писательница.</p>
+                <p>Спасибо, что интересуетесь моим творчеством. Здесь собраны мои книги, иллюстрации и ссылки на блоги.</p>
                 
                 <div class="choice-nav">
                     <button class="choice-btn active" onclick="switchTab('books', event)">
@@ -1054,7 +1036,7 @@
                     <a href="https://t.me/fionamoran" target="_blank" class="social-card">
                         <div class="social-svg-wrap">
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                             </svg>
                         </div>
                         <div>
@@ -1173,7 +1155,6 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // Отслеживание курсора мыши и касаний
         const mouse = {
             x: -1000,
             y: -1000,
@@ -1202,7 +1183,6 @@
             mouse.y = -1000;
         });
 
-        // Рисование высоких силуэтов леса
         function drawForestLayer(baseY, maxTreeHeight, color, treeStep, noiseOffset) {
             ctx.fillStyle = color;
             ctx.beginPath();
@@ -1211,8 +1191,6 @@
 
             for (let x = 0; x <= canvas.width + treeStep; x += treeStep) {
                 const seed = Math.sin(x * 0.008 + noiseOffset);
-                
-                // Деревья по краям экрана поднимаются значительно выше
                 const distFromCenter = Math.abs(x - canvas.width * 0.5) / (canvas.width * 0.5);
                 const edgeBoost = 1 + Math.pow(distFromCenter, 1.4) * 0.55;
                 
@@ -1237,7 +1215,6 @@
             ctx.fill();
         }
 
-        // Класс интерактивных светлячков
         class TealWisp {
             constructor() {
                 this.reset(true);
@@ -1255,14 +1232,11 @@
                 this.pulseSpeed = Math.random() * 0.03 + 0.015;
                 this.pulse = Math.random() * Math.PI * 2;
                 this.alpha = Math.random() * 0.6 + 0.35;
-                
-                // Вектор разбегания от курсора
                 this.vx = 0;
                 this.vy = 0;
             }
 
             update() {
-                // Взаимодействие с курсором мыши (отталкивание)
                 const dx = this.x - mouse.x;
                 const dy = this.y - mouse.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
@@ -1270,12 +1244,10 @@
                 if (dist < mouse.radius && dist > 0) {
                     const force = (mouse.radius - dist) / mouse.radius;
                     const angle = Math.atan2(dy, dx);
-                    // Импульс разбегания
                     this.vx += Math.cos(angle) * force * 3.5;
                     this.vy += Math.sin(angle) * force * 3.5;
                 }
 
-                // Плавное затухание скорости отталкивания
                 this.vx *= 0.92;
                 this.vy *= 0.92;
 
@@ -1283,7 +1255,6 @@
                 this.y += this.speedY + this.vy;
                 this.pulse += this.pulseSpeed;
 
-                // Перезапуск при выходе за пределы экрана
                 if (this.y < -30 || this.x < -30 || this.x > canvas.width + 30) {
                     this.reset(false);
                     this.y = canvas.height + 10;
@@ -1323,7 +1294,6 @@
         function renderScene() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // 1. Градиент ночного неба
             const skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
             skyGrad.addColorStop(0, '#04070d');
             skyGrad.addColorStop(0.4, '#091220');
@@ -1331,16 +1301,10 @@
             ctx.fillStyle = skyGrad;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // 2. Дальний высокий слой леса
             drawForestLayer(canvas.height - 180, 420, '#0c182c', 38, 1.2);
-
-            // 3. Средний слой леса
             drawForestLayer(canvas.height - 100, 480, '#08111f', 48, 2.5);
-
-            // 4. Ближний глубокий силуэт леса
             drawForestLayer(canvas.height, 540, '#040812', 60, 4.0);
 
-            // 5. Огоньки с физикой мыши
             wisps.forEach(w => {
                 w.update();
                 w.draw();
