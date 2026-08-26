@@ -10,8 +10,8 @@
     
     <style>
         :root {
-            --bg-outer: #f472b6; /* Яркая розовая рамка вокруг сайта */
-            --bg-inner: #fff5f8; /* Нежный кремово-розовый фон страницы */
+            --bg-outer: #f472b6;
+            --bg-inner: #fff5f8;
             --card-bg: #ffffff;
             --primary-pink: #ec4899;
             --primary-dark: #be185d;
@@ -44,7 +44,6 @@
             padding: 16px;
         }
 
-        /* Главная оболочка в стиле прототипа */
         .site-wrapper {
             background-color: var(--bg-inner);
             max-width: 1100px;
@@ -103,7 +102,7 @@
             font-weight: 500;
         }
 
-        /* Навигация в стиле дизайна со скриншота */
+        /* Choice Nav */
         .choice-nav {
             display: flex;
             gap: 14px;
@@ -141,7 +140,7 @@
             box-shadow: 0 10px 20px rgba(236, 72, 153, 0.35);
         }
 
-        /* Секции контента */
+        /* Sections */
         .content-display {
             padding: 30px 0 80px;
         }
@@ -176,7 +175,7 @@
             font-size: 0.95rem;
         }
 
-        /* Галерея иллюстраций */
+        /* Art Gallery Grid */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -205,6 +204,7 @@
             height: 300px;
             object-fit: cover;
             display: block;
+            background-color: var(--accent-soft);
             transition: transform 0.5s ease;
         }
 
@@ -243,7 +243,7 @@
             color: #fbcfe8;
         }
 
-        /* Книги */
+        /* Books Section */
         .books-list {
             display: flex;
             flex-direction: column;
@@ -270,9 +270,10 @@
 
         .book-cover {
             width: 100%;
-            height: 310px;
+            height: 320px;
             border-radius: var(--radius-sm);
             object-fit: cover;
+            background-color: var(--accent-soft);
             box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
@@ -303,12 +304,13 @@
             font-style: italic;
             color: var(--text-dark);
             border-left: 3px solid var(--primary-pink);
-            padding-left: 14px;
-            margin-bottom: 16px;
+            padding: 10px 16px;
+            margin-bottom: 18px;
             font-weight: 500;
             background: var(--bg-inner);
-            padding: 10px 14px;
             border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            white-space: pre-line;
+            line-height: 1.6;
         }
 
         .book-synopsis {
@@ -319,20 +321,26 @@
             white-space: pre-line;
         }
 
+        .book-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
         .book-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 24px;
+            padding: 11px 22px;
             background: var(--primary-pink);
             border-radius: var(--radius-sm);
             color: #ffffff;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-family: 'Comfortaa', cursive;
             transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
         }
 
         .book-link:hover {
@@ -340,7 +348,19 @@
             transform: translateY(-2px);
         }
 
-        /* Соцсети */
+        .book-link.btn-alt {
+            background: var(--card-bg);
+            color: var(--primary-pink);
+            border: 2px solid var(--border-pink);
+            box-shadow: none;
+        }
+
+        .book-link.btn-alt:hover {
+            background: var(--accent-soft);
+            border-color: var(--primary-pink);
+        }
+
+        /* Socials */
         .socials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -387,7 +407,7 @@
             color: var(--text-muted);
         }
 
-        /* Модальное окно (Лайтбокс) */
+        /* Lightbox */
         .lightbox {
             position: fixed;
             top: 0;
@@ -468,14 +488,14 @@
                 padding: 24px;
             }
             .book-cover {
-                width: 170px;
-                height: 250px;
+                width: 180px;
+                height: 260px;
                 margin: 0 auto;
             }
             .book-content {
                 text-align: center;
             }
-            .genre-tags {
+            .genre-tags, .book-buttons {
                 justify-content: center;
             }
             .book-quote {
@@ -520,24 +540,24 @@
                 </div>
 
                 <div class="gallery-grid">
-                    <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1200', 'Иллюстрация 1')">
-                        <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600" alt="Иллюстрация 1">
+                    <div class="gallery-card" onclick="openLightbox('art1.jpg', 'Иллюстрация 1')">
+                        <img src="art1.jpg" alt="Иллюстрация 1" onerror="this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600'">
                         <div class="card-overlay">
                             <h4>Иллюстрация 1</h4>
                             <span>Нажмите для увеличения</span>
                         </div>
                     </div>
 
-                    <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200', 'Иллюстрация 2')">
-                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600" alt="Иллюстрация 2">
+                    <div class="gallery-card" onclick="openLightbox('art2.jpg', 'Иллюстрация 2')">
+                        <img src="art2.jpg" alt="Иллюстрация 2" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600'">
                         <div class="card-overlay">
                             <h4>Иллюстрация 2</h4>
                             <span>Нажмите для увеличения</span>
                         </div>
                     </div>
 
-                    <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200', 'Иллюстрация 3')">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600" alt="Иллюстрация 3">
+                    <div class="gallery-card" onclick="openLightbox('art3.jpg', 'Иллюстрация 3')">
+                        <img src="art3.jpg" alt="Иллюстрация 3" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600'">
                         <div class="card-overlay">
                             <h4>Иллюстрация 3</h4>
                             <span>Нажмите для увеличения</span>
@@ -549,14 +569,14 @@
             <!-- СЕКЦИЯ: КНИГИ -->
             <section id="books" class="portfolio-section">
                 <div class="section-header">
-                    <h2>Книги и рукописи</h2>
-                    <p>Аннотации, жанры и страницы произведений</p>
+                    <h2>Где меня можно почитать?</h2>
+                    <p>Аннотации, жанры и прямые ссылки на книги</p>
                 </div>
 
                 <div class="books-list">
                     <!-- Цветы для ведьмы -->
                     <article class="book-card">
-                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400" alt="Цветы для ведьмы" class="book-cover">
+                        <img src="witch-cover.jpg" alt="Цветы для ведьмы" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400'">
                         <div class="book-content">
                             <h3>Цветы для ведьмы</h3>
                             <div class="genre-tags">
@@ -564,23 +584,31 @@
                                 <span class="genre-tag">фолк-хоррор</span>
                                 <span class="genre-tag">мистический реализм</span>
                             </div>
-                            <p class="book-synopsis">Он — жертва, принесённая лесу ради спасения деревни.
-Она — ведьма, что должна его принять.
-Изнурённые голодом и страхом жители отправляют юношу в сердце леса, чтобы умилостивить таинственную ведьму и вернуть плодородие полям.
+
+                            <div class="book-quote">«Он — жертва, принесённая лесу ради спасения деревни.
+Она — ведьма, что должна его принять».</div>
+
+                            <p class="book-synopsis">Изнурённые голодом и страхом жители отправляют юношу в сердце леса, чтобы умилостивить таинственную ведьму и вернуть плодородие полям.
 Но в каждой жертве есть выбор — и Яну предстоит сделать свой.
 
 История о том, как страх превращается в силу, одиночество — в понимание, а жертва — в смысл.
 О тех, кто выжил, но остался одиноким.
 И о том, что страшнее леса бывает только то, что мы носим внутри.</p>
-                            <a href="#" target="_blank" class="book-link">
-                                Читать книгу ↗
-                            </a>
+                            
+                            <div class="book-buttons">
+                                <a href="https://author.today/" target="_blank" class="book-link">
+                                    Автор.Тудей ↗
+                                </a>
+                                <a href="https://litnet.com/" target="_blank" class="book-link btn-alt">
+                                    Литнет ↗
+                                </a>
+                            </div>
                         </div>
                     </article>
 
                     <!-- Петля -->
                     <article class="book-card">
-                        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400" alt="Петля" class="book-cover">
+                        <img src="loop-cover.jpg" alt="Петля" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400'">
                         <div class="book-content">
                             <h3>Петля</h3>
                             <div class="genre-tags">
@@ -588,9 +616,9 @@
                                 <span class="genre-tag">драма</span>
                                 <span class="genre-tag">мистика</span>
                             </div>
-                            <div class="book-quote">
-                                «Все истории сначала кажутся историями о любви. А потом люди замечают, сколько в них было голода».
-                            </div>
+
+                            <div class="book-quote">«Все истории сначала кажутся историями о любви. А потом люди замечают, сколько в них было голода».</div>
+
                             <p class="book-synopsis">Она согласилась на месяц службы в замке Лихтенштайн, о котором ходят слухи.
 
 Говорят, там не осталось ни одной живой души.
@@ -600,9 +628,12 @@
 Далия не верит слухам. Ей нужно спасти сестру — единственную ниточку, за которую она держится.
 
 Но что, если спасение сестры — лишь приманка? Что, если замок ждал именно её?</p>
-                            <a href="#" target="_blank" class="book-link">
-                                Читать книгу ↗
-                            </a>
+                            
+                            <div class="book-buttons">
+                                <a href="https://litnet.com/" target="_blank" class="book-link">
+                                    Литнет ↗
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>
@@ -638,7 +669,7 @@
 
         </main>
 
-        <!-- Модальное окно просмотра -->
+        <!-- Лайтбокс -->
         <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
             <div class="lightbox-content">
                 <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
@@ -656,7 +687,6 @@
 
     </div>
 
-    <!-- Скрипт -->
     <script>
         function switchTab(sectionId, event) {
             const buttons = document.querySelectorAll('.choice-btn');
