@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фиона Моран | Портфолио</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Фиона Моран</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
@@ -32,6 +32,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         img {
@@ -69,7 +70,7 @@
             z-index: 1;
         }
 
-        /* Центральное полотно с 96% прозрачностью */
+        /* Центральное полотно */
         .site-wrapper {
             background-color: rgba(219, 229, 239, 0.96);
             background-image: 
@@ -95,7 +96,7 @@
 
         /* Header / Hero */
         .hero {
-            padding: 85px 0 50px;
+            padding: 75px 0 45px;
             text-align: center;
             position: relative;
         }
@@ -105,13 +106,13 @@
             align-items: center;
             justify-content: center;
             gap: 14px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .decorative-line::before,
         .decorative-line::after {
             content: '';
-            width: 60px;
+            width: 50px;
             height: 1px;
             background: var(--ink-secondary);
             opacity: 0.3;
@@ -136,7 +137,7 @@
 
         .hero h1 {
             font-family: var(--font-title);
-            font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+            font-size: clamp(2.3rem, 7vw, 4.2rem);
             font-weight: 700;
             color: var(--ink-primary);
             letter-spacing: 4px;
@@ -146,10 +147,10 @@
         }
 
         .hero p {
-            font-size: clamp(1rem, 2vw, 1.15rem);
+            font-size: clamp(0.95rem, 3vw, 1.15rem);
             color: var(--text-muted);
             max-width: 580px;
-            margin: 0 auto 36px;
+            margin: 0 auto 32px;
             font-weight: 400;
             letter-spacing: 0.3px;
         }
@@ -167,7 +168,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-ice);
             color: var(--ink-primary);
-            padding: 12px 26px;
+            padding: 12px 24px;
             border-radius: var(--radius-sm);
             font-size: 0.85rem;
             font-weight: 600;
@@ -196,7 +197,7 @@
 
         /* Секции контента */
         .content-display {
-            padding: 20px 0 80px;
+            padding: 20px 0 70px;
         }
 
         .portfolio-section {
@@ -214,13 +215,13 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 36px;
         }
 
         .section-header h2 {
             font-family: var(--font-title);
-            font-size: 2.2rem;
-            letter-spacing: 3px;
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            letter-spacing: 2px;
             color: var(--ink-primary);
             text-transform: uppercase;
         }
@@ -263,7 +264,7 @@
 
         .book-content h3 {
             font-family: var(--font-title);
-            font-size: 1.85rem;
+            font-size: clamp(1.4rem, 3.5vw, 1.85rem);
             color: var(--ink-primary);
             margin-bottom: 8px;
             letter-spacing: 1px;
@@ -280,7 +281,7 @@
             font-size: 0.72rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             background: rgba(16, 26, 46, 0.06);
             color: var(--ink-secondary);
             padding: 4px 12px;
@@ -318,6 +319,7 @@
         .book-link {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
             padding: 10px 22px;
             background: var(--accent-blue);
@@ -353,8 +355,8 @@
         /* Папки-категории */
         .folders-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
         }
 
         .folder-card {
@@ -362,7 +364,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-ice);
             border-radius: var(--radius-md);
-            padding: 32px 20px;
+            padding: 30px 18px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
@@ -397,7 +399,7 @@
 
         .folder-title {
             font-family: var(--font-title);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--ink-primary);
             letter-spacing: 1px;
@@ -460,7 +462,7 @@
 
         .modal-header h3 {
             font-family: var(--font-title);
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: var(--ink-primary);
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -468,9 +470,9 @@
 
         .modal-close-btn {
             position: absolute;
-            top: 24px;
-            right: 28px;
-            background: rgba(255, 255, 255, 0.8);
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.85);
             border: 1px solid var(--border-ice);
             color: var(--ink-primary);
             width: 38px;
@@ -492,8 +494,8 @@
 
         .modal-gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
         }
 
         .art-card {
@@ -514,7 +516,7 @@
 
         .art-card img {
             width: 100%;
-            height: 250px;
+            height: 240px;
             object-fit: cover;
             display: block;
             background-color: #c4d2e2;
@@ -525,10 +527,10 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 12px;
+            padding: 10px;
             background: linear-gradient(180deg, transparent, rgba(16, 26, 46, 0.94) 80%);
             color: #ffffff;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 500;
             text-align: center;
             letter-spacing: 0.5px;
@@ -543,8 +545,8 @@
         /* Соцсети */
         .socials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
             max-width: 840px;
             margin: 0 auto;
         }
@@ -553,7 +555,7 @@
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             border-radius: var(--radius-md);
-            padding: 30px 22px;
+            padding: 28px 20px;
             text-align: center;
             text-decoration: none;
             color: var(--ink-primary);
@@ -573,8 +575,8 @@
         }
 
         .social-svg-wrap {
-            width: 52px;
-            height: 52px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: rgba(16, 26, 46, 0.06);
             display: flex;
@@ -598,7 +600,7 @@
 
         .social-name {
             font-family: var(--font-title);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--ink-primary);
             letter-spacing: 1px;
@@ -624,7 +626,7 @@
             display: none;
             justify-content: center;
             align-items: center;
-            padding: 24px;
+            padding: 16px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -636,7 +638,7 @@
 
         .lightbox-content {
             position: relative;
-            max-width: 90vw;
+            max-width: 95vw;
             max-height: 85vh;
             display: flex;
             flex-direction: column;
@@ -645,7 +647,7 @@
 
         .lightbox-img {
             max-width: 100%;
-            max-height: 80vh;
+            max-height: 75vh;
             object-fit: contain;
             border-radius: var(--radius-sm);
             border: 1px solid rgba(45, 212, 191, 0.4);
@@ -655,14 +657,14 @@
         .lightbox-caption {
             margin-top: 14px;
             font-family: var(--font-title);
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #ffffff;
             letter-spacing: 1px;
         }
 
         .lightbox-close {
             position: absolute;
-            top: -42px;
+            top: -38px;
             right: 0;
             background: none;
             border: none;
@@ -675,35 +677,179 @@
         .footer {
             background: rgba(255, 255, 255, 0.45);
             border-top: 1px solid var(--border-ice);
-            padding: 28px 0;
+            padding: 24px 16px;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             letter-spacing: 0.5px;
         }
 
+        /* ========================================================
+           МОБИЛЬНАЯ АДАПТАЦИЯ (ЭКРАНЫ ТЕЛЕФОНОВ И ПЛАНШЕТОВ)
+        ======================================================== */
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 12px 8px 40px;
             }
+
+            .site-wrapper {
+                border-radius: 16px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding: 50px 0 35px;
+            }
+
+            .hero-badge {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+                padding: 4px 14px;
+            }
+
+            .choice-nav {
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .choice-btn {
+                width: 100%;
+                text-align: center;
+                padding: 12px 16px;
+                font-size: 0.82rem;
+            }
+
+            /* Книги на смартфонах */
             .book-card {
                 grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 22px;
+                gap: 18px;
+                padding: 20px 16px;
             }
+
             .book-cover {
-                width: 170px;
-                height: 250px;
-                margin: 0 auto;
+                width: 180px;
+                height: 260px;
+                margin: 0 auto 6px;
             }
+
             .book-content {
                 text-align: center;
             }
-            .genre-tags, .book-buttons {
+
+            .genre-tags {
                 justify-content: center;
+                gap: 6px;
             }
+
             .book-quote {
                 text-align: left;
+                font-size: 0.95rem;
+                padding: 10px 14px;
+            }
+
+            .book-synopsis {
+                text-align: left;
+                font-size: 0.88rem;
+                line-height: 1.7;
+            }
+
+            .book-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .book-link {
+                width: 100%;
+                padding: 12px 16px;
+            }
+
+            /* Папки на мобильных */
+            .folders-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .folder-card {
+                padding: 22px 12px;
+            }
+
+            .folder-title {
+                font-size: 1.05rem;
+            }
+
+            .folder-desc {
+                font-size: 0.75rem;
+            }
+
+            /* Модальные окна папок */
+            .folder-modal {
+                padding: 10px;
+            }
+
+            .folder-modal-content {
+                padding: 30px 16px 20px;
+                border-radius: 16px;
+                max-height: 92vh;
+            }
+
+            .modal-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .modal-close-btn {
+                top: 12px;
+                right: 12px;
+                width: 32px;
+                height: 32px;
+                font-size: 1.1rem;
+            }
+
+            .modal-gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .art-card img {
+                height: 180px;
+            }
+
+            /* Соцсети */
+            .socials-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .social-card {
+                padding: 20px 16px;
+                flex-direction: row;
+                text-align: left;
+                gap: 16px;
+            }
+
+            .social-svg-wrap {
+                width: 44px;
+                height: 44px;
+                flex-shrink: 0;
+            }
+
+            .social-name {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .folders-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .art-card img {
+                height: 220px;
             }
         }
     </style>
@@ -720,9 +866,9 @@
                 <div class="decorative-line">
                     <span class="diamond">◆</span>
                 </div>
-                <span class="hero-badge">Портфолио</span>
+                <span class="hero-badge">Художница ◆ Писательница</span>
                 <h1>FIONA MORAN</h1>
-                <p>Привет! Меня зовут Фиона, я художница и писательница.</p>
+                <p>Привет!</p>
                 
                 <div class="choice-nav">
                     <button class="choice-btn active" onclick="switchTab('books', event)">
@@ -732,7 +878,7 @@
                         МОИ ИЛЛЮСТРАЦИИ
                     </button>
                     <button class="choice-btn" onclick="switchTab('socials', event)">
-                        МОИ СОЦ СЕТИ
+                        МОИ СОЦ. СЕТИ
                     </button>
                 </div>
             </div>
@@ -741,7 +887,7 @@
         <!-- Основной контент -->
         <main class="content-display container" id="contentArea">
 
-            <!-- СЕКЦИЯ 1: КНИГИ (ТЕПЕРЬ ПЕРВАЯ) -->
+            <!-- СЕКЦИЯ 1: КНИГИ -->
             <section id="books" class="portfolio-section active-section">
                 <div class="section-header">
                     <h2>Где меня можно почитать?</h2>
@@ -853,22 +999,26 @@
                     <a href="https://www.tiktok.com/@fionazula" target="_blank" class="social-card">
                         <div class="social-svg-wrap">
                             <svg viewBox="0 0 24 24">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34 6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34-6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
                             </svg>
                         </div>
-                        <div class="social-name">TikTok</div>
-                        <div class="social-desc">Арт-аккаунт</div>
+                        <div>
+                            <div class="social-name">TikTok</div>
+                            <div class="social-desc">Арт-аккаунт</div>
+                        </div>
                     </a>
 
                     <!-- TikTok: Книги -->
                     <a href="https://www.tiktok.com/@fionkamoran" target="_blank" class="social-card">
                         <div class="social-svg-wrap">
                             <svg viewBox="0 0 24 24">
-                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34 6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
                             </svg>
                         </div>
-                        <div class="social-name">TikTok</div>
-                        <div class="social-desc">Писательский аккаунт</div>
+                        <div>
+                            <div class="social-name">TikTok</div>
+                            <div class="social-desc">Писательский аккаунт</div>
+                        </div>
                     </a>
 
                     <!-- Telegram -->
@@ -878,8 +1028,10 @@
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.88.03-.24.37-.49 1.02-.75 3.98-1.73 6.64-2.88 7.98-3.44 3.8-1.58 4.59-1.86 5.11-1.87.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.17-.04.28z"/>
                             </svg>
                         </div>
-                        <div class="social-name">Telegram</div>
-                        <div class="social-desc">Личный канал</div>
+                        <div>
+                            <div class="social-name">Telegram</div>
+                            <div class="social-desc">Личный канал</div>
+                        </div>
                     </a>
                 </div>
             </section>
@@ -974,13 +1126,13 @@
         <!-- Подвал -->
         <footer class="footer">
             <div class="container">
-                <p>© 2026 Fiona Moran ◆ Портфолио художницы и писательницы</p>
+                <p>© 2026 Fiona Moran</p>
             </div>
         </footer>
 
     </div>
 
-    <!-- Скрипт леса и светлячков -->
+    <!-- Скрипт леса и светлячков с оптимизацией под экраны -->
     <script>
         const canvas = document.getElementById('forestCanvas');
         const ctx = canvas.getContext('2d');
@@ -1029,8 +1181,8 @@
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = canvas.height * 0.45 + Math.random() * (canvas.height * 0.55);
-                this.baseRadius = Math.random() * 2.2 + 1.2;
-                this.glowRadius = this.baseRadius * (Math.random() * 6 + 6);
+                this.baseRadius = Math.random() * 2 + 1.2;
+                this.glowRadius = this.baseRadius * (Math.random() * 5 + 5);
                 this.speedX = (Math.random() - 0.5) * 0.35;
                 this.speedY = - (Math.random() * 0.3 + 0.1);
                 this.pulseSpeed = Math.random() * 0.03 + 0.015;
@@ -1072,8 +1224,10 @@
             }
         }
 
+        const isMobile = window.innerWidth <= 768;
+        const wispCount = isMobile ? 25 : 48;
         const wisps = [];
-        for (let i = 0; i < 48; i++) {
+        for (let i = 0; i < wispCount; i++) {
             wisps.push(new TealWisp());
         }
 
