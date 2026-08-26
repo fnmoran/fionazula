@@ -10,15 +10,15 @@
     
     <style>
         :root {
-            --bg: #0d0e12;
-            --surface: #15171e;
-            --surface-hover: #1c1f28;
+            --bg: #0b0c10;
+            --surface: #14161d;
+            --surface-hover: #1b1e28;
             --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(184, 154, 235, 0.3);
+            --border-hover: rgba(184, 154, 235, 0.35);
             --accent: #a78bfa;
-            --accent-glow: rgba(167, 139, 250, 0.15);
+            --accent-glow: rgba(167, 139, 250, 0.2);
             --text-main: #f1f2f6;
-            --text-muted: #9499ad;
+            --text-muted: #9da3b4;
             --font-title: 'Cinzel', serif;
             --font-body: 'Plus Jakarta Sans', sans-serif;
             --radius-md: 14px;
@@ -40,7 +40,7 @@
             font-family: var(--font-body);
             background-color: var(--bg);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
             background-image: 
                 radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
@@ -49,20 +49,20 @@
         }
 
         .container {
-            max-width: 1140px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
         /* Hero Screen */
         .hero {
-            min-height: 85vh;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 80px 0 40px;
+            padding: 90px 0 40px;
             animation: fadeIn 1s ease-out;
         }
 
@@ -81,11 +81,11 @@
 
         .hero h1 {
             font-family: var(--font-title);
-            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            font-size: clamp(2.6rem, 5.5vw, 4.4rem);
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             line-height: 1.2;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             background: linear-gradient(180deg, #ffffff 40%, #a8a8b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -94,15 +94,15 @@
         .hero p {
             font-size: clamp(1.05rem, 2vw, 1.25rem);
             color: var(--text-muted);
-            max-width: 620px;
+            max-width: 650px;
             margin-bottom: 40px;
             font-weight: 300;
         }
 
-        /* Dual Choice Buttons */
+        /* Choice Nav Buttons */
         .choice-nav {
             display: flex;
-            gap: 18px;
+            gap: 16px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -111,30 +111,17 @@
             background: var(--surface);
             border: 1px solid var(--border);
             color: var(--text-main);
-            padding: 16px 32px;
+            padding: 14px 28px;
             border-radius: var(--radius-md);
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             font-family: var(--font-body);
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .choice-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.15), transparent);
-            opacity: 0;
-            transition: var(--transition);
+            gap: 10px;
         }
 
         .choice-btn:hover {
@@ -143,19 +130,15 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
         }
 
-        .choice-btn:hover::before {
-            opacity: 1;
-        }
-
         .choice-btn.active {
             background: var(--accent);
-            color: #0d0e12;
-            font-weight: 600;
+            color: #0b0c10;
+            font-weight: 700;
             border-color: var(--accent);
-            box-shadow: 0 8px 25px rgba(167, 139, 250, 0.35);
+            box-shadow: 0 8px 25px rgba(167, 139, 250, 0.4);
         }
 
-        /* Section Layout & Animated Transitions */
+        /* Content Display */
         .content-display {
             padding: 40px 0 100px;
         }
@@ -164,7 +147,7 @@
             display: none;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.45s ease, transform 0.45s ease;
         }
 
         .portfolio-section.active-section {
@@ -180,9 +163,9 @@
 
         .section-header h2 {
             font-family: var(--font-title);
-            font-size: 2rem;
+            font-size: 2.1rem;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .section-header p {
@@ -190,7 +173,7 @@
             font-size: 0.95rem;
         }
 
-        /* Art Gallery Grid */
+        /* Gallery Grid */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -231,7 +214,7 @@
             left: 0;
             right: 0;
             padding: 20px;
-            background: linear-gradient(180deg, transparent, rgba(13, 14, 18, 0.95) 75%);
+            background: linear-gradient(180deg, transparent, rgba(11, 12, 16, 0.95) 75%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -260,8 +243,8 @@
         .books-list {
             display: flex;
             flex-direction: column;
-            gap: 32px;
-            max-width: 900px;
+            gap: 36px;
+            max-width: 920px;
             margin: 0 auto;
         }
 
@@ -269,9 +252,9 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
-            padding: 28px;
+            padding: 32px;
             display: grid;
-            grid-template-columns: 200px 1fr;
+            grid-template-columns: 220px 1fr;
             gap: 32px;
             align-items: start;
             transition: var(--transition);
@@ -285,16 +268,16 @@
 
         .book-cover {
             width: 100%;
-            height: 280px;
-            border-radius: 10px;
+            height: 320px;
+            border-radius: 12px;
             object-fit: cover;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
-            background-color: #1f222b;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+            background-color: #1a1d26;
         }
 
         .book-content h3 {
             font-family: var(--font-title);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 12px;
             color: #ffffff;
         }
@@ -303,7 +286,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
         .genre-tag {
@@ -316,11 +299,21 @@
             letter-spacing: 0.5px;
         }
 
+        .book-quote {
+            font-style: italic;
+            color: #d1d5db;
+            border-left: 2px solid var(--accent);
+            padding-left: 14px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
         .book-synopsis {
             color: var(--text-muted);
             font-size: 0.95rem;
-            line-height: 1.7;
+            line-height: 1.75;
             margin-bottom: 24px;
+            white-space: pre-line;
         }
 
         .book-link {
@@ -340,18 +333,62 @@
 
         .book-link:hover {
             background: var(--accent);
-            color: #0d0e12;
+            color: #0b0c10;
             border-color: var(--accent);
         }
 
-        /* Lightbox (Полноэкранный просмотр арта) */
+        /* Socials Section */
+        .socials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+        }
+
+        .social-icon {
+            font-size: 2rem;
+        }
+
+        .social-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .social-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Lightbox */
         .lightbox {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(8, 9, 11, 0.92);
+            background: rgba(6, 7, 9, 0.94);
             backdrop-filter: blur(12px);
             z-index: 1000;
             display: none;
@@ -404,7 +441,7 @@
             background: none;
             border: none;
             color: var(--text-muted);
-            font-size: 2rem;
+            font-size: 2.2rem;
             cursor: pointer;
             transition: color 0.2s;
             line-height: 1;
@@ -423,15 +460,15 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .book-card {
                 grid-template-columns: 1fr;
                 gap: 20px;
+                padding: 24px;
             }
             .book-cover {
-                width: 160px;
-                height: 230px;
+                width: 180px;
+                height: 260px;
                 margin: 0 auto;
             }
             .book-content {
@@ -440,8 +477,11 @@
             .genre-tags {
                 justify-content: center;
             }
+            .book-quote {
+                text-align: left;
+            }
             .hero {
-                min-height: 75vh;
+                min-height: 70vh;
             }
         }
 
@@ -458,14 +498,17 @@
         <div class="container">
             <span class="hero-badge">Портфолио</span>
             <h1>Fionazula</h1>
-            <p>Художница и писательница. Создаю визуальные миры, мрачные истории и оживляю образы на холсте и в тексте.</p>
+            <p>Привет! Меня зовут Фиона, я художница и писательница. Это мое портфолио.</p>
             
             <div class="choice-nav">
-                <button class="choice-btn active" onclick="switchTab('illustrations')">
-                    🎨 Смотреть иллюстрации
+                <button class="choice-btn active" onclick="switchTab('illustrations', event)">
+                    🎨 МОИ ИЛЛЮСТРАЦИИ
                 </button>
-                <button class="choice-btn" onclick="switchTab('books')">
-                    📖 Смотреть книги
+                <button class="choice-btn" onclick="switchTab('books', event)">
+                    📖 МОИ КНИГИ
+                </button>
+                <button class="choice-btn" onclick="switchTab('socials', event)">
+                    🌐 МОИ СОЦ СЕТИ
                 </button>
             </div>
         </div>
@@ -478,34 +521,34 @@
         <section id="illustrations" class="portfolio-section active-section">
             <div class="section-header">
                 <h2>Галерея иллюстраций</h2>
-                <p>Нажмите на любое изображение, чтобы открыть его в полном размере</p>
+                <p>Нажмите на изображение для полноразмерного просмотра</p>
             </div>
 
             <div class="gallery-grid">
-                <!-- Карточка 1 -->
-                <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1000', 'Атмосферный концепт-арт')">
+                <!-- Карточка 1 (замени art1.jpg на имя своего файла после загрузки) -->
+                <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1200', 'Иллюстрация 1')">
                     <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600" alt="Иллюстрация 1">
                     <div class="card-overlay">
-                        <h4>Атмосферный концепт-арт</h4>
-                        <span>Нажмите для просмотра</span>
+                        <h4>Иллюстрация 1</h4>
+                        <span>Нажмите для увеличения</span>
                     </div>
                 </div>
 
                 <!-- Карточка 2 -->
-                <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000', 'Персонаж и окружение')">
+                <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200', 'Иллюстрация 2')">
                     <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600" alt="Иллюстрация 2">
                     <div class="card-overlay">
-                        <h4>Персонаж и окружение</h4>
-                        <span>Нажмите для просмотра</span>
+                        <h4>Иллюстрация 2</h4>
+                        <span>Нажмите для увеличения</span>
                     </div>
                 </div>
 
                 <!-- Карточка 3 -->
-                <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000', 'Мистическая локация')">
+                <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200', 'Иллюстрация 3')">
                     <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600" alt="Иллюстрация 3">
                     <div class="card-overlay">
-                        <h4>Мистическая локация</h4>
-                        <span>Нажмите для просмотра</span>
+                        <h4>Иллюстрация 3</h4>
+                        <span>Нажмите для увеличения</span>
                     </div>
                 </div>
             </div>
@@ -514,48 +557,92 @@
         <!-- СЕКЦИЯ 2: КНИГИ -->
         <section id="books" class="portfolio-section">
             <div class="section-header">
-                <h2>Книги и романы</h2>
-                <p>Мои изданные истории, текущие рукописи и аннотации к ним</p>
+                <h2>Книги и рукописи</h2>
+                <p>Истории, аннотации и миры</p>
             </div>
 
             <div class="books-list">
-                <!-- Карточка книги 1 -->
+                <!-- Книга 1: Цветы для ведьмы -->
                 <article class="book-card">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400" alt="Обложка первой книги" class="book-cover">
+                    <!-- Замени cover1.jpg на загруженную обложку -->
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400" alt="Цветы для ведьмы" class="book-cover">
                     <div class="book-content">
                         <h3>Цветы для ведьмы</h3>
                         <div class="genre-tags">
-                            <span class="genre-tag">Славянское темное фэнтези</span>
-                            <span class="genre-tag">Мистика</span>
-                            <span class="genre-tag">Фольклор</span>
+                            <span class="genre-tag">темное фэнтези</span>
+                            <span class="genre-tag">фолк-хоррор</span>
+                            <span class="genre-tag">мистический реализм</span>
                         </div>
-                        <p class="book-synopsis">
-                            История о древних лесах, невысказанных клятвах и выборе между судьбой и свободой. Когда шепот забытых богов вновь звучит в ночной тишине, граница между явью и навью истончается.
-                        </p>
+                        <p class="book-synopsis">Он — жертва, принесённая лесу ради спасения деревни.
+Она — ведьма, что должна его принять.
+Изнурённые голодом и страхом жители отправляют юношу в сердце леса, чтобы умилостивить таинственную ведьму и вернуть плодородие полям.
+Но в каждой жертве есть выбор — и Яну предстоит сделать свой.
+
+История о том, как страх превращается в силу, одиночество — в понимание, а жертва — в смысл.
+О тех, кто выжил, но остался одиноким.
+И о том, что страшнее леса бывает только то, что мы носим внутри.</p>
                         <a href="#" target="_blank" class="book-link">
-                            Читать / Страница книги ↗
+                            Читать книгу ↗
                         </a>
                     </div>
                 </article>
 
-                <!-- Карточка книги 2 -->
+                <!-- Книга 2: Петля -->
                 <article class="book-card">
-                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400" alt="Обложка второй книги" class="book-cover">
+                    <!-- Замени cover2.jpg на загруженную обложку -->
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400" alt="Петля" class="book-cover">
                     <div class="book-content">
                         <h3>Петля</h3>
                         <div class="genre-tags">
-                            <span class="genre-tag">Готический детектив</span>
-                            <span class="genre-tag">Триллер</span>
-                            <span class="genre-tag">Психология</span>
+                            <span class="genre-tag">готика</span>
+                            <span class="genre-tag">драма</span>
+                            <span class="genre-tag">мистика</span>
                         </div>
-                        <p class="book-synopsis">
-                            Скрытые тайны старинного поместья, переплетенные семейные узы и загадка, заставляющая сомневаться в реальности каждого шага.
-                        </p>
+                        <div class="book-quote">
+                            «Все истории сначала кажутся историями о любви. А потом люди замечают, сколько в них было голода».
+                        </div>
+                        <p class="book-synopsis">Она согласилась на месяц службы в замке Лихтенштайн, о котором ходят слухи.
+
+Говорят, там не осталось ни одной живой души.
+Говорят, хозяин — безумец, запершийся в каменной клетке.
+Говорят, из этих стен не возвращаются.
+
+Далия не верит слухам. Ей нужно спасти сестру — единственную ниточку, за которую она держится.
+
+Но что, если спасение сестры — лишь приманка? Что, если замок ждал именно её?</p>
                         <a href="#" target="_blank" class="book-link">
-                            Читать / Страница книги ↗
+                            Читать книгу ↗
                         </a>
                     </div>
                 </article>
+            </div>
+        </section>
+
+        <!-- СЕКЦИЯ 3: СОЦСЕТИ -->
+        <section id="socials" class="portfolio-section">
+            <div class="section-header">
+                <h2>Связь и соцсети</h2>
+                <p>Где за мной можно следить и связаться по поводу сотрудничества</p>
+            </div>
+
+            <div class="socials-grid">
+                <a href="https://t.me/" target="_blank" class="social-card">
+                    <div class="social-icon">✈️</div>
+                    <div class="social-name">Telegram</div>
+                    <div class="social-desc">Мысли, процессы, арты и новости</div>
+                </a>
+
+                <a href="https://tiktok.com/" target="_blank" class="social-card">
+                    <div class="social-icon">🎬</div>
+                    <div class="social-name">TikTok</div>
+                    <div class="social-desc">Видео о книгах и рисовании</div>
+                </a>
+
+                <a href="mailto:your-mail@example.com" class="social-card">
+                    <div class="social-icon">✉️</div>
+                    <div class="social-name">Email</div>
+                    <div class="social-desc">По вопросам сотрудничества</div>
+                </a>
             </div>
         </section>
 
@@ -565,41 +652,42 @@
     <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
         <div class="lightbox-content">
             <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
-            <img id="lightboxImg" class="lightbox-img" src="" alt="Просмотр работы">
+            <img id="lightboxImg" class="lightbox-img" src="" alt="Просмотр">
             <div id="lightboxCaption" class="lightbox-caption"></div>
         </div>
     </div>
 
-    <!-- Подвал сайта -->
+    <!-- Подвал -->
     <footer class="footer">
         <div class="container">
-            <p>© 2026 Fionazula. Иллюстрации & Литература.</p>
+            <p>© 2026 Fionazula. Портфолио художницы и писательницы.</p>
         </div>
     </footer>
 
-    <!-- Скрипт переключения разделов и модального окна -->
+    <!-- Скрипт переключения -->
     <script>
-        function switchTab(sectionId) {
-            // Переключение кнопок
+        function switchTab(sectionId, event) {
             const buttons = document.querySelectorAll('.choice-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            if (event) {
+                event.currentTarget.classList.add('active');
+            }
 
-            // Плавное скрытие и показ секций
             const sections = document.querySelectorAll('.portfolio-section');
             sections.forEach(sec => {
                 sec.classList.remove('active-section');
             });
 
             const activeSection = document.getElementById(sectionId);
-            activeSection.classList.add('active-section');
+            if (activeSection) {
+                activeSection.classList.add('active-section');
+            }
 
-            // Плавная прокрутка к блоку с контентом
             const contentArea = document.getElementById('contentArea');
             contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Логика открытия и закрытия полного размера арта
+        // Логика лайтбокса
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxCaption = document.getElementById('lightboxCaption');
