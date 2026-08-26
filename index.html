@@ -3,49 +3,627 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fionazula | Portfolio</title>
+    <title>Fionazula | Портфолио</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
-        body {
+        :root {
+            --bg: #0d0e12;
+            --surface: #15171e;
+            --surface-hover: #1c1f28;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(184, 154, 235, 0.3);
+            --accent: #a78bfa;
+            --accent-glow: rgba(167, 139, 250, 0.15);
+            --text-main: #f1f2f6;
+            --text-muted: #9499ad;
+            --font-title: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #121214;
-            color: #e1e1e6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 60%, rgba(99, 102, 241, 0.06) 0%, transparent 45%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Screen */
+        .hero {
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            align-items: center;
             text-align: center;
+            padding: 80px 0 40px;
+            animation: fadeIn 1s ease-out;
         }
-        h1 {
-            font-size: 2.5rem;
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            background: var(--accent-glow);
+            padding: 6px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-title);
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #ffffff 40%, #a8a8b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 620px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Dual Choice Buttons */
+        .choice-nav {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .choice-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 16px 32px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .choice-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.15), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
+        }
+
+        .choice-btn:hover::before {
+            opacity: 1;
+        }
+
+        .choice-btn.active {
+            background: var(--accent);
+            color: #0d0e12;
+            font-weight: 600;
+            border-color: var(--accent);
+            box-shadow: 0 8px 25px rgba(167, 139, 250, 0.35);
+        }
+
+        /* Section Layout & Animated Transitions */
+        .content-display {
+            padding: 40px 0 100px;
+        }
+
+        .portfolio-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .portfolio-section.active-section {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Art Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(180deg, transparent, rgba(13, 14, 18, 0.95) 75%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .gallery-card:hover .card-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-overlay h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .card-overlay span {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        /* Books Section */
+        .books-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .book-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 32px;
+            align-items: start;
+            transition: var(--transition);
+        }
+
+        .book-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 280px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+            background-color: #1f222b;
+        }
+
+        .book-content h3 {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
             margin-bottom: 12px;
             color: #ffffff;
         }
-        p {
-            font-size: 1.2rem;
-            color: #a8a8b3;
-            max-width: 600px;
-            line-height: 1.6;
+
+        .genre-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
         }
-        .tag {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 8px 16px;
-            background-color: #202024;
-            border: 1px solid #323238;
-            border-radius: 20px;
+
+        .genre-tag {
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .book-synopsis {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .book-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-main);
+            text-decoration: none;
             font-size: 0.9rem;
-            color: #8257e5;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .book-link:hover {
+            background: var(--accent);
+            color: #0d0e12;
+            border-color: var(--accent);
+        }
+
+        /* Lightbox (Полноэкранный просмотр арта) */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 9, 11, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active .lightbox-img {
+            transform: scale(1);
+        }
+
+        .lightbox-caption {
+            margin-top: 14px;
+            font-size: 1rem;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            color: #ffffff;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .book-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .book-cover {
+                width: 160px;
+                height: 230px;
+                margin: 0 auto;
+            }
+            .book-content {
+                text-align: center;
+            }
+            .genre-tags {
+                justify-content: center;
+            }
+            .hero {
+                min-height: 75vh;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <h1>Привет! Это портфолио Fionazula</h1>
-    <p>Сайт успешно запущен и работает на GitHub Pages. Скоро здесь появится галерея работ и проектов.</p>
-    <div class="tag">Сайт в процессе оформления</div>
+    <!-- Главный экран -->
+    <header class="hero">
+        <div class="container">
+            <span class="hero-badge">Портфолио</span>
+            <h1>Fionazula</h1>
+            <p>Художница и писательница. Создаю визуальные миры, мрачные истории и оживляю образы на холсте и в тексте.</p>
+            
+            <div class="choice-nav">
+                <button class="choice-btn active" onclick="switchTab('illustrations')">
+                    🎨 Смотреть иллюстрации
+                </button>
+                <button class="choice-btn" onclick="switchTab('books')">
+                    📖 Смотреть книги
+                </button>
+            </div>
+        </div>
+    </header>
 
+    <!-- Основной контент с разделами -->
+    <main class="content-display container" id="contentArea">
+
+        <!-- СЕКЦИЯ 1: ИЛЛЮСТРАЦИИ -->
+        <section id="illustrations" class="portfolio-section active-section">
+            <div class="section-header">
+                <h2>Галерея иллюстраций</h2>
+                <p>Нажмите на любое изображение, чтобы открыть его в полном размере</p>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Карточка 1 -->
+                <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1000', 'Атмосферный концепт-арт')">
+                    <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600" alt="Иллюстрация 1">
+                    <div class="card-overlay">
+                        <h4>Атмосферный концепт-арт</h4>
+                        <span>Нажмите для просмотра</span>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000', 'Персонаж и окружение')">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600" alt="Иллюстрация 2">
+                    <div class="card-overlay">
+                        <h4>Персонаж и окружение</h4>
+                        <span>Нажмите для просмотра</span>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="gallery-card" onclick="openLightbox('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000', 'Мистическая локация')">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600" alt="Иллюстрация 3">
+                    <div class="card-overlay">
+                        <h4>Мистическая локация</h4>
+                        <span>Нажмите для просмотра</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЕКЦИЯ 2: КНИГИ -->
+        <section id="books" class="portfolio-section">
+            <div class="section-header">
+                <h2>Книги и романы</h2>
+                <p>Мои изданные истории, текущие рукописи и аннотации к ним</p>
+            </div>
+
+            <div class="books-list">
+                <!-- Карточка книги 1 -->
+                <article class="book-card">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400" alt="Обложка первой книги" class="book-cover">
+                    <div class="book-content">
+                        <h3>Цветы для ведьмы</h3>
+                        <div class="genre-tags">
+                            <span class="genre-tag">Славянское темное фэнтези</span>
+                            <span class="genre-tag">Мистика</span>
+                            <span class="genre-tag">Фольклор</span>
+                        </div>
+                        <p class="book-synopsis">
+                            История о древних лесах, невысказанных клятвах и выборе между судьбой и свободой. Когда шепот забытых богов вновь звучит в ночной тишине, граница между явью и навью истончается.
+                        </p>
+                        <a href="#" target="_blank" class="book-link">
+                            Читать / Страница книги ↗
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Карточка книги 2 -->
+                <article class="book-card">
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400" alt="Обложка второй книги" class="book-cover">
+                    <div class="book-content">
+                        <h3>Петля</h3>
+                        <div class="genre-tags">
+                            <span class="genre-tag">Готический детектив</span>
+                            <span class="genre-tag">Триллер</span>
+                            <span class="genre-tag">Психология</span>
+                        </div>
+                        <p class="book-synopsis">
+                            Скрытые тайны старинного поместья, переплетенные семейные узы и загадка, заставляющая сомневаться в реальности каждого шага.
+                        </p>
+                        <a href="#" target="_blank" class="book-link">
+                            Читать / Страница книги ↗
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Полноэкранный просмотр артов (Лайтбокс) -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+            <img id="lightboxImg" class="lightbox-img" src="" alt="Просмотр работы">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Fionazula. Иллюстрации & Литература.</p>
+        </div>
+    </footer>
+
+    <!-- Скрипт переключения разделов и модального окна -->
+    <script>
+        function switchTab(sectionId) {
+            // Переключение кнопок
+            const buttons = document.querySelectorAll('.choice-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Плавное скрытие и показ секций
+            const sections = document.querySelectorAll('.portfolio-section');
+            sections.forEach(sec => {
+                sec.classList.remove('active-section');
+            });
+
+            const activeSection = document.getElementById(sectionId);
+            activeSection.classList.add('active-section');
+
+            // Плавная прокрутка к блоку с контентом
+            const contentArea = document.getElementById('contentArea');
+            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Логика открытия и закрытия полного размера арта
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+
+        function openLightbox(src, caption) {
+            lightboxImg.src = src;
+            lightboxCaption.textContent = caption;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e) {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>
