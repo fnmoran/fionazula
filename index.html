@@ -6,24 +6,29 @@
     <title>Fionazula | Портфолио</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-outer: #f472b6;
-            --bg-inner: #fff5f8;
-            --card-bg: #ffffff;
-            --primary-pink: #ec4899;
-            --primary-dark: #be185d;
-            --accent-soft: #fce7f3;
-            --text-dark: #372938;
-            --text-muted: #786b7a;
-            --border-pink: #fbcfe8;
-            --radius-sm: 14px;
+            /* Палитра из макета */
+            --bg-deep: #432857; /* Глубокий фиолетовый для внешней рамки и акцентов */
+            --bg-deep-hover: #341e44;
+            --bg-pearl: linear-gradient(180deg, #dcebe9 0%, #e2e4f3 35%, #eedef0 70%, #f4e8ee 100%);
+            --card-glass: rgba(255, 255, 255, 0.65);
+            --card-glass-hover: rgba(255, 255, 255, 0.85);
+            --text-dark: #2d1a3a;
+            --text-muted: #5e4a68;
+            --border-glass: rgba(255, 255, 255, 0.7);
+            --border-purple: rgba(67, 40, 87, 0.15);
+            --accent-purple: #432857;
+            --accent-light: #ebd6f5;
+            --font-title: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --radius-sm: 12px;
             --radius-md: 20px;
-            --radius-lg: 28px;
-            --shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.12), 0 8px 10px -6px rgba(236, 72, 153, 0.08);
-            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            --radius-lg: 32px;
+            --shadow-soft: 0 16px 35px -10px rgba(67, 40, 87, 0.12);
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -32,12 +37,8 @@
             padding: 0;
         }
 
-        /* Защита изображений от сохранения и перетаскивания */
         img {
             -webkit-user-drag: none;
-            -khtml-user-drag: none;
-            -moz-user-drag: none;
-            -o-user-drag: none;
             user-select: none;
             -webkit-user-select: none;
             pointer-events: auto;
@@ -48,74 +49,76 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-outer);
+            font-family: var(--font-body);
+            background-color: var(--bg-deep);
             color: var(--text-dark);
             line-height: 1.7;
-            padding: 16px;
+            padding: 24px 16px;
             -webkit-user-select: none;
             user-select: none;
         }
 
+        /* Центральное жемчужное полотно */
         .site-wrapper {
-            background-color: var(--bg-inner);
-            max-width: 1100px;
+            background: var(--bg-pearl);
+            max-width: 1060px;
             margin: 0 auto;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border: 4px solid var(--card-bg);
+            box-shadow: 0 30px 70px rgba(25, 12, 33, 0.45);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
         }
 
         .container {
-            max-width: 960px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Header / Hero */
+        /* Главный экран */
         .hero {
-            padding: 70px 0 40px;
+            padding: 85px 0 45px;
             text-align: center;
-            background: radial-gradient(circle at 50% 20%, #fce7f3 0%, var(--bg-inner) 70%);
         }
 
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'Comfortaa', cursive;
-            font-size: 0.85rem;
-            font-weight: 700;
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary-pink);
-            background: var(--card-bg);
-            padding: 8px 22px;
+            letter-spacing: 3px;
+            color: var(--accent-purple);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 6px 20px;
             border-radius: 40px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-soft);
             margin-bottom: 24px;
-            border: 1px solid var(--border-pink);
+            border: 1px solid var(--border-glass);
         }
 
         .hero h1 {
-            font-family: 'Comfortaa', cursive;
-            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-family: var(--font-title);
+            font-size: clamp(3rem, 7vw, 5.2rem);
             font-weight: 700;
-            color: var(--primary-dark);
-            letter-spacing: 1px;
-            margin-bottom: 16px;
+            color: var(--accent-purple);
+            letter-spacing: 2px;
+            line-height: 1.05;
+            margin-bottom: 18px;
+            text-transform: uppercase;
         }
 
         .hero p {
             font-size: clamp(1.05rem, 2vw, 1.2rem);
             color: var(--text-muted);
-            max-width: 620px;
-            margin: 0 auto 36px;
-            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 400;
         }
 
-        /* Choice Nav */
+        /* Кнопки переключения */
         .choice-nav {
             display: flex;
             gap: 14px;
@@ -124,17 +127,19 @@
         }
 
         .choice-btn {
-            background: var(--card-bg);
-            border: 2px solid var(--border-pink);
+            background: var(--card-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-glass);
             color: var(--text-dark);
             padding: 14px 26px;
             border-radius: var(--radius-sm);
-            font-size: 0.95rem;
-            font-weight: 700;
-            font-family: 'Comfortaa', cursive;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-family: var(--font-body);
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-soft);
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -142,20 +147,21 @@
 
         .choice-btn:hover {
             transform: translateY(-4px);
-            border-color: var(--primary-pink);
-            color: var(--primary-pink);
+            background: #ffffff;
+            color: var(--accent-purple);
+            box-shadow: 0 14px 28px rgba(67, 40, 87, 0.15);
         }
 
         .choice-btn.active {
-            background: var(--primary-pink);
+            background: var(--accent-purple);
             color: #ffffff;
-            border-color: var(--primary-pink);
-            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.35);
+            border-color: var(--accent-purple);
+            box-shadow: 0 12px 24px rgba(67, 40, 87, 0.3);
         }
 
-        /* Sections */
+        /* Секции контента */
         .content-display {
-            padding: 30px 0 80px;
+            padding: 30px 0 90px;
         }
 
         .portfolio-section {
@@ -173,14 +179,16 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
         }
 
         .section-header h2 {
-            font-family: 'Comfortaa', cursive;
-            font-size: 2rem;
-            color: var(--primary-dark);
-            margin-bottom: 8px;
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            color: var(--accent-purple);
+            margin-bottom: 6px;
+            text-transform: uppercase;
         }
 
         .section-header p {
@@ -191,21 +199,20 @@
         /* Папки-категории */
         .folders-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
             gap: 20px;
-            max-width: 900px;
-            margin: 0 auto;
         }
 
         .folder-card {
-            background: var(--card-bg);
-            border: 2px solid var(--border-pink);
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
             border-radius: var(--radius-md);
-            padding: 30px 20px;
+            padding: 32px 20px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-soft);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -214,13 +221,13 @@
 
         .folder-card:hover {
             transform: translateY(-6px);
-            border-color: var(--primary-pink);
-            box-shadow: 0 16px 30px rgba(236, 72, 153, 0.2);
+            background: #ffffff;
+            box-shadow: 0 20px 40px rgba(67, 40, 87, 0.16);
+            border-color: rgba(255, 255, 255, 0.95);
         }
 
         .folder-icon {
-            font-size: 3rem;
-            filter: drop-shadow(0 4px 8px rgba(236, 72, 153, 0.2));
+            font-size: 2.8rem;
             transition: transform 0.3s ease;
         }
 
@@ -229,10 +236,11 @@
         }
 
         .folder-title {
-            font-family: 'Comfortaa', cursive;
-            font-size: 1.2rem;
+            font-family: var(--font-title);
+            font-size: 1.45rem;
             font-weight: 700;
-            color: var(--primary-dark);
+            color: var(--accent-purple);
+            letter-spacing: 0.5px;
         }
 
         .folder-desc {
@@ -240,15 +248,15 @@
             color: var(--text-muted);
         }
 
-        /* Окно папки (Modal с галереей) */
+        /* Модальные окна папок */
         .folder-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(55, 41, 56, 0.85);
-            backdrop-filter: blur(8px);
+            background: rgba(36, 20, 48, 0.88);
+            backdrop-filter: blur(12px);
             z-index: 900;
             display: none;
             justify-content: center;
@@ -264,16 +272,16 @@
         }
 
         .folder-modal-content {
-            background: var(--bg-inner);
-            border: 4px solid var(--card-bg);
+            background: var(--bg-pearl);
+            border: 1px solid var(--border-glass);
             border-radius: var(--radius-lg);
             width: 100%;
-            max-width: 960px;
+            max-width: 940px;
             max-height: 88vh;
             overflow-y: auto;
-            padding: 36px 28px;
+            padding: 40px 32px;
             position: relative;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             transform: scale(0.95);
             transition: transform 0.3s ease;
         }
@@ -284,25 +292,25 @@
 
         .modal-header {
             text-align: center;
-            margin-bottom: 28px;
-            padding-right: 20px;
+            margin-bottom: 30px;
         }
 
         .modal-header h3 {
-            font-family: 'Comfortaa', cursive;
-            font-size: 1.8rem;
-            color: var(--primary-dark);
+            font-family: var(--font-title);
+            font-size: 2.4rem;
+            color: var(--accent-purple);
+            text-transform: uppercase;
         }
 
         .modal-close-btn {
             position: absolute;
-            top: 20px;
-            right: 24px;
-            background: var(--card-bg);
-            border: 2px solid var(--border-pink);
-            color: var(--primary-dark);
-            width: 38px;
-            height: 38px;
+            top: 24px;
+            right: 28px;
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            color: var(--accent-purple);
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             font-size: 1.4rem;
             display: flex;
@@ -313,40 +321,39 @@
         }
 
         .modal-close-btn:hover {
-            background: var(--primary-pink);
+            background: var(--accent-purple);
             color: #ffffff;
-            border-color: var(--primary-pink);
         }
 
-        /* Сетка внутри папки */
         .modal-gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
             gap: 20px;
         }
 
         .art-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-md);
+            background: var(--card-glass);
+            border-radius: var(--radius-sm);
             overflow: hidden;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: var(--shadow);
-            border: 3px solid #ffffff;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-glass);
             position: relative;
         }
 
         .art-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary-pink);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 32px rgba(67, 40, 87, 0.2);
+            border-color: #ffffff;
         }
 
         .art-card img {
             width: 100%;
-            height: 240px;
+            height: 250px;
             object-fit: cover;
             display: block;
-            background-color: var(--accent-soft);
+            background-color: #dbe4f0;
         }
 
         .art-overlay {
@@ -355,7 +362,7 @@
             left: 0;
             right: 0;
             padding: 12px;
-            background: linear-gradient(180deg, transparent, rgba(55, 41, 56, 0.9) 70%);
+            background: linear-gradient(180deg, transparent, rgba(67, 40, 87, 0.92) 75%);
             color: #ffffff;
             font-size: 0.85rem;
             font-weight: 600;
@@ -368,29 +375,31 @@
             opacity: 1;
         }
 
-        /* Books Section */
+        /* Книги */
         .books-list {
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 36px;
         }
 
         .book-card {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 32px;
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-md);
+            padding: 36px;
             display: grid;
             grid-template-columns: 220px 1fr;
-            gap: 32px;
+            gap: 36px;
             align-items: start;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--border-pink);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-glass);
             transition: var(--transition);
         }
 
         .book-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 16px 32px rgba(236, 72, 153, 0.18);
+            background: var(--card-glass-hover);
+            box-shadow: 0 20px 45px rgba(67, 40, 87, 0.16);
         }
 
         .book-cover {
@@ -398,44 +407,47 @@
             height: 320px;
             border-radius: var(--radius-sm);
             object-fit: cover;
-            background-color: var(--accent-soft);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            background-color: #d0d7e6;
+            box-shadow: 0 10px 25px rgba(67, 40, 87, 0.2);
         }
 
         .book-content h3 {
-            font-family: 'Comfortaa', cursive;
-            font-size: 1.6rem;
-            color: var(--primary-dark);
-            margin-bottom: 12px;
+            font-family: var(--font-title);
+            font-size: 2.1rem;
+            color: var(--accent-purple);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
         }
 
         .genre-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .genre-tag {
             font-size: 0.75rem;
             font-weight: 600;
-            background: var(--accent-soft);
-            color: var(--primary-dark);
+            background: rgba(67, 40, 87, 0.08);
+            color: var(--accent-purple);
             padding: 6px 14px;
             border-radius: 30px;
+            border: 1px solid rgba(67, 40, 87, 0.12);
         }
 
         .book-quote {
+            font-family: var(--font-title);
+            font-size: 1.15rem;
             font-style: italic;
             color: var(--text-dark);
-            border-left: 3px solid var(--primary-pink);
-            padding: 10px 16px;
+            border-left: 3px solid var(--accent-purple);
+            padding: 12px 18px;
             margin-bottom: 18px;
-            font-weight: 500;
-            background: var(--bg-inner);
+            background: rgba(255, 255, 255, 0.5);
             border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
             white-space: pre-line;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .book-synopsis {
@@ -456,48 +468,49 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 11px 22px;
-            background: var(--primary-pink);
+            padding: 11px 24px;
+            background: var(--accent-purple);
             border-radius: var(--radius-sm);
             color: #ffffff;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 0.88rem;
-            font-family: 'Comfortaa', cursive;
             transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
+            box-shadow: 0 4px 14px rgba(67, 40, 87, 0.25);
         }
 
         .book-link:hover {
-            background: var(--primary-dark);
+            background: var(--bg-deep-hover);
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(67, 40, 87, 0.35);
         }
 
         .book-link.btn-alt {
-            background: var(--card-bg);
-            color: var(--primary-pink);
-            border: 2px solid var(--border-pink);
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--accent-purple);
+            border: 1px solid var(--border-purple);
             box-shadow: none;
         }
 
         .book-link.btn-alt:hover {
-            background: var(--accent-soft);
-            border-color: var(--primary-pink);
+            background: #ffffff;
+            border-color: var(--accent-purple);
         }
 
-        /* Socials */
+        /* Соцсети со стилизованными SVG иконками */
         .socials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 20px;
-            max-width: 800px;
+            max-width: 860px;
             margin: 0 auto;
         }
 
         .social-card {
-            background: var(--card-bg);
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
             border-radius: var(--radius-md);
-            padding: 28px 20px;
+            padding: 32px 24px;
             text-align: center;
             text-decoration: none;
             color: var(--text-dark);
@@ -505,26 +518,46 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
-            box-shadow: var(--shadow);
-            border: 2px solid var(--border-pink);
+            gap: 12px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-glass);
         }
 
         .social-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-pink);
-            box-shadow: 0 14px 28px rgba(236, 72, 153, 0.2);
+            transform: translateY(-6px);
+            background: #ffffff;
+            box-shadow: 0 20px 40px rgba(67, 40, 87, 0.16);
         }
 
-        .social-icon {
-            font-size: 2.2rem;
+        .social-svg-wrap {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(67, 40, 87, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-purple);
+            transition: var(--transition);
+        }
+
+        .social-card:hover .social-svg-wrap {
+            background: var(--accent-purple);
+            color: #ffffff;
+            transform: scale(1.08);
+        }
+
+        .social-svg-wrap svg {
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
         }
 
         .social-name {
-            font-family: 'Comfortaa', cursive;
-            font-size: 1.15rem;
+            font-family: var(--font-title);
+            font-size: 1.4rem;
             font-weight: 700;
-            color: var(--primary-dark);
+            color: var(--accent-purple);
         }
 
         .social-desc {
@@ -532,15 +565,15 @@
             color: var(--text-muted);
         }
 
-        /* Lightbox Полноразмерного Просмотра */
+        /* Лайтбокс */
         .lightbox {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(35, 24, 36, 0.95);
-            backdrop-filter: blur(12px);
+            background: rgba(25, 12, 33, 0.95);
+            backdrop-filter: blur(14px);
             z-index: 1100;
             display: none;
             justify-content: center;
@@ -568,17 +601,17 @@
             max-width: 100%;
             max-height: 80vh;
             object-fit: contain;
-            border-radius: var(--radius-md);
-            border: 4px solid #ffffff;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border-radius: var(--radius-sm);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
         }
 
         .lightbox-caption {
             margin-top: 14px;
-            font-family: 'Comfortaa', cursive;
-            font-weight: 700;
-            font-size: 1rem;
+            font-family: var(--font-title);
+            font-size: 1.2rem;
             color: #ffffff;
+            letter-spacing: 0.5px;
         }
 
         .lightbox-close {
@@ -594,18 +627,17 @@
 
         /* Footer */
         .footer {
-            background: var(--card-bg);
-            border-top: 2px solid var(--border-pink);
-            padding: 30px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid var(--border-glass);
+            padding: 32px 0;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.9rem;
-            font-weight: 500;
         }
 
         @media (max-width: 768px) {
             body {
-                padding: 8px;
+                padding: 10px;
             }
             .book-card {
                 grid-template-columns: 1fr;
@@ -613,8 +645,8 @@
                 padding: 24px;
             }
             .book-cover {
-                width: 180px;
-                height: 260px;
+                width: 170px;
+                height: 250px;
                 margin: 0 auto;
             }
             .book-content {
@@ -636,7 +668,7 @@
         <!-- Главный экран -->
         <header class="hero">
             <div class="container">
-                <span class="hero-badge">🌸 Портфолио</span>
+                <span class="hero-badge">Портфолио</span>
                 <h1>Fionazula</h1>
                 <p>Привет! Меня зовут Фиона, я художница и писательница.</p>
                 
@@ -665,32 +697,32 @@
                 </div>
 
                 <div class="folders-grid">
-                    <!-- Папка 1: Персонажи -->
+                    <!-- Папка 1 -->
                     <div class="folder-card" onclick="openFolder('characters')">
                         <div class="folder-icon">🧝‍♀️</div>
                         <div class="folder-title">Персонажи</div>
                         <div class="folder-desc">Концепты и образы</div>
                     </div>
 
-                    <!-- Папка 2: Иллюстрации -->
+                    <!-- Папка 2 -->
                     <div class="folder-card" onclick="openFolder('arts')">
                         <div class="folder-icon">🎨</div>
                         <div class="folder-title">Иллюстрации</div>
-                        <div class="folder-desc">Полноценные арты и сцены</div>
+                        <div class="folder-desc">Сюжетные сцены и арты</div>
                     </div>
 
-                    <!-- Папка 3: Предметы -->
+                    <!-- Папка 3 -->
                     <div class="folder-card" onclick="openFolder('props')">
                         <div class="folder-icon">🔮</div>
                         <div class="folder-title">Предметы</div>
                         <div class="folder-desc">Артефакты и детали</div>
                     </div>
 
-                    <!-- Папка 4: Обложки -->
+                    <!-- Папка 4 -->
                     <div class="folder-card" onclick="openFolder('covers')">
                         <div class="folder-icon">📖</div>
                         <div class="folder-title">Обложки</div>
-                        <div class="folder-desc">Оформление книг и проектов</div>
+                        <div class="folder-desc">Оформление книг</div>
                     </div>
                 </div>
             </section>
@@ -725,10 +757,10 @@
 И о том, что страшнее леса бывает только то, что мы носим внутри.</p>
                             
                             <div class="book-buttons">
-                                <a href="https://author.today/" target="_blank" class="book-link">
+                                <a href="https://author.today/work/480263" target="_blank" class="book-link">
                                     Автор.Тудей ↗
                                 </a>
-                                <a href="https://litnet.com/" target="_blank" class="book-link btn-alt">
+                                <a href="https://litnet.com/ru/book/cvety-dlya-vedmy-b601104" target="_blank" class="book-link btn-alt">
                                     Литнет ↗
                                 </a>
                             </div>
@@ -759,7 +791,7 @@
 Но что, если спасение сестры — лишь приманка? Что, если замок ждал именно её?</p>
                             
                             <div class="book-buttons">
-                                <a href="https://litnet.com/" target="_blank" class="book-link">
+                                <a href="https://litnet.com/ru/book/petlya-b612274" target="_blank" class="book-link">
                                     Литнет ↗
                                 </a>
                             </div>
@@ -772,26 +804,41 @@
             <section id="socials" class="portfolio-section">
                 <div class="section-header">
                     <h2>Связь и соцсети</h2>
-                    <p>Мои площадки и контакты</p>
+                    <p>Мои блоги, процессы творчества и контакты</p>
                 </div>
 
                 <div class="socials-grid">
-                    <a href="https://t.me/" target="_blank" class="social-card">
-                        <div class="social-icon">✈️</div>
+                    <!-- TikTok: Арт-аккаунт -->
+                    <a href="https://www.tiktok.com/@fionazula" target="_blank" class="social-card">
+                        <div class="social-svg-wrap">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34 6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
+                            </svg>
+                        </div>
+                        <div class="social-name">TikTok Арт</div>
+                        <div class="social-desc">Иллюстрации и спидпейнты @fionazula</div>
+                    </a>
+
+                    <!-- TikTok: Писательский аккаунт -->
+                    <a href="https://www.tiktok.com/@fionkamoran" target="_blank" class="social-card">
+                        <div class="social-svg-wrap">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.89 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.32 0 .62.06.9.16V9.4a6.34 6.34 0 0 0-.9-.07A6.34 6.34 0 0 0 3 15.67a6.34 6.34 0 0 0 6.34 6.33 6.34 6.34 0 0 0 6.34-6.33V8.33a8.16 8.16 0 0 0 3.91 1.01V6.69z"/>
+                            </svg>
+                        </div>
+                        <div class="social-name">TikTok Книги</div>
+                        <div class="social-desc">О книгах и писательстве @fionkamoran</div>
+                    </a>
+
+                    <!-- Telegram -->
+                    <a href="https://t.me/fionamoran" target="_blank" class="social-card">
+                        <div class="social-svg-wrap">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.88.03-.24.37-.49 1.02-.75 3.98-1.73 6.64-2.88 7.98-3.44 3.8-1.58 4.59-1.86 5.11-1.87.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.17-.04.28z"/>
+                            </svg>
+                        </div>
                         <div class="social-name">Telegram</div>
-                        <div class="social-desc">Мысли, процессы, арты и новости</div>
-                    </a>
-
-                    <a href="https://tiktok.com/" target="_blank" class="social-card">
-                        <div class="social-icon">🎬</div>
-                        <div class="social-name">TikTok</div>
-                        <div class="social-desc">Видео о книгах и рисовании</div>
-                    </a>
-
-                    <a href="mailto:your-mail@example.com" class="social-card">
-                        <div class="social-icon">✉️</div>
-                        <div class="social-name">Email</div>
-                        <div class="social-desc">По вопросам сотрудничества</div>
+                        <div class="social-desc">Канал @fionamoran: процессы и мысли</div>
                     </a>
                 </div>
             </section>
@@ -890,7 +937,7 @@
         <!-- Подвал -->
         <footer class="footer">
             <div class="container">
-                <p>© 2026 Fionazula 🌸 Портфолио художницы и писательницы</p>
+                <p>© 2026 Fionazula • Портфолио художницы и писательницы</p>
             </div>
         </footer>
 
@@ -918,7 +965,7 @@
             contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Логика открытия папок
+        // Логика папок
         function openFolder(folderId) {
             const modal = document.getElementById('modal-' + folderId);
             if (modal) {
@@ -937,14 +984,13 @@
             const modal = document.getElementById('modal-' + folderId);
             if (modal) {
                 modal.classList.remove('active');
-                // Если лайтбокс не открыт, возвращаем скролл
                 if (!lightbox.classList.contains('active')) {
                     document.body.style.overflow = 'auto';
                 }
             }
         }
 
-        // Логика лайтбокса (полноразмерный просмотр)
+        // Логика полноразмерного просмотра
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxCaption = document.getElementById('lightboxCaption');
@@ -959,7 +1005,6 @@
         function closeLightbox(e) {
             if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
                 lightbox.classList.remove('active');
-                // Проверяем, открыта ли какая-нибудь папка
                 const activeFolder = document.querySelector('.folder-modal.active');
                 if (!activeFolder) {
                     document.body.style.overflow = 'auto';
