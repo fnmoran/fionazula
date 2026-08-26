@@ -3,40 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Фиона Моран | Портфолио</title>
+    <title>Фиона Моран | Мистические миры</title>
     
-    <!-- Иконка вкладки -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23ffb6c1'/><circle cx='50' cy='50' r='30' fill='%23ffffff' opacity='0.8'/></svg>">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Цветовая палитра в стиле Lunar Bloom */
-            --bg-main: #fcfafb;
-            --bg-panel: #ffffff;
-            --pink-primary: #ffb4c6;
-            --pink-light: #ffe4eb;
-            --pink-hover: #ff9eb5;
-            --green-accent: #c7e5b4;
-            --text-dark: #4a4a4a;
-            --text-muted: #9ca3af;
-            --text-light: #ffffff;
+            --bg-dark: #070913;
+            --bg-panel: rgba(18, 22, 43, 0.6);
+            --accent-glow: #8b5cf6;
+            --firefly-color: #a78bfa;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
             
-            --font-ui: 'Nunito', sans-serif;
-            --font-heading: 'Quicksand', sans-serif;
+            --font-title: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
             
-            --radius-sm: 12px;
-            --radius-md: 20px;
-            --radius-lg: 30px;
-            --radius-pill: 50px;
-            
-            --shadow-soft: 0 10px 30px rgba(255, 180, 198, 0.15);
-            --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.04);
-            
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
@@ -47,905 +32,730 @@
         }
 
         body {
-            font-family: var(--font-ui);
-            background-color: var(--bg-main);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            display: flex;
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow: hidden; /* Скрываем стандартный скролл body */
+        }
+
+        /* Контейнер для эффекта примагничивания (Scroll Snapping) */
+        .scroll-container {
             height: 100vh;
-        }
-
-        /* Анимация лепестков на фоне */
-        #bgCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* Основная сетка Layout'а */
-        .app-layout {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 1;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        /* --- ЛЕВОЕ МЕНЮ (Sidebar) --- */
-        .sidebar-left {
-            width: 260px;
-            background-color: var(--bg-panel);
-            height: 100%;
-            padding: 30px 0;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 2px 0 20px rgba(0,0,0,0.02);
-            z-index: 10;
-        }
-
-        .brand {
-            padding: 0 30px 40px;
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .brand .pink { color: var(--pink-primary); }
-        .brand .green { color: var(--green-accent); }
-
-        .side-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding-right: 20px; /* Чтобы кнопка закруглялась справа */
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px 30px;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-family: var(--font-ui);
-            font-size: 1.05rem;
-            font-weight: 700;
-            cursor: pointer;
-            border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
-            transition: var(--transition);
-            width: 100%;
-            text-align: left;
-        }
-
-        .nav-item svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .nav-item:hover {
-            color: var(--pink-primary);
-            background: var(--pink-light);
-        }
-
-        .nav-item.active {
-            background-color: var(--pink-primary);
-            color: var(--text-light);
-            box-shadow: var(--shadow-soft);
-        }
-
-        /* --- ЦЕНТРАЛЬНАЯ ЧАСТЬ (Main Content) --- */
-        .main-content {
-            flex: 1;
-            padding: 30px 40px;
-            overflow-y: auto;
-            height: 100%;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
         }
-        
-        .main-content::-webkit-scrollbar { width: 6px; }
-        .main-content::-webkit-scrollbar-thumb { background: var(--pink-light); border-radius: 10px; }
 
-        /* Верхняя панель (поиск и уведомления как на картинке) */
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
+        /* Скрываем ползунок прокрутки для эстетики */
+        .scroll-container::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
         }
 
-        .search-bar {
-            background: var(--bg-panel);
-            padding: 12px 24px;
-            border-radius: var(--radius-pill);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-muted);
-            box-shadow: var(--shadow-card);
-            width: 300px;
-            font-weight: 600;
-        }
-        .search-bar svg { width: 18px; fill: var(--pink-primary); }
-
-        .topbar-actions {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .action-btn {
-            width: 45px;
-            height: 45px;
-            background: var(--pink-primary);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: var(--shadow-soft);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .action-btn:hover { transform: translateY(-3px); background: var(--pink-hover); }
-
-        /* Главный баннер */
-        .hero-banner {
-            background: linear-gradient(135deg, #ffc6d3 0%, #ffb4c6 100%);
-            border-radius: var(--radius-lg);
-            padding: 40px 50px;
-            color: white;
+        /* Общие стили секций */
+        .section {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
             position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            margin-bottom: 40px;
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
-            min-height: 220px;
+            padding: 40px 20px;
+            overflow: hidden;
         }
 
-        .hero-banner::after {
-            content: '';
+        .content-wrapper {
+            max-width: 1100px;
+            width: 100%;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Анимации появления элементов (Intersection Observer) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* --- СЕКЦИЯ 1: ГЛАВНЫЙ ЭКРАН С ЛЕСОМ --- */
+        #hero {
+            background: linear-gradient(180deg, #0f1322 0%, #1a1638 50%, #070913 100%);
+        }
+
+        #forestCanvas {
             position: absolute;
-            right: -20px;
-            bottom: -50px;
-            width: 300px;
-            height: 300px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0 C70 30 100 40 100 50 C100 60 70 70 50 100 C30 70 0 60 0 50 C0 40 30 30 50 0 Z" fill="rgba(255,255,255,0.15)"/></svg>') no-repeat center/contain;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            text-align: center;
             pointer-events: none;
         }
 
-        .hero-banner h1 {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+        .hero-badge {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--firefly-color);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: var(--font-title);
+            font-size: clamp(3.5rem, 8vw, 6rem);
             font-weight: 700;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+            margin-bottom: 20px;
+            line-height: 1;
         }
 
-        .hero-banner p {
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin-bottom: 25px;
-            line-height: 1.6;
-            opacity: 0.9;
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-muted);
+            line-height: 1.8;
         }
 
-        .hero-buttons {
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
             display: flex;
-            gap: 15px;
-        }
-
-        .btn-solid, .btn-outline {
-            padding: 12px 28px;
-            border-radius: var(--radius-pill);
-            font-weight: 700;
-            font-family: var(--font-ui);
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .btn-solid {
-            background: white;
-            color: var(--pink-primary);
-            border: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255,255,255,0.5);
-        }
-
-        .btn-solid:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-        .btn-outline:hover { background: white; color: var(--pink-primary); }
-
-        /* Контентные секции */
-        .tab-section {
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-        }
-        .tab-section.active { display: block; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-title {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            margin-bottom: 25px;
-            display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 10px;
-        }
-        .section-title::before {
-            content: '';
-            display: block;
-            width: 12px;
-            height: 12px;
-            background: var(--green-accent);
-            border-radius: 50%;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
         }
 
-        /* Карточки книг */
-        .book-card {
+        .scroll-indicator span {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-15px) translateX(-50%); }
+            60% { transform: translateY(-7px) translateX(-50%); }
+        }
+
+        /* --- СЕКЦИЯ 2: НАВИГАЦИОННЫЙ ХАБ --- */
+        #nav-hub {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><path fill="%2313172e" d="M0 0h400v400H0z"/><circle cx="200" cy="200" r="150" fill="none" stroke="%231f2442" stroke-width="1"/></svg>') center/cover;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-title);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .hub-card {
             background: var(--bg-panel);
-            border-radius: var(--radius-md);
-            padding: 25px;
-            display: flex;
-            gap: 25px;
-            box-shadow: var(--shadow-card);
-            margin-bottom: 25px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            cursor: pointer;
             transition: var(--transition);
-            border: 1px solid rgba(255,180,198,0.1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-soft);
-            border-color: var(--pink-light);
+        .hub-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.15), transparent 70%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .hub-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .hub-card:hover::before { opacity: 1; }
+
+        .hub-icon {
+            font-size: 2.5rem;
+            color: var(--firefly-color);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .hub-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .hub-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- СЕКЦИИ КОНТЕНТА (Книги, Арты, Соцсети) --- */
+        .content-section {
+            background: radial-gradient(circle at center, #11152b 0%, #070913 100%);
+        }
+
+        /* Книги */
+        .book-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .book-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            background: rgba(20, 24, 46, 0.4);
+            border-left: 2px solid var(--accent-glow);
+            padding: 30px;
+            border-radius: 0 16px 16px 0;
+            align-items: start;
         }
 
         .book-cover {
-            width: 160px;
-            height: 240px;
-            border-radius: var(--radius-sm);
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background-color: #1f2442;
+            aspect-ratio: 2/3;
             object-fit: cover;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            flex-shrink: 0;
-            background: var(--pink-light);
         }
 
         .book-info h3 {
-            font-family: var(--font-heading);
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: var(--text-dark);
+            font-family: var(--font-title);
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 15px;
         }
 
         .tags {
             display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
 
         .tag {
-            background: var(--pink-light);
-            color: var(--pink-primary);
-            padding: 4px 12px;
-            border-radius: var(--radius-pill);
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-size: 0.7rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--firefly-color);
+            border-radius: 50px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
         }
 
-        .book-quote {
+        .quote {
+            font-family: var(--font-title);
             font-style: italic;
-            color: var(--text-muted);
-            border-left: 3px solid var(--pink-primary);
-            padding-left: 15px;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-
-        .book-desc {
-            font-size: 0.9rem;
-            line-height: 1.6;
+            font-size: 1.2rem;
+            color: var(--text-main);
             margin-bottom: 20px;
+            border-left: 1px solid var(--firefly-color);
+            padding-left: 15px;
         }
 
-        .book-actions {
-            display: flex;
-            gap: 10px;
+        .synopsis {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 25px;
         }
 
-        .book-btn {
-            background: var(--pink-primary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: var(--radius-pill);
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            background: transparent;
+            color: #ffffff;
             text-decoration: none;
-            font-weight: 700;
             font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid var(--accent-glow);
+            border-radius: 8px;
             transition: var(--transition);
+            margin-right: 15px;
         }
-        .book-btn:hover { background: var(--pink-hover); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
-        .book-btn.alt { background: var(--pink-light); color: var(--pink-primary); }
-        .book-btn.alt:hover { background: var(--pink-primary); color: white; }
 
-        /* Галерея/Папки (Иллюстрации) */
+        .btn-link:hover {
+            background: var(--accent-glow);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Папки с иллюстрациями */
         .folders-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
         }
 
         .folder-card {
-            background: var(--bg-panel);
-            border-radius: var(--radius-md);
+            background: rgba(20, 24, 46, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 30px 20px;
+            border-radius: 16px;
             text-align: center;
-            box-shadow: var(--shadow-card);
-            cursor: pointer;
             transition: var(--transition);
-            border: 1px solid rgba(255,180,198,0.1);
+            cursor: pointer;
         }
 
         .folder-card:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.3);
             transform: translateY(-5px);
-            box-shadow: var(--shadow-soft);
         }
 
-        .folder-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--pink-light);
-            border-radius: 20px;
+        .folder-card h4 {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .folder-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Социальные сети */
+        .socials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .social-card {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            color: var(--pink-primary);
+            gap: 20px;
+            background: rgba(20, 24, 46, 0.4);
+            padding: 25px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
         }
 
-        .folder-icon svg { width: 30px; height: 30px; fill: currentColor; }
-
-        .folder-card h4 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 5px; }
-        .folder-card p { font-size: 0.8rem; color: var(--text-muted); }
-
-        /* --- ПРАВОЕ МЕНЮ (Соцсети и профиль) --- */
-        .sidebar-right {
-            width: 320px;
-            background-color: var(--bg-main);
-            height: 100%;
-            padding: 30px;
-            border-left: 1px dashed rgba(255,180,198,0.4);
-            overflow-y: auto;
+        .social-card:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateX(10px);
         }
 
-        .profile-widget {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .profile-avatar {
+        .social-icon-wrapper {
             width: 50px;
             height: 50px;
-            border-radius: 16px;
-            background: var(--pink-primary);
-            overflow: hidden;
-        }
-        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-        .profile-info h4 { font-family: var(--font-heading); font-size: 1rem; color: var(--text-dark); }
-        .profile-info p { font-size: 0.8rem; color: var(--text-muted); }
-
-        .right-title {
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-
-        .social-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .social-item {
-            background: var(--bg-panel);
-            padding: 15px;
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-            color: var(--text-dark);
-            box-shadow: var(--shadow-card);
-            transition: var(--transition);
-        }
-
-        .social-item:hover {
-            transform: scale(1.02);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .social-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--pink-light);
             border-radius: 12px;
+            background: rgba(139, 92, 246, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--pink-primary);
-            flex-shrink: 0;
-        }
-        .social-icon svg { width: 22px; height: 22px; fill: currentColor; }
-
-        .social-text h5 { font-family: var(--font-heading); font-size: 0.95rem; }
-        .social-text p { font-size: 0.75rem; color: var(--text-muted); }
-
-        /* --- МОДАЛЬНЫЕ ОКНА И ЛАЙТБОКС --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .modal-overlay.active { display: flex; opacity: 1; }
-
-        .modal-content {
-            background: var(--bg-panel);
-            width: 90%;
-            max-width: 900px;
-            max-height: 85vh;
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            position: relative;
-            overflow-y: auto;
-            transform: translateY(20px);
-            transition: transform 0.3s;
-        }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
-
-        .modal-close {
-            position: absolute;
-            top: 20px; right: 20px;
-            width: 40px; height: 40px;
-            background: var(--pink-light);
-            color: var(--pink-primary);
-            border: none;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .modal-close:hover { background: var(--pink-primary); color: white; }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            color: var(--firefly-color);
         }
 
-        .art-item {
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            cursor: pointer;
-            position: relative;
-            box-shadow: var(--shadow-card);
-            transition: var(--transition);
-        }
-        .art-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
-        .art-item img { width: 100%; height: 200px; object-fit: cover; display: block; }
-
-        .lightbox-img {
-            max-width: 90vw;
-            max-height: 80vh;
-            border-radius: var(--radius-md);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        .social-info h4 {
+            font-family: var(--font-title);
+            font-size: 1.3rem;
+            margin-bottom: 4px;
         }
 
-        /* Адаптивность */
-        @media (max-width: 1100px) {
-            .sidebar-right { display: none; }
+        .social-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
-        @media (max-width: 800px) {
-            .app-layout { flex-direction: column; }
-            .sidebar-left { 
-                width: 100%; 
-                height: auto; 
-                padding: 15px 20px; 
-                flex-direction: row; 
-                align-items: center; 
-                justify-content: space-between;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .book-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+                border-left: none;
+                border-top: 2px solid var(--accent-glow);
+                border-radius: 0 0 16px 16px;
             }
-            .brand { padding: 0; font-size: 1.4rem; flex-direction: row; gap: 5px; }
-            .side-nav { flex-direction: row; padding: 0; gap: 5px; }
-            .nav-item { padding: 10px 15px; border-radius: var(--radius-pill); font-size: 0.9rem; }
-            .nav-item span { display: none; } /* Скрываем текст, оставляем иконки на мобильном */
-            
-            .main-content { padding: 20px; }
-            .topbar { display: none; }
-            .book-card { flex-direction: column; align-items: center; text-align: center; }
-            .tags, .book-actions { justify-content: center; }
-            .hero-banner { padding: 30px 20px; text-align: center; align-items: center; }
-            .book-quote { border-left: none; border-bottom: 2px solid var(--pink-primary); padding-left: 0; padding-bottom: 10px; }
+            .book-cover {
+                width: 160px;
+                margin: 0 auto;
+            }
+            .tags { justify-content: center; }
+            .quote { border-left: none; border-bottom: 1px solid var(--firefly-color); padding-left: 0; padding-bottom: 15px; }
+            .btn-link { margin-bottom: 10px; width: 100%; margin-right: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Фон с падающими лепестками -->
-    <canvas id="bgCanvas"></canvas>
-
-    <div class="app-layout">
+    <div class="scroll-container" id="main-scroll">
         
-        <!-- ЛЕВОЕ МЕНЮ -->
-        <aside class="sidebar-left">
-            <div class="brand">
-                <span class="pink">LUNAR</span>
-                <span class="green">BLOOM</span>
+        <section id="hero" class="section">
+            <canvas id="forestCanvas"></canvas>
+            <div class="hero-content reveal active">
+                <span class="hero-badge">Пишу и рисую</span>
+                <h1 class="hero-title">FIONA MORAN</h1>
+                <p class="hero-subtitle">Добро пожаловать. Скролльте вниз, чтобы погрузиться в миры моих историй, посмотреть галереи и найти способы связи.</p>
             </div>
-            
-            <nav class="side-nav">
-                <!-- Книги -->
-                <button class="nav-item active" onclick="switchTab('tab-books', this)">
-                    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4a2 2 0 0 0-2-2H2.6a.6.6 0 0 0-.6.6V19.5a2.5 2.5 0 0 0 2 2.5h15.5a2.5 2.5 0 0 0 2.5-2.5v-1h-16a.5.5 0 0 1-.5-.5z"/></svg>
-                    <span>Мои книги</span>
-                </button>
-                
-                <!-- Иллюстрации -->
-                <button class="nav-item" onclick="switchTab('tab-arts', this)">
-                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7l3-4 1.5 2 2.5-3.5L14 17z"/></svg>
-                    <span>Иллюстрации</span>
-                </button>
-
-                <!-- Соцсети (для мобильных, когда правое меню скрыто) -->
-                <button class="nav-item" onclick="switchTab('tab-socials', this)" id="nav-socials" style="display: none;">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                    <span>Контакты</span>
-                </button>
-            </nav>
-        </aside>
-
-        <!-- ЦЕНТРАЛЬНЫЙ КОНТЕНТ -->
-        <main class="main-content">
-            
-            <header class="topbar">
-                <div class="search-bar">
-                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                    Search Here
-                </div>
-                <div class="topbar-actions">
-                    <div class="action-btn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
-                    <div class="action-btn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
-                </div>
-            </header>
-
-            <div class="hero-banner">
-                <h1>Fiona Moran</h1>
-                <p>Пишу и рисую. Спасибо, что интересуетесь моим творчеством. Здесь собраны мои книги, иллюстрации и ссылки на блоги.</p>
-                <div class="hero-buttons">
-                    <a href="#tab-books" class="btn-solid" onclick="switchTab('tab-books', document.querySelector('.nav-item'))">Мои книги</a>
-                    <a href="#tab-arts" class="btn-outline" onclick="switchTab('tab-arts', document.querySelectorAll('.nav-item')[1])">Иллюстрации</a>
-                </div>
+            <div class="scroll-indicator">
+                <span>Вниз</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
             </div>
+        </section>
 
-            <!-- Вкладка: КНИГИ -->
-            <div id="tab-books" class="tab-section active">
-                <h2 class="section-title">Где меня можно почитать?</h2>
-                
-                <!-- Книга 1 -->
-                <div class="book-card">
-                    <img src="witch-cover.jpg" alt="Цветы для ведьмы" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400'">
-                    <div class="book-info">
-                        <h3>Цветы для ведьмы</h3>
-                        <div class="tags">
-                            <span class="tag">темное фэнтези</span>
-                            <span class="tag">фолк-хоррор</span>
-                            <span class="tag">мистический реализм</span>
-                        </div>
-                        <div class="book-quote">«Он — жертва, принесённая лесу ради спасения деревни. Она — ведьма, что должна его принять».</div>
-                        <p class="book-desc">Изнурённые голодом и страхом жители отправляют юношу в сердце леса, чтобы умилостивить таинственную ведьму и вернуть плодородие полям. Но в каждой жертве есть выбор — и Яну предстоит сделать свой...</p>
-                        <div class="book-actions">
-                            <a href="https://author.today/work/480263" target="_blank" class="book-btn">Автор.Тудей</a>
-                            <a href="https://litnet.com/ru/book/cvety-dlya-vedmy-b601104" target="_blank" class="book-btn alt">Литнет</a>
-                        </div>
+        <section id="nav-hub" class="section">
+            <div class="content-wrapper">
+                <div class="section-header reveal">
+                    <h2>Путеводитель</h2>
+                </div>
+                <div class="hub-grid">
+                    <div class="hub-card reveal delay-1" onclick="scrollToSection('books-section')">
+                        <span class="hub-icon">✦</span>
+                        <h3>Мои Книги</h3>
+                        <p>Темное фэнтези, мистика и готические романы, ждущие своих читателей.</p>
                     </div>
-                </div>
-
-                <!-- Книга 2 -->
-                <div class="book-card">
-                    <img src="loop-cover.jpg" alt="Петля" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400'">
-                    <div class="book-info">
-                        <h3>Петля</h3>
-                        <div class="tags">
-                            <span class="tag">готика</span>
-                            <span class="tag">драма</span>
-                            <span class="tag">мистика</span>
-                        </div>
-                        <div class="book-quote">«Все истории сначала кажутся историями о любви. А потом люди замечают, сколько в них было голода».</div>
-                        <p class="book-desc">Она согласилась на месяц службы в замке Лихтенштайн, о котором ходят слухи. Говорят, там не осталось ни одной живой души. Говорят, хозяин — безумец... Что, если замок ждал именно её?</p>
-                        <div class="book-actions">
-                            <a href="https://litnet.com/ru/book/petlya-b612274" target="_blank" class="book-btn">Литнет</a>
-                        </div>
+                    <div class="hub-card reveal delay-2" onclick="scrollToSection('arts-section')">
+                        <span class="hub-icon">✧</span>
+                        <h3>Иллюстрации</h3>
+                        <p>Концепты персонажей, сюжетные сцены и обложки, воплощенные в артах.</p>
+                    </div>
+                    <div class="hub-card reveal delay-3" onclick="scrollToSection('socials-section')">
+                        <span class="hub-icon">◈</span>
+                        <h3>Соцсети</h3>
+                        <p>Связь со мной, блоги о писательстве и творческие процессы.</p>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Вкладка: ИЛЛЮСТРАЦИИ -->
-            <div id="tab-arts" class="tab-section">
-                <h2 class="section-title">Галерея работ</h2>
+        <section id="books-section" class="section content-section">
+            <div class="content-wrapper">
+                <div class="section-header reveal">
+                    <h2>Где меня почитать?</h2>
+                </div>
+                <div class="book-list">
+                    <article class="book-item reveal delay-1">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400" alt="Цветы для ведьмы" class="book-cover">
+                        <div class="book-info">
+                            <h3>Цветы для ведьмы</h3>
+                            <div class="tags">
+                                <span class="tag">темное фэнтези</span>
+                                <span class="tag">фолк-хоррор</span>
+                                <span class="tag">мистический реализм</span>
+                            </div>
+                            <p class="quote">«Он — жертва, принесённая лесу ради спасения деревни. Она — ведьма, что должна его принять».</p>
+                            <p class="synopsis">Изнурённые голодом и страхом жители отправляют юношу в сердце леса, чтобы умилостивить таинственную ведьму и вернуть плодородие полям. История о том, как страх превращается в силу, одиночество — в понимание, а жертва — в смысл.</p>
+                            <div class="book-actions">
+                                <a href="https://author.today/work/480263" target="_blank" class="btn-link">Автор.Тудей ↗</a>
+                                <a href="https://litnet.com/ru/book/cvety-dlya-vedmy-b601104" target="_blank" class="btn-link">Литнет ↗</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="book-item reveal delay-2">
+                        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400" alt="Петля" class="book-cover">
+                        <div class="book-info">
+                            <h3>Петля</h3>
+                            <div class="tags">
+                                <span class="tag">готика</span>
+                                <span class="tag">драма</span>
+                                <span class="tag">мистика</span>
+                            </div>
+                            <p class="quote">«Все истории сначала кажутся историями о любви. А потом люди замечают, сколько в них было голода».</p>
+                            <p class="synopsis">Она согласилась на месяц службы в замке Лихтенштайн, о котором ходят слухи. Говорят, там не осталось ни одной живой души. Говорят, из этих стен не возвращаются. Но что, если спасение сестры — лишь приманка?</p>
+                            <div class="book-actions">
+                                <a href="https://litnet.com/ru/book/petlya-b612274" target="_blank" class="btn-link">Литнет ↗</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="arts-section" class="section content-section">
+            <div class="content-wrapper">
+                <div class="section-header reveal">
+                    <h2>Галерея работ</h2>
+                </div>
                 <div class="folders-grid">
-                    
-                    <div class="folder-card" onclick="openModal('modal-chars')">
-                        <div class="folder-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        </div>
+                    <div class="folder-card reveal delay-1">
                         <h4>Персонажи</h4>
                         <p>Концепты и образы</p>
                     </div>
-
-                    <div class="folder-card" onclick="openModal('modal-illus')">
-                        <div class="folder-icon">
-                            <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-                        </div>
+                    <div class="folder-card reveal delay-2">
                         <h4>Иллюстрации</h4>
-                        <p>Сюжетные сцены</p>
+                        <p>Сюжетные сцены и арты</p>
                     </div>
-
-                    <div class="folder-card">
-                        <div class="folder-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z"/></svg>
-                        </div>
+                    <div class="folder-card reveal delay-3">
                         <h4>Предметы</h4>
-                        <p>Артефакты</p>
+                        <p>Артефакты и детали</p>
                     </div>
-
+                    <div class="folder-card reveal delay-1">
+                        <h4>Обложки</h4>
+                        <p>Оформление книг</p>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Вкладка: СОЦСЕТИ (Только для мобилок) -->
-            <div id="tab-socials" class="tab-section">
-                <h2 class="section-title">Связь и соцсети</h2>
-                <div class="social-list">
-                    <!-- Дублируется контент правого сайдбара для мобилок -->
+        <section id="socials-section" class="section content-section">
+            <div class="content-wrapper">
+                <div class="section-header reveal">
+                    <h2>Связь и соцсети</h2>
+                </div>
+                <div class="socials-grid">
+                    <a href="https://www.tiktok.com/@fionazula" target="_blank" class="social-card reveal delay-1">
+                        <div class="social-icon-wrapper">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                        </div>
+                        <div class="social-info">
+                            <h4>TikTok</h4>
+                            <p>Арт-аккаунт</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.tiktok.com/@fionkamoran" target="_blank" class="social-card reveal delay-2">
+                        <div class="social-icon-wrapper">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                        </div>
+                        <div class="social-info">
+                            <h4>TikTok</h4>
+                            <p>Писательский аккаунт</p>
+                        </div>
+                    </a>
+
+                    <a href="https://t.me/fionamoran" target="_blank" class="social-card reveal delay-3">
+                        <div class="social-icon-wrapper">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        </div>
+                        <div class="social-info">
+                            <h4>Telegram</h4>
+                            <p>Личный канал</p>
+                        </div>
+                    </a>
                 </div>
             </div>
+        </section>
 
-        </main>
-
-        <!-- ПРАВОЕ МЕНЮ (Контакты как в Flower Shop) -->
-        <aside class="sidebar-right">
-            <div class="profile-widget">
-                <div class="profile-avatar">
-                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=150" alt="Avatar" onerror="this.style.display='none'">
-                </div>
-                <div class="profile-info">
-                    <h4>Фиона Моран</h4>
-                    <p>@fionamoran</p>
-                </div>
-            </div>
-
-            <h4 class="right-title">Соцсети & Связь</h4>
-            
-            <div class="social-list" id="desktop-socials">
-                <a href="https://www.tiktok.com/@fionazula" target="_blank" class="social-item">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                    </div>
-                    <div class="social-text">
-                        <h5>TikTok (Арт)</h5>
-                        <p>@fionazula</p>
-                    </div>
-                </a>
-
-                <a href="https://www.tiktok.com/@fionkamoran" target="_blank" class="social-item">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                    </div>
-                    <div class="social-text">
-                        <h5>TikTok (Книги)</h5>
-                        <p>@fionkamoran</p>
-                    </div>
-                </a>
-
-                <a href="https://t.me/fionamoran" target="_blank" class="social-item">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    </div>
-                    <div class="social-text">
-                        <h5>Telegram</h5>
-                        <p>Личный канал</p>
-                    </div>
-                </a>
-            </div>
-        </aside>
-
-    </div>
-
-    <!-- Модальные окна для галерей -->
-    <div id="modal-chars" class="modal-overlay" onclick="closeModal(event, 'modal-chars')">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModalDirect('modal-chars')">&times;</button>
-            <h2 class="section-title">Персонажи</h2>
-            <div class="gallery-grid">
-                <div class="art-item" onclick="openLightbox('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600')">
-                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600" alt="Персонаж 1">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-illus" class="modal-overlay" onclick="closeModal(event, 'modal-illus')">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModalDirect('modal-illus')">&times;</button>
-            <h2 class="section-title">Иллюстрации</h2>
-            <div class="gallery-grid">
-                <div class="art-item" onclick="openLightbox('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600')">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600" alt="Иллюстрация 1">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Лайтбокс -->
-    <div id="lightbox" class="modal-overlay" style="z-index: 2000; background: rgba(0,0,0,0.8);" onclick="closeLightbox(event)">
-        <img id="lightbox-img" class="lightbox-img" src="" alt="Просмотр">
-        <button class="modal-close" style="background: white; top: 30px; right: 30px;" onclick="closeLightboxDirect()">&times;</button>
     </div>
 
     <script>
-        // Копируем соцсети в мобильную вкладку
-        window.addEventListener('DOMContentLoaded', () => {
-            const socialsHtml = document.getElementById('desktop-socials').innerHTML;
-            document.querySelector('#tab-socials .social-list').innerHTML = socialsHtml;
-
-            // Показываем кнопку соцсетей на мобильном
-            if(window.innerWidth <= 1100) {
-                document.getElementById('nav-socials').style.display = 'flex';
+        // Функция для плавного скролла по клику на карточки меню
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
             }
-        });
+        }
 
-        window.addEventListener('resize', () => {
-            if(window.innerWidth <= 1100) {
-                document.getElementById('nav-socials').style.display = 'flex';
-            } else {
-                document.getElementById('nav-socials').style.display = 'none';
-                if(document.getElementById('tab-socials').classList.contains('active')) {
-                    switchTab('tab-books', document.querySelector('.nav-item'));
+        // Intersection Observer для анимации появления элементов при скролле
+        const observerOptions = {
+            root: document.getElementById('main-scroll'),
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
                 }
-            }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
         });
 
-        // Переключение вкладок
-        function switchTab(tabId, btnElement) {
-            // Убираем active со всех кнопок
-            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-            if(btnElement) btnElement.classList.add('active');
-
-            // Скрываем все секции
-            document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
-            // Показываем нужную
-            document.getElementById(tabId).classList.add('active');
-        }
-
-        // Модальные окна
-        function openModal(id) { document.getElementById(id).classList.add('active'); }
-        function closeModalDirect(id) { document.getElementById(id).classList.remove('active'); }
-        function closeModal(e, id) {
-            if (e.target.classList.contains('modal-overlay')) {
-                closeModalDirect(id);
-            }
-        }
-
-        // Лайтбокс
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').classList.add('active');
-        }
-        function closeLightboxDirect() { document.getElementById('lightbox').classList.remove('active'); }
-        function closeLightbox(e) {
-            if (e.target.id === 'lightbox') { closeLightboxDirect(); }
-        }
-
-        // --- АНИМАЦИЯ ПАДАЮЩИХ ЛЕПЕСТКОВ НА ФОНЕ ---
-        const canvas = document.getElementById('bgCanvas');
+        // --- ЛОГИКА CANVAS (НОЧНОЙ ЛЕС И ОГОНЬКИ) ---
+        const canvas = document.getElementById('forestCanvas');
         const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        
+        let width, height;
+        
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        window.addEventListener('resize', resize);
+        resize();
 
-        class Petal {
-            constructor() {
-                this.reset(true);
+        // Отслеживание курсора мыши
+        const mouse = { x: -1000, y: -1000, radius: 150 };
+        
+        // Слушаем события на контейнере скролла, чтобы координаты были точными относительно экрана
+        const scrollContainer = document.getElementById('main-scroll');
+        scrollContainer.addEventListener('mousemove', (e) => {
+            // Если мы находимся на первом экране (скролл сверху = 0)
+            if (scrollContainer.scrollTop < height) {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY + scrollContainer.scrollTop; 
+            } else {
+                mouse.x = -1000;
+                mouse.y = -1000;
             }
-            
-            reset(randomY = false) {
-                this.x = Math.random() * canvas.width;
-                this.y = randomY ? Math.random() * canvas.height : -20;
-                this.size = Math.random() * 8 + 4;
-                this.speedY = Math.random() * 1.5 + 0.5;
-                this.speedX = Math.random() * 1 - 0.5;
+        });
+        scrollContainer.addEventListener('mouseleave', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        // Класс Светлячка
+        class Firefly {
+            constructor() {
+                this.baseX = Math.random() * width;
+                // Огоньки роятся преимущественно в нижней половине (над кронами деревьев)
+                this.baseY = height * 0.4 + Math.random() * (height * 0.6);
+                this.x = this.baseX;
+                this.y = this.baseY;
+                this.vx = 0;
+                this.vy = 0;
+                this.size = Math.random() * 2 + 1;
                 this.angle = Math.random() * Math.PI * 2;
-                this.spin = Math.random() * 0.04 - 0.02;
-                this.opacity = Math.random() * 0.5 + 0.2;
+                this.speed = Math.random() * 0.02 + 0.01;
             }
 
             update() {
-                this.y += this.speedY;
-                this.x += this.speedX + Math.sin(this.angle) * 0.5;
-                this.angle += this.spin;
+                // Плавное блуждание вокруг базовой точки
+                this.angle += this.speed;
+                let targetX = this.baseX + Math.cos(this.angle) * 30;
+                let targetY = this.baseY + Math.sin(this.angle) * 30;
 
-                if (this.y > canvas.height + 20) {
-                    this.reset();
+                // Реакция на мышь (отталкивание)
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouse.radius) {
+                    let force = (mouse.radius - distance) / mouse.radius;
+                    let angleToMouse = Math.atan2(dy, dx);
+                    // Убегают в противоположную сторону
+                    this.vx -= Math.cos(angleToMouse) * force * 5;
+                    this.vy -= Math.sin(angleToMouse) * force * 5;
                 }
+
+                // Пружинящее возвращение к целевой позиции
+                this.vx += (targetX - this.x) * 0.02;
+                this.vy += (targetY - this.y) * 0.02;
+
+                // Трение
+                this.vx *= 0.9;
+                this.vy *= 0.9;
+
+                this.x += this.vx;
+                this.y += this.vy;
             }
 
             draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
-                
-                ctx.fillStyle = `rgba(255, 180, 198, ${this.opacity})`;
                 ctx.beginPath();
-                // Простая форма лепестка
-                ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = '#a78bfa';
                 ctx.fill();
-                
-                ctx.restore();
+
+                // Свечение
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+                let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
+                gradient.addColorStop(0, 'rgba(167, 139, 250, 0.4)');
+                gradient.addColorStop(1, 'rgba(167, 139, 250, 0)');
+                ctx.fillStyle = gradient;
+                ctx.fill();
             }
         }
 
-        const petals = [];
-        const petalCount = window.innerWidth < 768 ? 20 : 45; // Меньше частиц на мобильных
-        for (let i = 0; i < petalCount; i++) {
-            petals.push(new Petal());
+        // Создаем массив светлячков
+        const fireflies = [];
+        const numFireflies = window.innerWidth < 768 ? 40 : 100;
+        for (let i = 0; i < numFireflies; i++) {
+            fireflies.push(new Firefly());
         }
 
+        // Отрисовка стилизованных крон деревьев (силуэты)
+        function drawTrees() {
+            ctx.fillStyle = '#050B14';
+            ctx.beginPath();
+            ctx.moveTo(0, height);
+            
+            // Левое дерево
+            ctx.quadraticCurveTo(width * 0.1, height * 0.6, width * 0.2, height * 0.8);
+            ctx.quadraticCurveTo(width * 0.3, height * 0.7, width * 0.4, height * 0.9);
+            
+            // Центральные заросли
+            ctx.quadraticCurveTo(width * 0.5, height * 0.75, width * 0.6, height * 0.9);
+            
+            // Правое дерево
+            ctx.quadraticCurveTo(width * 0.8, height * 0.5, width, height * 0.7);
+            
+            ctx.lineTo(width, height);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Главный цикл анимации
         function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            petals.forEach(p => {
-                p.update();
-                p.draw();
+            ctx.clearRect(0, 0, width, height);
+            
+            // Отрисовываем деревья на фоне
+            drawTrees();
+
+            // Обновляем и рисуем огоньки
+            fireflies.forEach(firefly => {
+                firefly.update();
+                firefly.draw();
             });
+
             requestAnimationFrame(animate);
         }
+
         animate();
     </script>
 </body>
