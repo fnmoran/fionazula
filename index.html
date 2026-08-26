@@ -32,6 +32,17 @@
             padding: 0;
         }
 
+        /* Защита изображений от сохранения и перетаскивания */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-select: none;
+            -webkit-user-select: none;
+            pointer-events: auto;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -42,6 +53,8 @@
             color: var(--text-dark);
             line-height: 1.7;
             padding: 16px;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .site-wrapper {
@@ -175,14 +188,144 @@
             font-size: 0.95rem;
         }
 
-        /* Art Gallery Grid */
-        .gallery-grid {
+        /* Папки-категории */
+        .folders-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .gallery-card {
+        .folder-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-pink);
+            border-radius: var(--radius-md);
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .folder-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-pink);
+            box-shadow: 0 16px 30px rgba(236, 72, 153, 0.2);
+        }
+
+        .folder-icon {
+            font-size: 3rem;
+            filter: drop-shadow(0 4px 8px rgba(236, 72, 153, 0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .folder-card:hover .folder-icon {
+            transform: scale(1.1);
+        }
+
+        .folder-title {
+            font-family: 'Comfortaa', cursive;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .folder-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Окно папки (Modal с галереей) */
+        .folder-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(55, 41, 56, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 900;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .folder-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .folder-modal-content {
+            background: var(--bg-inner);
+            border: 4px solid var(--card-bg);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 960px;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 36px 28px;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .folder-modal.active .folder-modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 28px;
+            padding-right: 20px;
+        }
+
+        .modal-header h3 {
+            font-family: 'Comfortaa', cursive;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-pink);
+            color: var(--primary-dark);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close-btn:hover {
+            background: var(--primary-pink);
+            color: #ffffff;
+            border-color: var(--primary-pink);
+        }
+
+        /* Сетка внутри папки */
+        .modal-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .art-card {
             background: var(--card-bg);
             border-radius: var(--radius-md);
             overflow: hidden;
@@ -193,54 +336,36 @@
             position: relative;
         }
 
-        .gallery-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 30px rgba(236, 72, 153, 0.2);
-            border-color: var(--border-pink);
+        .art-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-pink);
         }
 
-        .gallery-card img {
+        .art-card img {
             width: 100%;
-            height: 300px;
+            height: 240px;
             object-fit: cover;
             display: block;
             background-color: var(--accent-soft);
-            transition: transform 0.5s ease;
         }
 
-        .gallery-card:hover img {
-            transform: scale(1.04);
-        }
-
-        .card-overlay {
+        .art-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 18px;
+            padding: 12px;
             background: linear-gradient(180deg, transparent, rgba(55, 41, 56, 0.9) 70%);
             color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
             opacity: 0;
-            transform: translateY(10px);
             transition: var(--transition);
         }
 
-        .gallery-card:hover .card-overlay {
+        .art-card:hover .art-overlay {
             opacity: 1;
-            transform: translateY(0);
-        }
-
-        .card-overlay h4 {
-            font-size: 1.05rem;
-            font-weight: 700;
-        }
-
-        .card-overlay span {
-            font-size: 0.8rem;
-            color: #fbcfe8;
         }
 
         /* Books Section */
@@ -407,16 +532,16 @@
             color: var(--text-muted);
         }
 
-        /* Lightbox */
+        /* Lightbox Полноразмерного Просмотра */
         .lightbox {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(55, 41, 56, 0.88);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
+            background: rgba(35, 24, 36, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1100;
             display: none;
             justify-content: center;
             align-items: center;
@@ -445,7 +570,7 @@
             object-fit: contain;
             border-radius: var(--radius-md);
             border: 4px solid #ffffff;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
 
         .lightbox-caption {
@@ -504,7 +629,7 @@
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
     <div class="site-wrapper">
 
@@ -532,36 +657,40 @@
         <!-- Основной контент -->
         <main class="content-display container" id="contentArea">
 
-            <!-- СЕКЦИЯ: ИЛЛЮСТРАЦИИ -->
+            <!-- СЕКЦИЯ: ИЛЛЮСТРАЦИИ (ПАПКИ) -->
             <section id="illustrations" class="portfolio-section active-section">
                 <div class="section-header">
-                    <h2>Галерея иллюстраций</h2>
-                    <p>Нажмите на изображение для полноразмерного просмотра</p>
+                    <h2>Галерея работ</h2>
+                    <p>Выберите категорию для просмотра иллюстраций</p>
                 </div>
 
-                <div class="gallery-grid">
-                    <div class="gallery-card" onclick="openLightbox('art1.jpg', 'Иллюстрация 1')">
-                        <img src="art1.jpg" alt="Иллюстрация 1" onerror="this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600'">
-                        <div class="card-overlay">
-                            <h4>Иллюстрация 1</h4>
-                            <span>Нажмите для увеличения</span>
-                        </div>
+                <div class="folders-grid">
+                    <!-- Папка 1: Персонажи -->
+                    <div class="folder-card" onclick="openFolder('characters')">
+                        <div class="folder-icon">🧝‍♀️</div>
+                        <div class="folder-title">Персонажи</div>
+                        <div class="folder-desc">Концепты и образы</div>
                     </div>
 
-                    <div class="gallery-card" onclick="openLightbox('art2.jpg', 'Иллюстрация 2')">
-                        <img src="art2.jpg" alt="Иллюстрация 2" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600'">
-                        <div class="card-overlay">
-                            <h4>Иллюстрация 2</h4>
-                            <span>Нажмите для увеличения</span>
-                        </div>
+                    <!-- Папка 2: Иллюстрации -->
+                    <div class="folder-card" onclick="openFolder('arts')">
+                        <div class="folder-icon">🎨</div>
+                        <div class="folder-title">Иллюстрации</div>
+                        <div class="folder-desc">Полноценные арты и сцены</div>
                     </div>
 
-                    <div class="gallery-card" onclick="openLightbox('art3.jpg', 'Иллюстрация 3')">
-                        <img src="art3.jpg" alt="Иллюстрация 3" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600'">
-                        <div class="card-overlay">
-                            <h4>Иллюстрация 3</h4>
-                            <span>Нажмите для увеличения</span>
-                        </div>
+                    <!-- Папка 3: Предметы -->
+                    <div class="folder-card" onclick="openFolder('props')">
+                        <div class="folder-icon">🔮</div>
+                        <div class="folder-title">Предметы</div>
+                        <div class="folder-desc">Артефакты и детали</div>
+                    </div>
+
+                    <!-- Папка 4: Обложки -->
+                    <div class="folder-card" onclick="openFolder('covers')">
+                        <div class="folder-icon">📖</div>
+                        <div class="folder-title">Обложки</div>
+                        <div class="folder-desc">Оформление книг и проектов</div>
                     </div>
                 </div>
             </section>
@@ -669,7 +798,87 @@
 
         </main>
 
-        <!-- Лайтбокс -->
+        <!-- ОКНО ПАПКИ 1: ПЕРСОНАЖИ -->
+        <div id="modal-characters" class="folder-modal" onclick="closeFolderModal(event, 'characters')">
+            <div class="folder-modal-content">
+                <button class="modal-close-btn" onclick="closeFolderModalDirect('characters')">&times;</button>
+                <div class="modal-header">
+                    <h3>Персонажи</h3>
+                    <p>Нажмите на изображение для увеличения</p>
+                </div>
+                <div class="modal-gallery-grid">
+                    <div class="art-card" onclick="openLightbox('char1.jpg', 'Персонаж 1')">
+                        <img src="char1.jpg" alt="Персонаж 1" onerror="this.src='https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600'">
+                        <div class="art-overlay">Увеличить 🔍</div>
+                    </div>
+                    <div class="art-card" onclick="openLightbox('char2.jpg', 'Персонаж 2')">
+                        <img src="char2.jpg" alt="Персонаж 2" onerror="this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600'">
+                        <div class="art-overlay">Увеличить 🔍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ОКНО ПАПКИ 2: ИЛЛЮСТРАЦИИ -->
+        <div id="modal-arts" class="folder-modal" onclick="closeFolderModal(event, 'arts')">
+            <div class="folder-modal-content">
+                <button class="modal-close-btn" onclick="closeFolderModalDirect('arts')">&times;</button>
+                <div class="modal-header">
+                    <h3>Иллюстрации</h3>
+                    <p>Нажмите на изображение для увеличения</p>
+                </div>
+                <div class="modal-gallery-grid">
+                    <div class="art-card" onclick="openLightbox('art1.jpg', 'Иллюстрация 1')">
+                        <img src="art1.jpg" alt="Иллюстрация 1" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600'">
+                        <div class="art-overlay">Увеличить 🔍</div>
+                    </div>
+                    <div class="art-card" onclick="openLightbox('art2.jpg', 'Иллюстрация 2')">
+                        <img src="art2.jpg" alt="Иллюстрация 2" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600'">
+                        <div class="art-overlay">Увеличить 🔍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ОКНО ПАПКИ 3: ПРЕДМЕТЫ -->
+        <div id="modal-props" class="folder-modal" onclick="closeFolderModal(event, 'props')">
+            <div class="folder-modal-content">
+                <button class="modal-close-btn" onclick="closeFolderModalDirect('props')">&times;</button>
+                <div class="modal-header">
+                    <h3>Предметы</h3>
+                    <p>Нажмите на изображение для увеличения</p>
+                </div>
+                <div class="modal-gallery-grid">
+                    <div class="art-card" onclick="openLightbox('prop1.jpg', 'Предмет 1')">
+                        <img src="prop1.jpg" alt="Предмет 1" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=600'">
+                        <div class="art-overlay">Увеличить 🔍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ОКНО ПАПКИ 4: ОБЛОЖКИ -->
+        <div id="modal-covers" class="folder-modal" onclick="closeFolderModal(event, 'covers')">
+            <div class="folder-modal-content">
+                <button class="modal-close-btn" onclick="closeFolderModalDirect('covers')">&times;</button>
+                <div class="modal-header">
+                    <h3>Обложки</h3>
+                    <p>Нажмите на изображение для увеличения</p>
+                </div>
+                <div class="modal-gallery-grid">
+                    <div class="art-card" onclick="openLightbox('witch-cover.jpg', 'Цветы для ведьмы')">
+                        <img src="witch-cover.jpg" alt="Цветы для ведьмы" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400'">
+                        <div class="art-overlay">Увеличить 🔍</div>
+                    </div>
+                    <div class="art-card" onclick="openLightbox('loop-cover.jpg', 'Петля')">
+                        <img src="loop-cover.jpg" alt="Петля" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400'">
+                        <div class="art-overlay">Увеличить 🔍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Лайтбокс Полноэкранного Просмотра -->
         <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
             <div class="lightbox-content">
                 <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
@@ -709,6 +918,33 @@
             contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        // Логика открытия папок
+        function openFolder(folderId) {
+            const modal = document.getElementById('modal-' + folderId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeFolderModal(e, folderId) {
+            if (e.target.classList.contains('folder-modal')) {
+                closeFolderModalDirect(folderId);
+            }
+        }
+
+        function closeFolderModalDirect(folderId) {
+            const modal = document.getElementById('modal-' + folderId);
+            if (modal) {
+                modal.classList.remove('active');
+                // Если лайтбокс не открыт, возвращаем скролл
+                if (!lightbox.classList.contains('active')) {
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        }
+
+        // Логика лайтбокса (полноразмерный просмотр)
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxCaption = document.getElementById('lightboxCaption');
@@ -723,14 +959,27 @@
         function closeLightbox(e) {
             if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
                 lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                // Проверяем, открыта ли какая-нибудь папка
+                const activeFolder = document.querySelector('.folder-modal.active');
+                if (!activeFolder) {
+                    document.body.style.overflow = 'auto';
+                }
             }
         }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                    const activeFolder = document.querySelector('.folder-modal.active');
+                    if (!activeFolder) document.body.style.overflow = 'auto';
+                } else {
+                    const activeFolder = document.querySelector('.folder-modal.active');
+                    if (activeFolder) {
+                        activeFolder.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                }
             }
         });
     </script>
