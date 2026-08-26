@@ -1,2800 +1,1400 @@
 <!DOCTYPE html>
-
 <html lang="ru">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
     <title>Фиона Моран</title>
-
     
-
     <!-- Иконка вкладки: светящийся бирюзовый кристалл-огонек -->
-
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23060911'/><circle cx='50' cy='50' r='30' fill='%232dd4bf' opacity='0.35'/><path d='M50 16 L80 50 L50 84 L20 50 Z' fill='%232dd4bf'/><path d='M50 28 L68 50 L50 72 L32 50 Z' fill='%23e6fffa'/></svg>">
 
-
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
-
     
-
     <style>
-
         :root {
-
             --bg-deep: #060911;
-
             --ink-primary: #101a2e;
-
             --ink-secondary: #24334f;
-
             --text-muted: #4e5e77;
-
             --border-ice: rgba(16, 26, 46, 0.14);
-
             --border-highlight: rgba(16, 26, 46, 0.38);
-
             --accent-blue: #14223d;
-
             --accent-glow: rgba(45, 212, 191, 0.25);
-
             --neon-teal: #2dd4bf;
-
             --font-title: 'Cinzel', serif;
-
             --font-body: 'Plus Jakarta Sans', sans-serif;
-
             --font-italic: 'Playfair Display', Georgia, serif;
-
             --radius-sm: 8px;
-
             --radius-md: 14px;
-
             --radius-lg: 24px;
-
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-
         }
-
-
 
         * {
-
             box-sizing: border-box;
-
             margin: 0;
-
             padding: 0;
-
             -webkit-tap-highlight-color: transparent;
-
         }
-
-
 
         img {
-
             -webkit-user-drag: none;
-
             user-select: none;
-
             -webkit-user-select: none;
-
             pointer-events: auto;
-
         }
-
-
 
         html {
-
             scroll-behavior: smooth;
-
         }
-
-
 
         body {
-
             font-family: var(--font-body);
-
             background-color: var(--bg-deep);
-
             color: var(--ink-primary);
-
             line-height: 1.75;
-
             padding: 24px 16px 90px;
-
             -webkit-user-select: none;
-
             user-select: none;
-
             position: relative;
-
             min-height: 100vh;
-
             overflow-x: hidden;
-
         }
-
-
 
         /* Холст с лесом и огоньками */
-
         #forestCanvas {
-
             position: fixed;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
             height: 100%;
-
             pointer-events: none;
-
             z-index: 1;
-
         }
-
-
 
         /* Центральное полотно */
-
         .site-wrapper {
-
             background-color: rgba(219, 229, 239, 0.96);
-
             background-image: 
-
                 radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 45%),
-
                 radial-gradient(circle at 90% 80%, rgba(182, 207, 232, 0.45) 0%, transparent 55%);
-
             backdrop-filter: blur(16px);
-
             -webkit-backdrop-filter: blur(16px);
-
             max-width: 1040px;
-
             margin: 0 auto;
-
             border-radius: var(--radius-lg);
-
             overflow: hidden;
-
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 40px rgba(45, 212, 191, 0.08);
-
             border: 1px solid rgba(255, 255, 255, 0.5);
-
             position: relative;
-
             z-index: 2;
-
         }
-
-
 
         .container {
-
             max-width: 880px;
-
             margin: 0 auto;
-
             padding: 0 28px;
-
         }
-
-
 
         /* Header / Hero */
-
         .hero {
-
             padding: 75px 0 45px;
-
             text-align: center;
-
             position: relative;
-
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
-
         }
-
-
 
         .decorative-line {
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             gap: 14px;
-
             margin-bottom: 20px;
-
         }
-
-
 
         .decorative-line::before,
-
         .decorative-line::after {
-
             content: '';
-
             width: 50px;
-
             height: 1px;
-
             background: var(--ink-secondary);
-
             opacity: 0.3;
-
         }
-
-
 
         .diamond {
-
             font-size: 0.75rem;
-
             color: var(--neon-teal);
-
             filter: drop-shadow(0 0 6px var(--neon-teal));
-
         }
-
-
 
         /* Выровненная плашка "пишу и рисую" */
-
         .hero-badge {
-
             display: block;
-
             text-align: center;
-
             font-family: var(--font-title);
-
             font-size: 0.8rem;
-
             font-weight: 600;
-
             text-transform: uppercase;
-
             letter-spacing: 4px;
-
             color: var(--ink-secondary);
-
             margin-bottom: 14px;
-
             line-height: 1;
-
             padding-left: 4px; /* Компенсирует оптический сдвиг от letter-spacing */
-
         }
-
-
 
         .hero h1 {
-
             font-family: var(--font-title);
-
             font-size: clamp(2.3rem, 7vw, 4.2rem);
-
             font-weight: 700;
-
             color: var(--ink-primary);
-
             letter-spacing: 4px;
-
             line-height: 1.1;
-
             margin-bottom: 16px;
-
             text-transform: uppercase;
-
             padding-left: 4px;
-
         }
-
-
 
         .hero p {
-
             font-size: clamp(0.95rem, 3vw, 1.15rem);
-
             color: var(--text-muted);
-
             max-width: 580px;
-
             margin: 0 auto 32px;
-
             font-weight: 400;
-
             letter-spacing: 0.3px;
-
         }
-
-
 
         /* Кнопки переключения */
-
         .choice-nav {
-
             display: flex;
-
             gap: 12px;
-
             flex-wrap: wrap;
-
             justify-content: center;
-
         }
-
-
 
         .choice-btn {
-
             background: rgba(255, 255, 255, 0.75);
-
             backdrop-filter: blur(10px);
-
             border: 1px solid var(--border-ice);
-
             color: var(--ink-primary);
-
             padding: 12px 24px;
-
             border-radius: var(--radius-sm);
-
             font-size: 0.85rem;
-
             font-weight: 600;
-
             letter-spacing: 1.5px;
-
             font-family: var(--font-title);
-
             text-transform: uppercase;
-
             cursor: pointer;
-
             transition: var(--transition);
-
             box-shadow: 0 4px 15px rgba(16, 26, 46, 0.04);
-
             position: relative;
-
         }
-
-
 
         .choice-btn:hover {
-
             transform: translateY(-3px);
-
             background: #ffffff;
-
             border-color: var(--neon-teal);
-
             box-shadow: 0 8px 24px rgba(45, 212, 191, 0.2);
-
         }
-
-
 
         .choice-btn.active {
-
             background: var(--accent-blue);
-
             color: #ffffff;
-
             border-color: var(--accent-blue);
-
             box-shadow: 0 6px 20px rgba(16, 26, 46, 0.3);
-
         }
-
-
 
         /* Секции контента */
-
         .content-display {
-
             padding: 20px 0 110px;
-
         }
-
-
 
         .portfolio-section {
-
             display: none;
-
             opacity: 0;
-
             transform: translateY(16px);
-
             transition: opacity 0.45s ease, transform 0.45s ease;
-
         }
-
-
 
         .portfolio-section.active-section {
-
             display: block;
-
             opacity: 1;
-
             transform: translateY(0);
-
         }
-
-
 
         .section-header {
-
             text-align: center;
-
             margin-bottom: 36px;
-
         }
-
-
 
         .section-header h2 {
-
             font-family: var(--font-title);
-
             font-size: clamp(1.6rem, 4vw, 2.2rem);
-
             letter-spacing: 2px;
-
             color: var(--ink-primary);
-
             text-transform: uppercase;
-
         }
-
-
 
         /* Книги */
-
         .books-list {
-
             display: flex;
-
             flex-direction: column;
-
             gap: 32px;
-
         }
-
-
 
         .book-card {
-
             background: rgba(255, 255, 255, 0.8);
-
             backdrop-filter: blur(10px);
-
             border-radius: var(--radius-md);
-
             padding: 34px;
-
             display: grid;
-
             grid-template-columns: 210px 1fr;
-
             gap: 32px;
-
             align-items: start;
-
             border: 1px solid var(--border-ice);
-
             transition: var(--transition);
-
         }
-
-
 
         .book-card:hover {
-
             transform: translateY(-4px);
-
             background: rgba(255, 255, 255, 0.95);
-
             box-shadow: 0 16px 36px rgba(45, 212, 191, 0.15);
-
             border-color: var(--border-highlight);
-
         }
-
-
 
         .book-cover {
-
             width: 100%;
-
             height: 310px;
-
             border-radius: var(--radius-sm);
-
             object-fit: cover;
-
             background-color: #c4d2e2;
-
             box-shadow: 0 10px 25px rgba(16, 26, 46, 0.18);
-
         }
-
-
 
         .book-content h3 {
-
             font-family: var(--font-title);
-
             font-size: clamp(1.4rem, 3.5vw, 1.85rem);
-
             color: var(--ink-primary);
-
             margin-bottom: 8px;
-
             letter-spacing: 1px;
-
         }
-
-
 
         .genre-tags {
-
             display: flex;
-
             flex-wrap: wrap;
-
             gap: 8px;
-
             margin-bottom: 18px;
-
         }
-
-
 
         .genre-tag {
-
             font-size: 0.72rem;
-
             font-weight: 600;
-
             text-transform: uppercase;
-
             letter-spacing: 0.8px;
-
             background: rgba(16, 26, 46, 0.06);
-
             color: var(--ink-secondary);
-
             padding: 4px 12px;
-
             border-radius: var(--radius-sm);
-
             border: 1px solid rgba(16, 26, 46, 0.12);
-
         }
-
-
 
         .book-quote {
-
             font-family: var(--font-italic);
-
             font-size: 1.05rem;
-
             color: var(--ink-primary);
-
             border-left: 2px solid var(--neon-teal);
-
             padding: 10px 16px;
-
             margin-bottom: 16px;
-
             background: rgba(255, 255, 255, 0.55);
-
             border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-
             white-space: pre-line;
-
             line-height: 1.5;
-
         }
-
-
 
         .book-synopsis {
-
             color: var(--text-muted);
-
             font-size: 0.92rem;
-
             line-height: 1.75;
-
             margin-bottom: 24px;
-
             white-space: pre-line;
-
         }
-
-
 
         .book-buttons {
-
             display: flex;
-
             gap: 10px;
-
             flex-wrap: wrap;
-
         }
-
-
 
         .book-link {
-
             display: inline-flex;
-
             align-items: center;
-
             justify-content: center;
-
             gap: 6px;
-
             padding: 10px 22px;
-
             background: var(--accent-blue);
-
             border-radius: var(--radius-sm);
-
             color: #ffffff;
-
             text-decoration: none;
-
             font-family: var(--font-title);
-
             letter-spacing: 1px;
-
             font-size: 0.8rem;
-
             font-weight: 600;
-
             text-transform: uppercase;
-
             transition: var(--transition);
-
         }
-
-
 
         .book-link:hover {
-
             background: #090f1c;
-
             border-color: var(--neon-teal);
-
             transform: translateY(-2px);
-
             box-shadow: 0 8px 18px rgba(45, 212, 191, 0.25);
-
         }
-
-
 
         .book-link.btn-alt {
-
             background: rgba(255, 255, 255, 0.8);
-
             color: var(--ink-primary);
-
             border: 1px solid var(--border-ice);
-
         }
-
-
 
         .book-link.btn-alt:hover {
-
             background: #ffffff;
-
             border-color: var(--neon-teal);
-
         }
-
-
 
         /* Папки-категории */
-
         .folders-grid {
-
             display: grid;
-
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-
             gap: 16px;
-
         }
-
-
 
         .folder-card {
-
             background: rgba(255, 255, 255, 0.75);
-
             backdrop-filter: blur(10px);
-
             border: 1px solid var(--border-ice);
-
             border-radius: var(--radius-md);
-
             padding: 30px 18px;
-
             text-align: center;
-
             cursor: pointer;
-
             transition: var(--transition);
-
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
-
             gap: 10px;
-
             position: relative;
-
         }
-
-
 
         .folder-card::after {
-
             content: '◆';
-
             font-size: 0.6rem;
-
             color: var(--neon-teal);
-
             opacity: 0.6;
-
             margin-top: 4px;
-
             transition: var(--transition);
-
         }
-
-
 
         .folder-card:hover {
-
             transform: translateY(-5px);
-
             background: rgba(255, 255, 255, 0.95);
-
             border-color: var(--neon-teal);
-
             box-shadow: 0 16px 36px rgba(45, 212, 191, 0.2);
-
         }
-
-
 
         .folder-card:hover::after {
-
             opacity: 1;
-
             transform: scale(1.3);
-
             filter: drop-shadow(0 0 6px var(--neon-teal));
-
         }
-
-
 
         .folder-title {
-
             font-family: var(--font-title);
-
             font-size: 1.2rem;
-
             font-weight: 700;
-
             color: var(--ink-primary);
-
             letter-spacing: 1px;
-
             text-transform: uppercase;
-
         }
-
-
 
         .folder-desc {
-
             font-size: 0.82rem;
-
             color: var(--text-muted);
-
             letter-spacing: 0.2px;
-
         }
-
-
 
         /* Модальные окна папок */
-
         .folder-modal {
-
             position: fixed;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
             height: 100%;
-
             background: rgba(6, 9, 17, 0.92);
-
             backdrop-filter: blur(14px);
-
             z-index: 900;
-
             display: none;
-
             justify-content: center;
-
             align-items: center;
-
             padding: 24px;
-
             opacity: 0;
-
             transition: opacity 0.35s ease;
-
         }
-
-
 
         .folder-modal.active {
-
             display: flex;
-
             opacity: 1;
-
         }
-
-
 
         .folder-modal-content {
-
             background: rgba(219, 229, 239, 0.96);
-
             backdrop-filter: blur(16px);
-
             border: 1px solid rgba(255, 255, 255, 0.5);
-
             border-radius: var(--radius-lg);
-
             width: 100%;
-
             max-width: 920px;
-
             max-height: 88vh;
-
             overflow-y: auto;
-
             padding: 40px 32px;
-
             position: relative;
-
             box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(45, 212, 191, 0.15);
-
             transform: scale(0.96);
-
             transition: transform 0.35s ease;
-
         }
-
-
 
         .folder-modal.active .folder-modal-content {
-
             transform: scale(1);
-
         }
-
-
 
         .modal-header {
-
             text-align: center;
-
             margin-bottom: 28px;
-
         }
-
-
 
         .modal-header h3 {
-
             font-family: var(--font-title);
-
             font-size: 2rem;
-
             color: var(--ink-primary);
-
             letter-spacing: 2px;
-
             text-transform: uppercase;
-
         }
-
-
 
         .modal-close-btn {
-
             position: absolute;
-
             top: 20px;
-
             right: 20px;
-
             background: rgba(255, 255, 255, 0.85);
-
             border: 1px solid var(--border-ice);
-
             color: var(--ink-primary);
-
             width: 38px;
-
             height: 38px;
-
             border-radius: 50%;
-
             font-size: 1.3rem;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             cursor: pointer;
-
             transition: var(--transition);
-
         }
-
-
 
         .modal-close-btn:hover {
-
             background: var(--accent-blue);
-
             color: #ffffff;
-
             border-color: var(--neon-teal);
-
         }
-
-
 
         .modal-gallery-grid {
-
             display: grid;
-
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-
             gap: 16px;
-
         }
-
-
 
         .art-card {
-
             background: rgba(255, 255, 255, 0.8);
-
             border-radius: var(--radius-sm);
-
             overflow: hidden;
-
             cursor: pointer;
-
             transition: var(--transition);
-
             border: 1px solid var(--border-ice);
-
             position: relative;
-
         }
-
-
 
         .art-card:hover {
-
             transform: translateY(-5px);
-
             border-color: var(--neon-teal);
-
             box-shadow: 0 16px 32px rgba(45, 212, 191, 0.25);
-
         }
-
-
 
         .art-card img {
-
             width: 100%;
-
             height: 240px;
-
             object-fit: cover;
-
             display: block;
-
             background-color: #c4d2e2;
-
         }
-
-
 
         .art-overlay {
-
             position: absolute;
-
             bottom: 0;
-
             left: 0;
-
             right: 0;
-
             padding: 10px;
-
             background: linear-gradient(180deg, transparent, rgba(16, 26, 46, 0.94) 80%);
-
             color: #ffffff;
-
             font-size: 0.8rem;
-
             font-weight: 500;
-
             text-align: center;
-
             letter-spacing: 0.5px;
-
             opacity: 0;
-
             transition: var(--transition);
-
         }
-
-
 
         .art-card:hover .art-overlay {
-
             opacity: 1;
-
         }
-
-
 
         /* Соцсети */
-
         .socials-grid {
-
             display: grid;
-
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-
             gap: 18px;
-
             max-width: 840px;
-
             margin: 0 auto;
-
         }
-
-
 
         .social-card {
-
             background: rgba(255, 255, 255, 0.8);
-
             backdrop-filter: blur(10px);
-
             border-radius: var(--radius-md);
-
             padding: 30px 22px;
-
             text-align: center;
-
             text-decoration: none;
-
             color: var(--ink-primary);
-
             transition: var(--transition);
-
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
-
             gap: 12px;
-
             border: 1px solid var(--border-ice);
-
         }
-
-
 
         .social-card:hover {
-
             transform: translateY(-5px);
-
             background: #ffffff;
-
             border-color: var(--neon-teal);
-
             box-shadow: 0 16px 36px rgba(45, 212, 191, 0.2);
-
         }
-
-
 
         .social-svg-wrap {
-
             width: 52px;
-
             height: 52px;
-
             border-radius: 50%;
-
             background: rgba(16, 26, 46, 0.06);
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             color: var(--ink-primary);
-
             transition: var(--transition);
-
             flex-shrink: 0;
-
         }
-
-
 
         .social-svg-wrap svg {
-
             display: block;
-
         }
-
-
 
         .social-card:hover .social-svg-wrap {
-
             background: var(--accent-blue);
-
             color: var(--neon-teal);
-
             transform: scale(1.06);
-
         }
-
-
 
         .social-name {
-
             font-family: var(--font-title);
-
             font-size: 1.25rem;
-
             font-weight: 700;
-
             color: var(--ink-primary);
-
             letter-spacing: 1px;
-
             text-transform: uppercase;
-
         }
-
-
 
         .social-desc {
-
             font-size: 0.84rem;
-
             color: var(--text-muted);
-
             font-weight: 500;
-
         }
-
-
 
         /* Лайтбокс */
-
         .lightbox {
-
             position: fixed;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
             height: 100%;
-
             background: rgba(6, 9, 17, 0.95);
-
             backdrop-filter: blur(14px);
-
             z-index: 1100;
-
             display: none;
-
             justify-content: center;
-
             align-items: center;
-
             padding: 16px;
-
             opacity: 0;
-
             transition: opacity 0.3s ease;
-
         }
-
-
 
         .lightbox.active {
-
             display: flex;
-
             opacity: 1;
-
         }
-
-
 
         .lightbox-content {
-
             position: relative;
-
             max-width: 95vw;
-
             max-height: 85vh;
-
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
-
         }
-
-
 
         .lightbox-img {
-
             max-width: 100%;
-
             max-height: 75vh;
-
             object-fit: contain;
-
             border-radius: var(--radius-sm);
-
             border: 1px solid rgba(45, 212, 191, 0.4);
-
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(45, 212, 191, 0.2);
-
         }
-
-
 
         .lightbox-caption {
-
             margin-top: 14px;
-
             font-family: var(--font-title);
-
             font-size: 1rem;
-
             color: #ffffff;
-
             letter-spacing: 1px;
-
         }
-
-
 
         .lightbox-close {
-
             position: absolute;
-
             top: -38px;
-
             right: 0;
-
             background: none;
-
             border: none;
-
             color: #ffffff;
-
             font-size: 2rem;
-
             cursor: pointer;
-
         }
-
-
 
         /* Footer */
-
         .footer {
-
             background: rgba(255, 255, 255, 0.4);
-
             border-top: 1px solid var(--border-ice);
-
             padding: 40px 20px 45px;
-
             text-align: center;
-
             color: var(--text-muted);
-
             font-size: 0.85rem;
-
             letter-spacing: 0.8px;
-
         }
-
-
 
         /* Мобильная адаптация */
-
         @media (max-width: 768px) {
-
             body {
-
                 padding: 12px 8px 60px;
-
             }
-
-
 
             .site-wrapper {
-
                 border-radius: 16px;
-
             }
-
-
 
             .container {
-
                 padding: 0 16px;
-
             }
-
-
 
             .hero {
-
                 padding: 50px 0 35px;
-
             }
-
-
 
             .hero-badge {
-
                 font-size: 0.72rem;
-
                 letter-spacing: 3px;
-
             }
-
-
 
             .choice-nav {
-
                 flex-direction: column;
-
                 gap: 8px;
-
                 width: 100%;
-
             }
-
-
 
             .choice-btn {
-
                 width: 100%;
-
                 text-align: center;
-
                 padding: 12px 16px;
-
                 font-size: 0.82rem;
-
             }
-
-
 
             .content-display {
-
                 padding: 15px 0 80px;
-
             }
-
-
 
             .book-card {
-
                 grid-template-columns: 1fr;
-
                 gap: 18px;
-
                 padding: 20px 16px;
-
             }
-
-
 
             .book-cover {
-
                 width: 180px;
-
                 height: 260px;
-
                 margin: 0 auto 6px;
-
             }
-
-
 
             .book-content {
-
                 text-align: center;
-
             }
-
-
 
             .genre-tags {
-
                 justify-content: center;
-
                 gap: 6px;
-
             }
-
-
 
             .book-quote {
-
                 text-align: left;
-
                 font-size: 0.95rem;
-
                 padding: 10px 14px;
-
             }
-
-
 
             .book-synopsis {
-
                 text-align: left;
-
                 font-size: 0.88rem;
-
                 line-height: 1.7;
-
             }
-
-
 
             .book-buttons {
-
                 flex-direction: column;
-
                 gap: 8px;
-
             }
-
-
 
             .book-link {
-
                 width: 100%;
-
                 padding: 12px 16px;
-
             }
-
-
 
             .folders-grid {
-
                 grid-template-columns: 1fr 1fr;
-
                 gap: 12px;
-
             }
-
-
 
             .folder-card {
-
                 padding: 22px 12px;
-
             }
-
-
 
             .folder-title {
-
                 font-size: 1.05rem;
-
             }
-
-
 
             .folder-desc {
-
                 font-size: 0.75rem;
-
             }
-
-
 
             .folder-modal {
-
                 padding: 10px;
-
             }
-
-
 
             .folder-modal-content {
-
                 padding: 30px 16px 20px;
-
                 border-radius: 16px;
-
                 max-height: 92vh;
-
             }
-
-
 
             .modal-header h3 {
-
                 font-size: 1.5rem;
-
             }
-
-
 
             .modal-close-btn {
-
                 top: 12px;
-
                 right: 12px;
-
                 width: 32px;
-
                 height: 32px;
-
                 font-size: 1.1rem;
-
             }
-
-
 
             .modal-gallery-grid {
-
                 grid-template-columns: 1fr 1fr;
-
                 gap: 10px;
-
             }
-
-
 
             .art-card img {
-
                 height: 180px;
-
             }
-
-
 
             .socials-grid {
-
                 grid-template-columns: 1fr;
-
                 gap: 12px;
-
             }
-
-
 
             .social-card {
-
                 padding: 20px 16px;
-
                 flex-direction: row;
-
                 text-align: left;
-
                 gap: 16px;
-
             }
-
-
 
             .social-svg-wrap {
-
                 width: 44px;
-
                 height: 44px;
-
             }
-
-
 
             .social-name {
-
                 font-size: 1.1rem;
-
             }
-
-
 
             .footer {
-
                 padding: 30px 16px 36px;
-
             }
-
         }
-
-
 
         @media (max-width: 400px) {
-
             .folders-grid {
-
                 grid-template-columns: 1fr;
-
             }
-
             .modal-gallery-grid {
-
                 grid-template-columns: 1fr;
-
             }
-
             .art-card img {
-
                 height: 220px;
-
             }
-
         }
-
     </style>
-
 </head>
-
 <body oncontextmenu="return false;">
-
-
 
     <canvas id="forestCanvas"></canvas>
 
-
-
     <div class="site-wrapper">
 
-
-
         <!-- Главный экран -->
-
         <header class="hero">
-
             <div class="container">
-
                 <div class="decorative-line">
-
                     <span class="diamond">◆</span>
-
                 </div>
-
                 <div class="hero-badge">пишу и рисую</div>
-
                 <h1>FIONA MORAN</h1>
-
                 <p>Спасибо, что интересуетесь моим творчеством. Здесь собраны мои книги, иллюстрации и ссылки на блоги.</p>
-
                 
-
                 <div class="choice-nav">
-
                     <button class="choice-btn active" onclick="switchTab('books', event)">
-
                         МОИ КНИГИ
-
                     </button>
-
                     <button class="choice-btn" onclick="switchTab('illustrations', event)">
-
                         МОИ ИЛЛЮСТРАЦИИ
-
                     </button>
-
                     <button class="choice-btn" onclick="switchTab('socials', event)">
-
                         МОИ СОЦ СЕТИ
-
                     </button>
-
                 </div>
-
             </div>
-
         </header>
 
-
-
         <!-- Основной контент -->
-
         <main class="content-display container" id="contentArea">
 
-
-
             <!-- СЕКЦИЯ 1: КНИГИ -->
-
             <section id="books" class="portfolio-section active-section">
-
                 <div class="section-header">
-
                     <h2>Где меня можно почитать?</h2>
-
                 </div>
 
-
-
                 <div class="books-list">
-
                     <!-- Цветы для ведьмы -->
-
                     <article class="book-card">
-
                         <img src="witch-cover.jpg" alt="Цветы для ведьмы" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400'">
-
                         <div class="book-content">
-
                             <h3>Цветы для ведьмы</h3>
-
                             <div class="genre-tags">
-
                                 <span class="genre-tag">темное фэнтези</span>
-
                                 <span class="genre-tag">фолк-хоррор</span>
-
                                 <span class="genre-tag">мистический реализм</span>
-
                             </div>
-
-
 
                             <div class="book-quote">«Он — жертва, принесённая лесу ради спасения деревни.
-
 Она — ведьма, что должна его принять».</div>
 
-
-
                             <p class="book-synopsis">Изнурённые голодом и страхом жители отправляют юношу в сердце леса, чтобы умилостивить таинственную ведьму и вернуть плодородие полям.
-
 Но в каждой жертве есть выбор — и Яну предстоит сделать свой.
 
-
-
 История о том, как страх превращается в силу, одиночество — в понимание, а жертва — в смысл.
-
 О тех, кто выжил, но остался одиноким.
-
 И о том, что страшнее леса бывает только то, что мы носим внутри.</p>
-
                             
-
                             <div class="book-buttons">
-
                                 <a href="https://author.today/work/480263" target="_blank" class="book-link">
-
                                     Автор.Тудей ↗
-
                                 </a>
-
                                 <a href="https://litnet.com/ru/book/cvety-dlya-vedmy-b601104" target="_blank" class="book-link btn-alt">
-
                                     Литнет ↗
-
                                 </a>
-
                             </div>
-
                         </div>
-
                     </article>
 
-
-
                     <!-- Петля -->
-
                     <article class="book-card">
-
                         <img src="loop-cover.jpg" alt="Петля" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400'">
-
                         <div class="book-content">
-
                             <h3>Петля</h3>
-
                             <div class="genre-tags">
-
                                 <span class="genre-tag">готика</span>
-
                                 <span class="genre-tag">драма</span>
-
                                 <span class="genre-tag">мистика</span>
-
                             </div>
-
-
 
                             <div class="book-quote">«Все истории сначала кажутся историями о любви. А потом люди замечают, сколько в них было голода».</div>
 
-
-
                             <p class="book-synopsis">Она согласилась на месяц службы в замке Лихтенштайн, о котором ходят слухи.
 
-
-
 Говорят, там не осталось ни одной живой души.
-
 Говорят, хозяин — безумец, запершийся в каменной клетке.
-
 Говорят, из этих стен не возвращаются.
-
-
 
 Далия не верит слухам. Ей нужно спасти сестру — единственную ниточку, за которую она держится.
 
-
-
 Но что, если спасение сестры — лишь приманка? Что, если замок ждал именно её?</p>
-
                             
-
                             <div class="book-buttons">
-
                                 <a href="https://litnet.com/ru/book/petlya-b612274" target="_blank" class="book-link">
-
                                     Литнет ↗
-
                                 </a>
-
                             </div>
-
                         </div>
-
                     </article>
-
                 </div>
-
             </section>
-
-
 
             <!-- СЕКЦИЯ 2: ИЛЛЮСТРАЦИИ -->
-
             <section id="illustrations" class="portfolio-section">
-
                 <div class="section-header">
-
                     <h2>Галерея работ</h2>
-
                 </div>
-
-
 
                 <div class="folders-grid">
-
                     <div class="folder-card" onclick="openFolder('characters')">
-
                         <div class="folder-title">Персонажи</div>
-
                         <div class="folder-desc">Концепты и образы</div>
-
                     </div>
-
-
 
                     <div class="folder-card" onclick="openFolder('arts')">
-
                         <div class="folder-title">Иллюстрации</div>
-
                         <div class="folder-desc">Сюжетные сцены и арты</div>
-
                     </div>
-
-
 
                     <div class="folder-card" onclick="openFolder('props')">
-
                         <div class="folder-title">Предметы</div>
-
                         <div class="folder-desc">Артефакты и детали</div>
-
                     </div>
-
-
 
                     <div class="folder-card" onclick="openFolder('covers')">
-
                         <div class="folder-title">Обложки</div>
-
                         <div class="folder-desc">Оформление книг</div>
-
                     </div>
-
                 </div>
-
             </section>
-
-
 
             <!-- СЕКЦИЯ 3: СОЦСЕТИ -->
-
             <section id="socials" class="portfolio-section">
-
                 <div class="section-header">
-
                     <h2>Связь и соцсети</h2>
-
                 </div>
-
-
 
                 <div class="socials-grid">
-
                     <!-- TikTok: Арт -->
-
                     <a href="https://www.tiktok.com/@fionazula" target="_blank" class="social-card">
-
                         <div class="social-svg-wrap">
-
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-
                                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-
                             </svg>
-
                         </div>
-
                         <div>
-
                             <div class="social-name">TikTok</div>
-
                             <div class="social-desc">Арт-аккаунт</div>
-
                         </div>
-
                     </a>
-
-
 
                     <!-- TikTok: Книги -->
-
                     <a href="https://www.tiktok.com/@fionkamoran" target="_blank" class="social-card">
-
                         <div class="social-svg-wrap">
-
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-
                                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-
                             </svg>
-
                         </div>
-
                         <div>
-
                             <div class="social-name">TikTok</div>
-
                             <div class="social-desc">Писательский аккаунт</div>
-
                         </div>
-
                     </a>
-
-
 
                     <!-- Telegram -->
-
                     <a href="https://t.me/fionamoran" target="_blank" class="social-card">
-
                         <div class="social-svg-wrap">
-
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-
                                 <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-
                             </svg>
-
                         </div>
-
                         <div>
-
                             <div class="social-name">Telegram</div>
-
                             <div class="social-desc">Личный канал</div>
-
                         </div>
-
                     </a>
-
                 </div>
-
             </section>
-
-
 
         </main>
 
-
-
         <!-- ОКНО ПАПКИ 1: ПЕРСОНАЖИ -->
-
         <div id="modal-characters" class="folder-modal" onclick="closeFolderModal(event, 'characters')">
-
             <div class="folder-modal-content">
-
                 <button class="modal-close-btn" onclick="closeFolderModalDirect('characters')">&times;</button>
-
                 <div class="modal-header">
-
                     <h3>Персонажи</h3>
-
                 </div>
-
                 <div class="modal-gallery-grid">
-
                     <div class="art-card" onclick="openLightbox('char1.jpg', 'Персонаж 1')">
-
                         <img src="char1.jpg" alt="Персонаж 1" onerror="this.src='https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600'">
-
                         <div class="art-overlay">Просмотр</div>
-
                     </div>
-
                     <div class="art-card" onclick="openLightbox('char2.jpg', 'Персонаж 2')">
-
                         <img src="char2.jpg" alt="Персонаж 2" onerror="this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600'">
-
                         <div class="art-overlay">Просмотр</div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
-
 
         <!-- ОКНО ПАПКИ 2: ИЛЛЮСТРАЦИИ -->
-
         <div id="modal-arts" class="folder-modal" onclick="closeFolderModal(event, 'arts')">
-
             <div class="folder-modal-content">
-
                 <button class="modal-close-btn" onclick="closeFolderModalDirect('arts')">&times;</button>
-
                 <div class="modal-header">
-
                     <h3>Иллюстрации</h3>
-
                 </div>
-
                 <div class="modal-gallery-grid">
-
                     <div class="art-card" onclick="openLightbox('art1.jpg', 'Иллюстрация 1')">
-
                         <img src="art1.jpg" alt="Иллюстрация 1" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600'">
-
                         <div class="art-overlay">Просмотр</div>
-
                     </div>
-
                     <div class="art-card" onclick="openLightbox('art2.jpg', 'Иллюстрация 2')">
-
                         <img src="art2.jpg" alt="Иллюстрация 2" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600'">
-
                         <div class="art-overlay">Просмотр</div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
-
 
         <!-- ОКНО ПАПКИ 3: ПРЕДМЕТЫ -->
-
         <div id="modal-props" class="folder-modal" onclick="closeFolderModal(event, 'props')">
-
             <div class="folder-modal-content">
-
                 <button class="modal-close-btn" onclick="closeFolderModalDirect('props')">&times;</button>
-
                 <div class="modal-header">
-
                     <h3>Предметы</h3>
-
                 </div>
-
                 <div class="modal-gallery-grid">
-
                     <div class="art-card" onclick="openLightbox('prop1.jpg', 'Предмет 1')">
-
                         <img src="prop1.jpg" alt="Предмет 1" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=600'">
-
                         <div class="art-overlay">Просмотр</div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
-
 
         <!-- ОКНО ПАПКИ 4: ОБЛОЖКИ -->
-
         <div id="modal-covers" class="folder-modal" onclick="closeFolderModal(event, 'covers')">
-
             <div class="folder-modal-content">
-
                 <button class="modal-close-btn" onclick="closeFolderModalDirect('covers')">&times;</button>
-
                 <div class="modal-header">
-
                     <h3>Обложки</h3>
-
                 </div>
-
                 <div class="modal-gallery-grid">
-
                     <div class="art-card" onclick="openLightbox('witch-cover.jpg', 'Цветы для ведьмы')">
-
                         <img src="witch-cover.jpg" alt="Цветы для ведьмы" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400'">
-
                         <div class="art-overlay">Просмотр</div>
-
                     </div>
-
                     <div class="art-card" onclick="openLightbox('loop-cover.jpg', 'Петля')">
-
                         <img src="loop-cover.jpg" alt="Петля" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400'">
-
                         <div class="art-overlay">Просмотр</div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
-
 
         <!-- Лайтбокс Полноэкранного Просмотра -->
-
         <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-
             <div class="lightbox-content">
-
                 <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
-
                 <img id="lightboxImg" class="lightbox-img" src="" alt="Просмотр">
-
                 <div id="lightboxCaption" class="lightbox-caption"></div>
-
             </div>
-
         </div>
 
-
-
         <!-- Подвал -->
-
         <footer class="footer">
-
             <div class="container">
-
                 <p>© 2026 Fiona Moran ◆ Портфолио художницы и писательницы</p>
-
             </div>
-
         </footer>
-
-
 
     </div>
 
-
-
     <!-- Скрипт высокого леса и интерактивных светлячков -->
-
     <script>
-
         const canvas = document.getElementById('forestCanvas');
-
         const ctx = canvas.getContext('2d');
 
-
-
         function resizeCanvas() {
-
             canvas.width = window.innerWidth;
-
             canvas.height = window.innerHeight;
-
         }
-
         window.addEventListener('resize', resizeCanvas);
-
         resizeCanvas();
 
-
-
         const mouse = {
-
             x: -1000,
-
             y: -1000,
-
             radius: 140
-
         };
 
-
-
         window.addEventListener('mousemove', (e) => {
-
             mouse.x = e.clientX;
-
             mouse.y = e.clientY;
-
         });
-
-
 
         window.addEventListener('mouseleave', () => {
-
             mouse.x = -1000;
-
             mouse.y = -1000;
-
         });
-
-
 
         window.addEventListener('touchmove', (e) => {
-
             if (e.touches.length > 0) {
-
                 mouse.x = e.touches[0].clientX;
-
                 mouse.y = e.touches[0].clientY;
-
             }
-
         }, { passive: true });
 
-
-
         window.addEventListener('touchend', () => {
-
             mouse.x = -1000;
-
             mouse.y = -1000;
-
         });
-
-
 
         function drawForestLayer(baseY, maxTreeHeight, color, treeStep, noiseOffset) {
-
             ctx.fillStyle = color;
-
             ctx.beginPath();
-
             ctx.moveTo(0, canvas.height);
-
             ctx.lineTo(0, baseY);
 
-
-
             for (let x = 0; x <= canvas.width + treeStep; x += treeStep) {
-
                 const seed = Math.sin(x * 0.008 + noiseOffset);
-
                 const distFromCenter = Math.abs(x - canvas.width * 0.5) / (canvas.width * 0.5);
-
                 const edgeBoost = 1 + Math.pow(distFromCenter, 1.4) * 0.55;
-
                 
-
                 const treeH = maxTreeHeight * edgeBoost * (0.7 + 0.3 * Math.sin(x * 0.025 + seed));
-
                 const peakX = x + treeStep * 0.5;
-
                 const peakY = baseY - treeH;
 
-
-
                 ctx.lineTo(x + treeStep * 0.15, baseY - treeH * 0.28);
-
                 ctx.lineTo(x + treeStep * 0.05, baseY - treeH * 0.23);
-
                 ctx.lineTo(x + treeStep * 0.25, baseY - treeH * 0.58);
-
                 ctx.lineTo(x + treeStep * 0.15, baseY - treeH * 0.52);
-
                 ctx.lineTo(peakX, peakY);
-
                 ctx.lineTo(x + treeStep * 0.85, baseY - treeH * 0.52);
-
                 ctx.lineTo(x + treeStep * 0.75, baseY - treeH * 0.58);
-
                 ctx.lineTo(x + treeStep * 0.95, baseY - treeH * 0.23);
-
                 ctx.lineTo(x + treeStep * 0.85, baseY - treeH * 0.28);
-
                 ctx.lineTo(x + treeStep, baseY);
-
             }
-
-
 
             ctx.lineTo(canvas.width, canvas.height);
-
             ctx.closePath();
-
             ctx.fill();
-
         }
-
-
 
         class TealWisp {
-
             constructor() {
-
                 this.reset(true);
-
             }
-
-
 
             reset(initial = false) {
-
                 this.x = Math.random() * canvas.width;
-
                 this.y = initial 
-
                     ? Math.random() * canvas.height 
-
                     : canvas.height * 0.2 + Math.random() * (canvas.height * 0.8);
-
                 this.baseRadius = Math.random() * 2 + 1.2;
-
                 this.glowRadius = this.baseRadius * (Math.random() * 5 + 5);
-
                 this.speedX = (Math.random() - 0.5) * 0.4;
-
                 this.speedY = - (Math.random() * 0.35 + 0.15);
-
                 this.pulseSpeed = Math.random() * 0.03 + 0.015;
-
                 this.pulse = Math.random() * Math.PI * 2;
-
                 this.alpha = Math.random() * 0.6 + 0.35;
-
                 this.vx = 0;
-
                 this.vy = 0;
-
             }
-
-
 
             update() {
-
                 const dx = this.x - mouse.x;
-
                 const dy = this.y - mouse.y;
-
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
-
-
                 if (dist < mouse.radius && dist > 0) {
-
                     const force = (mouse.radius - dist) / mouse.radius;
-
                     const angle = Math.atan2(dy, dx);
-
                     this.vx += Math.cos(angle) * force * 3.5;
-
                     this.vy += Math.sin(angle) * force * 3.5;
-
                 }
-
-
 
                 this.vx *= 0.92;
-
                 this.vy *= 0.92;
 
-
-
                 this.x += this.speedX + Math.sin(this.pulse) * 0.25 + this.vx;
-
                 this.y += this.speedY + this.vy;
-
                 this.pulse += this.pulseSpeed;
 
-
-
                 if (this.y < -30 || this.x < -30 || this.x > canvas.width + 30) {
-
                     this.reset(false);
-
                     this.y = canvas.height + 10;
-
                 }
-
             }
-
-
 
             draw() {
-
                 const currentAlpha = Math.max(0.12, (Math.sin(this.pulse) + 1) * 0.5 * this.alpha);
-
                 
-
                 const grad = ctx.createRadialGradient(
-
                     this.x, this.y, 0,
-
                     this.x, this.y, this.glowRadius
-
                 );
-
                 grad.addColorStop(0, `rgba(45, 212, 191, ${currentAlpha * 0.95})`);
-
                 grad.addColorStop(0.35, `rgba(45, 212, 191, ${currentAlpha * 0.45})`);
-
                 grad.addColorStop(1, 'rgba(45, 212, 191, 0)');
 
-
-
                 ctx.fillStyle = grad;
-
                 ctx.beginPath();
-
                 ctx.arc(this.x, this.y, this.glowRadius, 0, Math.PI * 2);
-
                 ctx.fill();
-
-
 
                 ctx.fillStyle = `rgba(235, 255, 252, ${currentAlpha})`;
-
                 ctx.beginPath();
-
                 ctx.arc(this.x, this.y, this.baseRadius * 0.85, 0, Math.PI * 2);
-
                 ctx.fill();
-
             }
-
         }
-
-
 
         const isMobile = window.innerWidth <= 768;
-
         const wispCount = isMobile ? 32 : 65;
-
         const wisps = [];
-
         for (let i = 0; i < wispCount; i++) {
-
             wisps.push(new TealWisp());
-
         }
-
-
 
         function renderScene() {
-
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-
-
             const skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-
             skyGrad.addColorStop(0, '#04070d');
-
             skyGrad.addColorStop(0.4, '#091220');
-
             skyGrad.addColorStop(1, '#0e192e');
-
             ctx.fillStyle = skyGrad;
-
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-
-
             drawForestLayer(canvas.height - 180, 420, '#0c182c', 38, 1.2);
-
             drawForestLayer(canvas.height - 100, 480, '#08111f', 48, 2.5);
-
             drawForestLayer(canvas.height, 540, '#040812', 60, 4.0);
 
-
-
             wisps.forEach(w => {
-
                 w.update();
-
                 w.draw();
-
             });
-
-
 
             requestAnimationFrame(renderScene);
-
         }
-
         renderScene();
 
-
-
         function switchTab(sectionId, event) {
-
             const buttons = document.querySelectorAll('.choice-btn');
-
             buttons.forEach(btn => btn.classList.remove('active'));
-
             if (event) {
-
                 event.currentTarget.classList.add('active');
-
             }
-
-
 
             const sections = document.querySelectorAll('.portfolio-section');
-
             sections.forEach(sec => {
-
                 sec.classList.remove('active-section');
-
             });
 
-
-
             const activeSection = document.getElementById(sectionId);
-
             if (activeSection) {
-
                 activeSection.classList.add('active-section');
-
             }
-
-
 
             const contentArea = document.getElementById('contentArea');
-
             contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
         }
-
-
 
         function openFolder(folderId) {
-
             const modal = document.getElementById('modal-' + folderId);
-
             if (modal) {
-
                 modal.classList.add('active');
-
                 document.body.style.overflow = 'hidden';
-
             }
-
         }
-
-
 
         function closeFolderModal(e, folderId) {
-
             if (e.target.classList.contains('folder-modal')) {
-
                 closeFolderModalDirect(folderId);
-
             }
-
         }
-
-
 
         function closeFolderModalDirect(folderId) {
-
             const modal = document.getElementById('modal-' + folderId);
-
             if (modal) {
-
                 modal.classList.remove('active');
-
                 if (!lightbox.classList.contains('active')) {
-
                     document.body.style.overflow = 'auto';
-
                 }
-
             }
-
         }
-
-
 
         const lightbox = document.getElementById('lightbox');
-
         const lightboxImg = document.getElementById('lightboxImg');
-
         const lightboxCaption = document.getElementById('lightboxCaption');
 
-
-
         function openLightbox(src, caption) {
-
             lightboxImg.src = src;
-
             lightboxCaption.textContent = caption;
-
             lightbox.classList.add('active');
-
             document.body.style.overflow = 'hidden';
-
         }
-
-
 
         function closeLightbox(e) {
-
             if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
-
                 lightbox.classList.remove('active');
-
                 const activeFolder = document.querySelector('.folder-modal.active');
-
                 if (!activeFolder) {
-
                     document.body.style.overflow = 'auto';
-
                 }
-
             }
-
         }
 
-
-
         document.addEventListener('keydown', (e) => {
-
             if (e.key === 'Escape') {
-
                 if (lightbox.classList.contains('active')) {
-
                     lightbox.classList.remove('active');
-
                     const activeFolder = document.querySelector('.folder-modal.active');
-
                     if (!activeFolder) document.body.style.overflow = 'auto';
-
                 } else {
-
                     const activeFolder = document.querySelector('.folder-modal.active');
-
                     if (activeFolder) {
-
                         activeFolder.classList.remove('active');
-
                         document.body.style.overflow = 'auto';
-
                     }
-
                 }
-
             }
-
         });
-
     </script>
-
 </body>
-
-</html> 
-
+</html>
