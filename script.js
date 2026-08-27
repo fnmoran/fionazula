@@ -117,7 +117,6 @@ class TealWisp {
     draw() {
         const currentAlpha = Math.max(0.12, (Math.sin(this.pulse) + 1) * 0.5 * this.alpha);
         
-        // Цвет свечения: #8EB69B (шалфейный) вместо старого бирюзового
         const grad = ctx.createRadialGradient(
             this.x, this.y, 0,
             this.x, this.y, this.glowRadius
@@ -148,7 +147,6 @@ for (let i = 0; i < wispCount; i++) {
 function renderScene() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Глубокий зеленый градиент неба
     const skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
     skyGrad.addColorStop(0, '#020b0c');
     skyGrad.addColorStop(0.4, '#051F20');
@@ -156,7 +154,6 @@ function renderScene() {
     ctx.fillStyle = skyGrad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Слои леса в темно-зеленых тонах
     drawForestLayer(canvas.height - 180, 420, '#0a241f', 38, 1.2);
     drawForestLayer(canvas.height - 100, 480, '#061713', 48, 2.5);
     drawForestLayer(canvas.height, 540, '#03100d', 60, 4.0);
@@ -188,14 +185,27 @@ function switchTab(sectionId, event) {
     }
 
     const contentArea = document.getElementById('contentArea');
-    contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (contentArea) {
+        contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function updateBodyScroll() {
+    const hasActiveModal = document.querySelector('.folder-modal.active');
+    const isLightboxActive = lightbox && lightbox.classList.contains('active');
+    
+    if (hasActiveModal || isLightboxActive) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
 }
 
 function openFolder(folderId) {
     const modal = document.getElementById('modal-' + folderId);
     if (modal) {
         modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        updateBodyScroll();
     }
 }
 
@@ -209,9 +219,7 @@ function closeFolderModalDirect(folderId) {
     const modal = document.getElementById('modal-' + folderId);
     if (modal) {
         modal.classList.remove('active');
-        if (!lightbox.classList.contains('active')) {
-            document.body.style.overflow = 'auto';
-        }
+        updateBodyScroll();
     }
 }
 
@@ -220,33 +228,30 @@ const lightboxImg = document.getElementById('lightboxImg');
 const lightboxCaption = document.getElementById('lightboxCaption');
 
 function openLightbox(src, caption) {
+    if (!lightbox || !lightboxImg || !lightboxCaption) return;
     lightboxImg.src = src;
     lightboxCaption.textContent = caption;
     lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    updateBodyScroll();
 }
 
 function closeLightbox(e) {
     if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
         lightbox.classList.remove('active');
-        const activeFolder = document.querySelector('.folder-modal.active');
-        if (!activeFolder) {
-            document.body.style.overflow = 'auto';
-        }
+        updateBodyScroll();
     }
 }
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        if (lightbox.classList.contains('active')) {
+        if (lightbox && lightbox.classList.contains('active')) {
             lightbox.classList.remove('active');
-            const activeFolder = document.querySelector('.folder-modal.active');
-            if (!activeFolder) document.body.style.overflow = 'auto';
+            updateBodyScroll();
         } else {
             const activeFolder = document.querySelector('.folder-modal.active');
             if (activeFolder) {
                 activeFolder.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                updateBodyScroll();
             }
         }
     }
