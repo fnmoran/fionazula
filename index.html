@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Фиона Моран</title>
     
-    <!-- Иконка вкладки: светящийся бирюзовый кристалл-огонек -->
+    <!-- Иконка вкладки: светящийся кристалл -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23060911'/><circle cx='50' cy='50' r='30' fill='%232dd4bf' opacity='0.35'/><path d='M50 16 L80 50 L50 84 L20 50 Z' fill='%232dd4bf'/><path d='M50 28 L68 50 L50 72 L32 50 Z' fill='%23e6fffa'/></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
     
-    <!-- Подключение внешнего CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body oncontextmenu="return false;">
@@ -31,17 +30,11 @@
                 <h1>FIONA MORAN</h1>
                 <p>Спасибо, что интересуетесь моим творчеством. Здесь собраны мои книги, иллюстрации и ссылки на блоги.</p>
                 
-                <div class="choice-nav">
-                    <button class="choice-btn active" onclick="switchTab('books', event)">
-                        КНИГИ
-                    </button>
-                    <button class="choice-btn" onclick="switchTab('illustrations', event)">
-                        ИЛЛЮСТРАЦИИ
-                    </button>
-                    <button class="choice-btn" onclick="switchTab('socials', event)">
-                        СОЦСЕТИ
-                    </button>
-                </div>
+                <nav class="choice-nav">
+                    <button class="choice-btn active" onclick="switchTab('books', event)">КНИГИ</button>
+                    <button class="choice-btn" onclick="switchTab('illustrations', event)">ИЛЛЮСТРАЦИИ</button>
+                    <button class="choice-btn" onclick="switchTab('socials', event)">СОЦСЕТИ</button>
+                </nav>
             </div>
         </header>
 
@@ -77,10 +70,10 @@
 И о том, что страшнее леса бывает только то, что мы носим внутри.</p>
                             
                             <div class="book-buttons">
-                                <a href="https://author.today/work/480263" target="_blank" class="book-link">
+                                <a href="https://author.today/work/480263" target="_blank" rel="noopener noreferrer" class="book-link">
                                     Автор.Тудей ↗
                                 </a>
-                                <a href="https://litnet.com/ru/book/cvety-dlya-vedmy-b601104" target="_blank" class="book-link btn-alt">
+                                <a href="https://litnet.com/ru/book/cvety-dlya-vedmy-b601104" target="_blank" rel="noopener noreferrer" class="book-link btn-alt">
                                     Литнет ↗
                                 </a>
                             </div>
@@ -111,7 +104,7 @@
 Но что, если спасение сестры — лишь приманка? Что, если замок ждал именно её?</p>
                             
                             <div class="book-buttons">
-                                <a href="https://litnet.com/ru/book/petlya-b612274" target="_blank" class="book-link">
+                                <a href="https://litnet.com/ru/book/petlya-b612274" target="_blank" rel="noopener noreferrer" class="book-link">
                                     Литнет ↗
                                 </a>
                             </div>
@@ -157,7 +150,7 @@
 
                 <div class="socials-grid">
                     <!-- TikTok: Арт -->
-                    <a href="https://www.tiktok.com/@fionazula" target="_blank" class="social-card">
+                    <a href="https://www.tiktok.com/@fionazula" target="_blank" rel="noopener noreferrer" class="social-card">
                         <div class="social-svg-wrap">
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
                                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
@@ -170,7 +163,7 @@
                     </a>
 
                     <!-- TikTok: Книги -->
-                    <a href="https://www.tiktok.com/@fionkamoran" target="_blank" class="social-card">
+                    <a href="https://www.tiktok.com/@fionkamoran" target="_blank" rel="noopener noreferrer" class="social-card">
                         <div class="social-svg-wrap">
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
                                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
@@ -183,7 +176,7 @@
                     </a>
 
                     <!-- Telegram -->
-                    <a href="https://t.me/fionamoran" target="_blank" class="social-card">
+                    <a href="https://t.me/fionamoran" target="_blank" rel="noopener noreferrer" class="social-card">
                         <div class="social-svg-wrap">
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
                                 <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
@@ -287,13 +280,12 @@
         <!-- Подвал -->
         <footer class="footer">
             <div class="container">
-                <p>© 2026 Fiona Moran ◆ Для связи:fionagaleren@gmail.com</p>
+                <p>© 2026 Fiona Moran ◆ Для связи: fionagaleren@gmail.com</p>
             </div>
         </footer>
 
     </div>
 
-    <!-- Подключение внешнего JS -->
     <script src="script.js"></script>
 </body>
 </html>
