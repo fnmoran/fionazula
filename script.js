@@ -1,17 +1,19 @@
-const canvas = document.getElementById('forestCanvas');
+/* Ambient Canvas Particles Animation */
+const canvas = document.getElementById('ambientCanvas');
 const ctx = canvas.getContext('2d');
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+let width, height;
+function setDimensions() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
 }
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+window.addEventListener('resize', setDimensions);
+setDimensions();
 
 const mouse = {
-    x: -1000,
-    y: -1000,
-    radius: 140
+    x: -2000,
+    y: -2000,
+    radius: 120
 };
 
 window.addEventListener('mousemove', (e) => {
@@ -20,73 +22,25 @@ window.addEventListener('mousemove', (e) => {
 });
 
 window.addEventListener('mouseleave', () => {
-    mouse.x = -1000;
-    mouse.y = -1000;
+    mouse.x = -2000;
+    mouse.y = -2000;
 });
 
-window.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 0) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-    }
-}, { passive: true });
-
-window.addEventListener('touchend', () => {
-    mouse.x = -1000;
-    mouse.y = -1000;
-});
-
-function drawForestLayer(baseY, maxTreeHeight, color, treeStep, noiseOffset) {
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.moveTo(0, canvas.height);
-    ctx.lineTo(0, baseY);
-
-    for (let x = 0; x <= canvas.width + treeStep; x += treeStep) {
-        const seed = Math.sin(x * 0.008 + noiseOffset);
-        const distFromCenter = Math.abs(x - canvas.width * 0.5) / (canvas.width * 0.5);
-        const edgeBoost = 1 + Math.pow(distFromCenter, 1.4) * 0.55;
-        
-        const treeH = maxTreeHeight * edgeBoost * (0.7 + 0.3 * Math.sin(x * 0.025 + seed));
-        const peakX = x + treeStep * 0.5;
-        const peakY = baseY - treeH;
-
-        ctx.lineTo(x + treeStep * 0.15, baseY - treeH * 0.28);
-        ctx.lineTo(x + treeStep * 0.05, baseY - treeH * 0.23);
-        ctx.lineTo(x + treeStep * 0.25, baseY - treeH * 0.58);
-        ctx.lineTo(x + treeStep * 0.15, baseY - treeH * 0.52);
-        ctx.lineTo(peakX, peakY);
-        ctx.lineTo(x + treeStep * 0.85, baseY - treeH * 0.52);
-        ctx.lineTo(x + treeStep * 0.75, baseY - treeH * 0.58);
-        ctx.lineTo(x + treeStep * 0.95, baseY - treeH * 0.23);
-        ctx.lineTo(x + treeStep * 0.85, baseY - treeH * 0.28);
-        ctx.lineTo(x + treeStep, baseY);
-    }
-
-    ctx.lineTo(canvas.width, canvas.height);
-    ctx.closePath();
-    ctx.fill();
-}
-
-class TealWisp {
+class Particle {
     constructor() {
         this.reset(true);
     }
 
     reset(initial = false) {
-        this.x = Math.random() * canvas.width;
-        this.y = initial 
-            ? Math.random() * canvas.height 
-            : canvas.height * 0.2 + Math.random() * (canvas.height * 0.8);
-        this.baseRadius = Math.random() * 2 + 1.2;
-        this.glowRadius = this.baseRadius * (Math.random() * 5 + 5);
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.speedY = - (Math.random() * 0.35 + 0.15);
-        this.pulseSpeed = Math.random() * 0.03 + 0.015;
+        this.x = Math.random() * width;
+        this.y = initial ? Math.random() * height : height + 10;
+        this.radius = Math.random() * 1.6 + 0.6;
+        this.baseGlow = this.radius * (Math.random() * 4 + 3);
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = -(Math.random() * 0.4 + 0.15);
         this.pulse = Math.random() * Math.PI * 2;
-        this.alpha = Math.random() * 0.6 + 0.35;
-        this.vx = 0;
-        this.vy = 0;
+        this.pulseSpeed = Math.random() * 0.025 + 0.01;
+        this.alpha = Math.random() * 0.45 + 0.2;
     }
 
     update() {
@@ -97,162 +51,101 @@ class TealWisp {
         if (dist < mouse.radius && dist > 0) {
             const force = (mouse.radius - dist) / mouse.radius;
             const angle = Math.atan2(dy, dx);
-            this.vx += Math.cos(angle) * force * 3.5;
-            this.vy += Math.sin(angle) * force * 3.5;
+            this.x += Math.cos(angle) * force * 2.5;
+            this.y += Math.sin(angle) * force * 2.5;
         }
 
-        this.vx *= 0.92;
-        this.vy *= 0.92;
-
-        this.x += this.speedX + Math.sin(this.pulse) * 0.25 + this.vx;
-        this.y += this.speedY + this.vy;
+        this.x += this.vx;
+        this.y += this.vy;
         this.pulse += this.pulseSpeed;
 
-        if (this.y < -30 || this.x < -30 || this.x > canvas.width + 30) {
+        if (this.y < -20 || this.x < -20 || this.x > width + 20) {
             this.reset(false);
-            this.y = canvas.height + 10;
         }
     }
 
     draw() {
-        const currentAlpha = Math.max(0.12, (Math.sin(this.pulse) + 1) * 0.5 * this.alpha);
-        
-        const grad = ctx.createRadialGradient(
-            this.x, this.y, 0,
-            this.x, this.y, this.glowRadius
-        );
-        grad.addColorStop(0, `rgba(142, 182, 155, ${currentAlpha * 0.95})`);
-        grad.addColorStop(0.35, `rgba(142, 182, 155, ${currentAlpha * 0.45})`);
-        grad.addColorStop(1, 'rgba(142, 182, 155, 0)');
+        const currentAlpha = (Math.sin(this.pulse) + 1) * 0.5 * this.alpha + 0.1;
+
+        const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.baseGlow);
+        grad.addColorStop(0, `rgba(163, 184, 153, ${currentAlpha * 0.9})`);
+        grad.addColorStop(0.5, `rgba(163, 184, 153, ${currentAlpha * 0.3})`);
+        grad.addColorStop(1, 'rgba(163, 184, 153, 0)');
 
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.glowRadius, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.baseGlow, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha})`;
+        ctx.fillStyle = `rgba(240, 247, 240, ${currentAlpha})`;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.baseRadius * 0.85, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fill();
     }
 }
 
-const isMobile = window.innerWidth <= 768;
-const wispCount = isMobile ? 32 : 65;
-const wisps = [];
-for (let i = 0; i < wispCount; i++) {
-    wisps.push(new TealWisp());
-}
+const particleCount = window.innerWidth <= 768 ? 25 : 55;
+const particles = Array.from({ length: particleCount }, () => new Particle());
 
-function renderScene() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    skyGrad.addColorStop(0, '#020b0c');
-    skyGrad.addColorStop(0.4, '#051F20');
-    skyGrad.addColorStop(1, '#0B2B26');
-    ctx.fillStyle = skyGrad;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    drawForestLayer(canvas.height - 180, 420, '#0a241f', 38, 1.2);
-    drawForestLayer(canvas.height - 100, 480, '#061713', 48, 2.5);
-    drawForestLayer(canvas.height, 540, '#03100d', 60, 4.0);
-
-    wisps.forEach(w => {
-        w.update();
-        w.draw();
+function animateAmbient() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => {
+        p.update();
+        p.draw();
     });
-
-    requestAnimationFrame(renderScene);
+    requestAnimationFrame(animateAmbient);
 }
-renderScene();
+animateAmbient();
 
-function switchTab(sectionId, event) {
-    const buttons = document.querySelectorAll('.choice-btn');
+/* Gallery Filtering System */
+function filterGallery(category, event) {
+    const buttons = document.querySelectorAll('.tab-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
     if (event) {
         event.currentTarget.classList.add('active');
     }
 
-    const sections = document.querySelectorAll('.portfolio-section');
-    sections.forEach(sec => {
-        sec.classList.remove('active-section');
+    const cards = document.querySelectorAll('.gallery-card');
+    cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (category === 'all' || cardCategory === category) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
     });
-
-    const activeSection = document.getElementById(sectionId);
-    if (activeSection) {
-        activeSection.classList.add('active-section');
-    }
-
-    const contentArea = document.getElementById('contentArea');
-    if (contentArea) {
-        contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
 }
 
-function updateBodyScroll() {
-    const hasActiveModal = document.querySelector('.folder-modal.active');
-    const isLightboxActive = lightbox && lightbox.classList.contains('active');
-    
-    if (hasActiveModal || isLightboxActive) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = 'auto';
-    }
-}
-
-function openFolder(folderId) {
-    const modal = document.getElementById('modal-' + folderId);
-    if (modal) {
-        modal.classList.add('active');
-        updateBodyScroll();
-    }
-}
-
-function closeFolderModal(e, folderId) {
-    if (e.target.classList.contains('folder-modal')) {
-        closeFolderModalDirect(folderId);
-    }
-}
-
-function closeFolderModalDirect(folderId) {
-    const modal = document.getElementById('modal-' + folderId);
-    if (modal) {
-        modal.classList.remove('active');
-        updateBodyScroll();
-    }
-}
-
+/* Lightbox Logic */
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
-const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxTitle = document.getElementById('lightboxTitle');
+const lightboxTag = document.getElementById('lightboxTag');
 
-function openLightbox(src, caption) {
-    if (!lightbox || !lightboxImg || !lightboxCaption) return;
+function openLightbox(src, title, tag) {
+    if (!lightbox || !lightboxImg) return;
     lightboxImg.src = src;
-    lightboxCaption.textContent = caption;
+    lightboxTitle.textContent = title;
+    lightboxTag.textContent = tag;
+    
     lightbox.classList.add('active');
-    updateBodyScroll();
+    document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox(e) {
-    if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
-        lightbox.classList.remove('active');
-        updateBodyScroll();
+    if (e.target === lightbox) {
+        forceCloseLightbox();
     }
 }
 
+function forceCloseLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        if (lightbox && lightbox.classList.contains('active')) {
-            lightbox.classList.remove('active');
-            updateBodyScroll();
-        } else {
-            const activeFolder = document.querySelector('.folder-modal.active');
-            if (activeFolder) {
-                activeFolder.classList.remove('active');
-                updateBodyScroll();
-            }
-        }
+    if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+        forceCloseLightbox();
     }
 });
