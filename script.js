@@ -1,4 +1,4 @@
-/* Ambient Canvas Particles Animation */
+/* Анимация геометрических звезд-искр на фоне */
 const canvas = document.getElementById('ambientCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -10,11 +10,7 @@ function setDimensions() {
 window.addEventListener('resize', setDimensions);
 setDimensions();
 
-const mouse = {
-    x: -2000,
-    y: -2000,
-    radius: 120
-};
+const mouse = { x: -2000, y: -2000, radius: 140 };
 
 window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
@@ -26,6 +22,24 @@ window.addEventListener('mouseleave', () => {
     mouse.y = -2000;
 });
 
+function drawSparkle(x, y, radius, alpha, color) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.fillStyle = color;
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    
+    // Четырехконечная звезда в стиле постера
+    ctx.moveTo(0, -radius * 2);
+    ctx.quadraticCurveTo(0, 0, radius * 2, 0);
+    ctx.quadraticCurveTo(0, 0, 0, radius * 2);
+    ctx.quadraticCurveTo(0, 0, -radius * 2, 0);
+    ctx.quadraticCurveTo(0, 0, 0, -radius * 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+}
+
 class Particle {
     constructor() {
         this.reset(true);
@@ -33,14 +47,14 @@ class Particle {
 
     reset(initial = false) {
         this.x = Math.random() * width;
-        this.y = initial ? Math.random() * height : height + 10;
-        this.radius = Math.random() * 1.6 + 0.6;
-        this.baseGlow = this.radius * (Math.random() * 4 + 3);
+        this.y = initial ? Math.random() * height : height + 20;
+        this.radius = Math.random() * 4 + 2;
         this.vx = (Math.random() - 0.5) * 0.3;
-        this.vy = -(Math.random() * 0.4 + 0.15);
+        this.vy = -(Math.random() * 0.35 + 0.15);
         this.pulse = Math.random() * Math.PI * 2;
-        this.pulseSpeed = Math.random() * 0.025 + 0.01;
-        this.alpha = Math.random() * 0.45 + 0.2;
+        this.pulseSpeed = Math.random() * 0.02 + 0.01;
+        this.alpha = Math.random() * 0.35 + 0.1;
+        this.isRed = Math.random() > 0.65; // Часть звезд терракотовые, часть белые
     }
 
     update() {
@@ -51,40 +65,27 @@ class Particle {
         if (dist < mouse.radius && dist > 0) {
             const force = (mouse.radius - dist) / mouse.radius;
             const angle = Math.atan2(dy, dx);
-            this.x += Math.cos(angle) * force * 2.5;
-            this.y += Math.sin(angle) * force * 2.5;
+            this.x += Math.cos(angle) * force * 2;
+            this.y += Math.sin(angle) * force * 2;
         }
 
         this.x += this.vx;
         this.y += this.vy;
         this.pulse += this.pulseSpeed;
 
-        if (this.y < -20 || this.x < -20 || this.x > width + 20) {
+        if (this.y < -30 || this.x < -30 || this.x > width + 30) {
             this.reset(false);
         }
     }
 
     draw() {
-        const currentAlpha = (Math.sin(this.pulse) + 1) * 0.5 * this.alpha + 0.1;
-
-        const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.baseGlow);
-        grad.addColorStop(0, `rgba(163, 184, 153, ${currentAlpha * 0.9})`);
-        grad.addColorStop(0.5, `rgba(163, 184, 153, ${currentAlpha * 0.3})`);
-        grad.addColorStop(1, 'rgba(163, 184, 153, 0)');
-
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.baseGlow, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.fillStyle = `rgba(240, 247, 240, ${currentAlpha})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
+        const currentAlpha = (Math.sin(this.pulse) + 1) * 0.5 * this.alpha + 0.05;
+        const color = this.isRed ? '#B52E27' : '#FFFFFF';
+        drawSparkle(this.x, this.y, this.radius, currentAlpha, color);
     }
 }
 
-const particleCount = window.innerWidth <= 768 ? 25 : 55;
+const particleCount = window.innerWidth <= 768 ? 20 : 45;
 const particles = Array.from({ length: particleCount }, () => new Particle());
 
 function animateAmbient() {
@@ -97,7 +98,7 @@ function animateAmbient() {
 }
 animateAmbient();
 
-/* Gallery Filtering System */
+/* Фильтрация категорий */
 function filterGallery(category, event) {
     const buttons = document.querySelectorAll('.tab-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
@@ -116,7 +117,7 @@ function filterGallery(category, event) {
     });
 }
 
-/* Lightbox Logic */
+/* Модальное окно лайтбокса */
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxTitle = document.getElementById('lightboxTitle');
