@@ -6,15 +6,14 @@
     <title>Fiona Moran | Illustration & Concept Art Portfolio</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230b1411'/><polygon points='50,18 80,50 50,82 20,50' fill='%23a3b899'/><circle cx='50' cy='50' r='8' fill='%23f4f7f4'/></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23121316'/><polygon points='50,15 85,50 50,85 15,50' fill='%23B52E27'/></svg>">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Link CSS with cache buster -->
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body oncontextmenu="return false;">
 
@@ -22,14 +21,19 @@
 
     <div class="layout-wrapper">
 
-        <!-- Header / Hero Section -->
-        <header class="header">
-            <div class="container header-container">
-                <div class="brand-badge">Portfolio & Gallery</div>
+        <!-- Шапка: Белый плакат -->
+        <header class="container">
+            <div class="hero-card">
+                <div class="hero-blur-spot"></div>
+                <span class="hero-star star-1">✦</span>
+                <span class="hero-star star-2">✦</span>
+                <span class="hero-star star-3">✦</span>
+
+                <div class="brand-badge">Official Portfolio</div>
                 <h1 class="artist-name">FIONA MORAN</h1>
                 <p class="artist-role">Illustrator • Concept Artist • Visual Storyteller</p>
 
-                <!-- Socials & Contact Bar -->
+                <!-- Соцсети и контакт -->
                 <div class="quick-links">
                     <a href="https://www.tiktok.com/@fionazula" target="_blank" rel="noopener noreferrer" class="link-item">
                         <svg class="icon" width="16" height="16" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
@@ -45,18 +49,18 @@
                     </a>
                 </div>
 
-                <!-- Navigation Tabs -->
+                <!-- Вкладки -->
                 <nav class="category-tabs">
                     <button class="tab-btn active" onclick="filterGallery('all', event)">All Works</button>
                     <button class="tab-btn" onclick="filterGallery('characters', event)">Characters</button>
                     <button class="tab-btn" onclick="filterGallery('illustrations', event)">Illustrations</button>
-                    <button class="tab-btn" onclick="filterGallery('props', event)">Props & Items</button>
+                    <button class="tab-btn" onclick="filterGallery('props', event)">Props</button>
                     <button class="tab-btn" onclick="filterGallery('backgrounds', event)">Backgrounds</button>
                 </nav>
             </div>
         </header>
 
-        <!-- Gallery Grid -->
+        <!-- Галерея -->
         <main class="gallery-section container">
             <div class="gallery-grid" id="galleryContainer">
 
@@ -217,7 +221,7 @@
                     </div>
                 </figure>
 
-                <!-- 3. PROPS & ITEMS -->
+                <!-- 3. PROPS -->
                 <figure class="gallery-card" data-category="props" onclick="openLightbox('pred1.jpg', 'Item Design I', 'Prop & Artifact')">
                     <div class="image-wrapper">
                         <img src="pred1.jpg" alt="Item Design I" loading="lazy">
@@ -332,7 +336,7 @@
             </div>
         </main>
 
-        <!-- Lightbox Modal -->
+        <!-- Модальное окно -->
         <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
             <button class="lightbox-close" onclick="forceCloseLightbox()" aria-label="Close image">&times;</button>
             <div class="lightbox-dialog" onclick="event.stopPropagation()">
@@ -346,16 +350,18 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container footer-container">
-                <p class="copyright">© 2026 Fiona Moran. All rights reserved.</p>
-                <p class="inquiries">For commissions & inquiries: <a href="mailto:fionagaleren@gmail.com">fionagaleren@gmail.com</a></p>
+        <!-- Футер -->
+        <footer class="container">
+            <div class="footer-card">
+                <div class="footer-container">
+                    <p class="copyright">© 2026 Fiona Moran. All rights reserved.</p>
+                    <p class="inquiries">For commissions & inquiries: <a href="mailto:fionagaleren@gmail.com">fionagaleren@gmail.com</a></p>
+                </div>
             </div>
         </footer>
 
     </div>
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
 </body>
 </html>
