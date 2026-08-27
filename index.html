@@ -1,286 +1,380 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Фиона Моран</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiona Moran | Illustration & Concept Art Portfolio</title>
     
-    <!-- Иконка вкладки: светящийся кристалл -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23060911'/><circle cx='50' cy='50' r='30' fill='%232dd4bf' opacity='0.35'/><path d='M50 16 L80 50 L50 84 L20 50 Z' fill='%232dd4bf'/><path d='M50 28 L68 50 L50 72 L32 50 Z' fill='%23e6fffa'/></svg>">
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230b1411'/><polygon points='50,18 80,50 50,82 20,50' fill='%23a3b899'/><circle cx='50' cy='50' r='8' fill='%23f4f7f4'/></svg>">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body oncontextmenu="return false;">
 
-    <canvas id="forestCanvas"></canvas>
+    <canvas id="ambientCanvas"></canvas>
 
-    <div class="site-wrapper">
+    <div class="layout-wrapper">
 
-        <!-- Главный экран -->
-        <header class="hero">
-            <div class="container">
-                <div class="decorative-line">
-                    <span class="diamond">◆</span>
+        <!-- Header / Hero Section -->
+        <header class="header">
+            <div class="container header-container">
+                <div class="brand-badge">Portfolio & Gallery</div>
+                <h1 class="artist-name">FIONA MORAN</h1>
+                <p class="artist-role">Illustrator • Concept Artist • Visual Storyteller</p>
+
+                <!-- Socials & Contact Bar -->
+                <div class="quick-links">
+                    <a href="https://www.tiktok.com/@fionazula" target="_blank" rel="noopener noreferrer" class="link-item">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                        <span>TikTok @fionazula</span>
+                    </a>
+                    <a href="https://instagram.com/fionazula" target="_blank" rel="noopener noreferrer" class="link-item">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <span>Instagram @fionazula</span>
+                    </a>
+                    <a href="mailto:fionagaleren@gmail.com" class="link-item highlight">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <span>fionagaleren@gmail.com</span>
+                    </a>
                 </div>
-                <div class="hero-badge">пишу и рисую</div>
-                <h1>FIONA MORAN</h1>
-                <p>Спасибо, что интересуетесь моим творчеством. Здесь собраны мои книги, иллюстрации и ссылки на блоги.</p>
-                
-                <nav class="choice-nav">
-                    <button class="choice-btn active" onclick="switchTab('books', event)">КНИГИ</button>
-                    <button class="choice-btn" onclick="switchTab('illustrations', event)">ИЛЛЮСТРАЦИИ</button>
-                    <button class="choice-btn" onclick="switchTab('socials', event)">СОЦСЕТИ</button>
+
+                <!-- Navigation Tabs -->
+                <nav class="category-tabs">
+                    <button class="tab-btn active" onclick="filterGallery('all', event)">All Works</button>
+                    <button class="tab-btn" onclick="filterGallery('characters', event)">Characters</button>
+                    <button class="tab-btn" onclick="filterGallery('illustrations', event)">Illustrations</button>
+                    <button class="tab-btn" onclick="filterGallery('props', event)">Props & Items</button>
+                    <button class="tab-btn" onclick="filterGallery('backgrounds', event)">Backgrounds</button>
                 </nav>
             </div>
         </header>
 
-        <!-- Основной контент -->
-        <main class="content-display container" id="contentArea">
+        <!-- Gallery Grid -->
+        <main class="gallery-section container">
+            <div class="gallery-grid" id="galleryContainer">
 
-            <!-- СЕКЦИЯ 1: КНИГИ -->
-            <section id="books" class="portfolio-section active-section">
-                <div class="section-header">
-                    <h2>Где меня можно почитать?</h2>
-                </div>
-
-                <div class="books-list">
-                    <!-- Цветы для ведьмы -->
-                    <article class="book-card">
-                        <img src="witch-cover.jpg" alt="Цветы для ведьмы" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400'">
-                        <div class="book-content">
-                            <h3>Цветы для ведьмы</h3>
-                            <div class="genre-tags">
-                                <span class="genre-tag">темное фэнтези</span>
-                                <span class="genre-tag">фолк-хоррор</span>
-                                <span class="genre-tag">мистический реализм</span>
-                            </div>
-
-                            <div class="book-quote">«Он — жертва, принесённая лесу ради спасения деревни.
-Она — ведьма, что должна его принять».</div>
-
-                            <p class="book-synopsis">Изнурённые голодом и страхом жители отправляют юношу в сердце леса, чтобы умилостивить таинственную ведьму и вернуть плодородие полям.
-Но в каждой жертве есть выбор — и Яну предстоит сделать свой.
-
-История о том, как страх превращается в силу, одиночество — в понимание, а жертва — в смысл.
-О тех, кто выжил, но остался одиноким.
-И о том, что страшнее леса бывает только то, что мы носим внутри.</p>
-                            
-                            <div class="book-buttons">
-                                <a href="https://author.today/work/480263" target="_blank" rel="noopener noreferrer" class="book-link">
-                                    Автор.Тудей ↗
-                                </a>
-                                <a href="https://litnet.com/ru/book/cvety-dlya-vedmy-b601104" target="_blank" rel="noopener noreferrer" class="book-link btn-alt">
-                                    Литнет ↗
-                                </a>
-                            </div>
+                <!-- 1. CHARACTERS (persona1 - persona7) -->
+                <figure class="gallery-card" data-category="characters" onclick="openLightbox('persona1.jpg', 'Character Concept I', 'Character Art')">
+                    <div class="image-wrapper">
+                        <img src="persona1.jpg" alt="Character Concept I" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Character</span>
+                            <h3 class="card-title">Character Concept I</h3>
                         </div>
-                    </article>
-
-                    <!-- Петля -->
-                    <article class="book-card">
-                        <img src="loop-cover.jpg" alt="Петля" class="book-cover" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400'">
-                        <div class="book-content">
-                            <h3>Петля</h3>
-                            <div class="genre-tags">
-                                <span class="genre-tag">готика</span>
-                                <span class="genre-tag">драма</span>
-                                <span class="genre-tag">мистика</span>
-                            </div>
-
-                            <div class="book-quote">«Все истории сначала кажутся историями о любви. А потом люди замечают, сколько в них было голода».</div>
-
-                            <p class="book-synopsis">Она согласилась на месяц службы в замке Лихтенштайн, о котором ходят слухи.
-
-Говорят, там не осталось ни одной живой души.
-Говорят, хозяин — безумец, запершийся в каменной клетке.
-Говорят, из этих стен не возвращаются.
-
-Далия не верит слухам. Ей нужно спасти сестру — единственную ниточку, за которую она держится.
-
-Но что, если спасение сестры — лишь приманка? Что, если замок ждал именно её?</p>
-                            
-                            <div class="book-buttons">
-                                <a href="https://litnet.com/ru/book/petlya-b612274" target="_blank" rel="noopener noreferrer" class="book-link">
-                                    Литнет ↗
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <!-- СЕКЦИЯ 2: ИЛЛЮСТРАЦИИ -->
-            <section id="illustrations" class="portfolio-section">
-                <div class="section-header">
-                    <h2>Галерея работ</h2>
-                </div>
-
-                <div class="folders-grid">
-                    <div class="folder-card" onclick="openFolder('characters')">
-                        <div class="folder-title">Персонажи</div>
-                        <div class="folder-desc">Концепты и образы</div>
                     </div>
+                </figure>
 
-                    <div class="folder-card" onclick="openFolder('arts')">
-                        <div class="folder-title">Иллюстрации</div>
-                        <div class="folder-desc">Сюжетные сцены и арты</div>
+                <figure class="gallery-card" data-category="characters" onclick="openLightbox('persona2.jpg', 'Character Concept II', 'Character Art')">
+                    <div class="image-wrapper">
+                        <img src="persona2.jpg" alt="Character Concept II" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Character</span>
+                            <h3 class="card-title">Character Concept II</h3>
+                        </div>
                     </div>
+                </figure>
 
-                    <div class="folder-card" onclick="openFolder('props')">
-                        <div class="folder-title">Предметы</div>
-                        <div class="folder-desc">Артефакты и детали</div>
+                <figure class="gallery-card" data-category="characters" onclick="openLightbox('persona3.jpg', 'Character Concept III', 'Character Art')">
+                    <div class="image-wrapper">
+                        <img src="persona3.jpg" alt="Character Concept III" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Character</span>
+                            <h3 class="card-title">Character Concept III</h3>
+                        </div>
                     </div>
+                </figure>
 
-                    <div class="folder-card" onclick="openFolder('covers')">
-                        <div class="folder-title">Обложки</div>
-                        <div class="folder-desc">Оформление книг</div>
+                <figure class="gallery-card" data-category="characters" onclick="openLightbox('persona4.jpg', 'Character Concept IV', 'Character Art')">
+                    <div class="image-wrapper">
+                        <img src="persona4.jpg" alt="Character Concept IV" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Character</span>
+                            <h3 class="card-title">Character Concept IV</h3>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </figure>
 
-            <!-- СЕКЦИЯ 3: СОЦСЕТИ -->
-            <section id="socials" class="portfolio-section">
-                <div class="section-header">
-                    <h2>Связь и соцсети</h2>
-                </div>
+                <figure class="gallery-card" data-category="characters" onclick="openLightbox('persona5.jpg', 'Character Concept V', 'Character Art')">
+                    <div class="image-wrapper">
+                        <img src="persona5.jpg" alt="Character Concept V" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Character</span>
+                            <h3 class="card-title">Character Concept V</h3>
+                        </div>
+                    </div>
+                </figure>
 
-                <div class="socials-grid">
-                    <!-- TikTok: Арт -->
-                    <a href="https://www.tiktok.com/@fionazula" target="_blank" rel="noopener noreferrer" class="social-card">
-                        <div class="social-svg-wrap">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                            </svg>
+                <figure class="gallery-card" data-category="characters" onclick="openLightbox('persona6.jpg', 'Character Concept VI', 'Character Art')">
+                    <div class="image-wrapper">
+                        <img src="persona6.jpg" alt="Character Concept VI" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Character</span>
+                            <h3 class="card-title">Character Concept VI</h3>
                         </div>
-                        <div>
-                            <div class="social-name">TikTok</div>
-                            <div class="social-desc">Арт-аккаунт</div>
-                        </div>
-                    </a>
+                    </div>
+                </figure>
 
-                    <!-- TikTok: Книги -->
-                    <a href="https://www.tiktok.com/@fionkamoran" target="_blank" rel="noopener noreferrer" class="social-card">
-                        <div class="social-svg-wrap">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                            </svg>
+                <figure class="gallery-card" data-category="characters" onclick="openLightbox('persona7.jpg', 'Character Concept VII', 'Character Art')">
+                    <div class="image-wrapper">
+                        <img src="persona7.jpg" alt="Character Concept VII" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Character</span>
+                            <h3 class="card-title">Character Concept VII</h3>
                         </div>
-                        <div>
-                            <div class="social-name">TikTok</div>
-                            <div class="social-desc">Писательский аккаунт</div>
-                        </div>
-                    </a>
+                    </div>
+                </figure>
 
-                    <!-- Telegram -->
-                    <a href="https://t.me/fionamoran" target="_blank" rel="noopener noreferrer" class="social-card">
-                        <div class="social-svg-wrap">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                            </svg>
+                <!-- 2. ILLUSTRATIONS (illu1 - illu10) -->
+                <figure class="gallery-card" data-category="illustrations" onclick="openLightbox('illu1.jpg', 'Narrative Scene I', 'Full Illustration')">
+                    <div class="image-wrapper">
+                        <img src="illu1.jpg" alt="Narrative Scene I" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Illustration</span>
+                            <h3 class="card-title">Narrative Scene I</h3>
                         </div>
-                        <div>
-                            <div class="social-name">Telegram</div>
-                            <div class="social-desc">Личный канал</div>
-                        </div>
-                    </a>
-                </div>
-            </section>
+                    </div>
+                </figure>
 
+                <figure class="gallery-card" data-category="illustrations" onclick="openLightbox('illu2.jpg', 'Narrative Scene II', 'Full Illustration')">
+                    <div class="image-wrapper">
+                        <img src="illu2.jpg" alt="Narrative Scene II" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Illustration</span>
+                            <h3 class="card-title">Narrative Scene II</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="illustrations" onclick="openLightbox('illu3.jpg', 'Narrative Scene III', 'Full Illustration')">
+                    <div class="image-wrapper">
+                        <img src="illu3.jpg" alt="Narrative Scene III" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Illustration</span>
+                            <h3 class="card-title">Narrative Scene III</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="illustrations" onclick="openLightbox('illu4.jpg', 'Narrative Scene IV', 'Full Illustration')">
+                    <div class="image-wrapper">
+                        <img src="illu4.jpg" alt="Narrative Scene IV" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Illustration</span>
+                            <h3 class="card-title">Narrative Scene IV</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="illustrations" onclick="openLightbox('illu5.jpg', 'Narrative Scene V', 'Full Illustration')">
+                    <div class="image-wrapper">
+                        <img src="illu5.jpg" alt="Narrative Scene V" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Illustration</span>
+                            <h3 class="card-title">Narrative Scene V</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="illustrations" onclick="openLightbox('illu6.jpg', 'Narrative Scene VI', 'Full Illustration')">
+                    <div class="image-wrapper">
+                        <img src="illu6.jpg" alt="Narrative Scene VI" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Illustration</span>
+                            <h3 class="card-title">Narrative Scene VI</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="illustrations" onclick="openLightbox('illu7.jpg', 'Narrative Scene VII', 'Full Illustration')">
+                    <div class="image-wrapper">
+                        <img src="illu7.jpg" alt="Narrative Scene VII" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Illustration</span>
+                            <h3 class="card-title">Narrative Scene VII</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="illustrations" onclick="openLightbox('illu8.jpg', 'Narrative Scene VIII', 'Full Illustration')">
+                    <div class="image-wrapper">
+                        <img src="illu8.jpg" alt="Narrative Scene VIII" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Illustration</span>
+                            <h3 class="card-title">Narrative Scene VIII</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="illustrations" onclick="openLightbox('illu9.jpg', 'Narrative Scene IX', 'Full Illustration')">
+                    <div class="image-wrapper">
+                        <img src="illu9.jpg" alt="Narrative Scene IX" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Illustration</span>
+                            <h3 class="card-title">Narrative Scene IX</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="illustrations" onclick="openLightbox('illu10.jpg', 'Narrative Scene X', 'Full Illustration')">
+                    <div class="image-wrapper">
+                        <img src="illu10.jpg" alt="Narrative Scene X" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Illustration</span>
+                            <h3 class="card-title">Narrative Scene X</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <!-- 3. PROPS & ITEMS (pred1 - pred5) -->
+                <figure class="gallery-card" data-category="props" onclick="openLightbox('pred1.jpg', 'Item Design I', 'Prop & Artifact')">
+                    <div class="image-wrapper">
+                        <img src="pred1.jpg" alt="Item Design I" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Prop</span>
+                            <h3 class="card-title">Item Design I</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="props" onclick="openLightbox('pred2.jpg', 'Item Design II', 'Prop & Artifact')">
+                    <div class="image-wrapper">
+                        <img src="pred2.jpg" alt="Item Design II" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Prop</span>
+                            <h3 class="card-title">Item Design II</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="props" onclick="openLightbox('pred3.jpg', 'Item Design III', 'Prop & Artifact')">
+                    <div class="image-wrapper">
+                        <img src="pred3.jpg" alt="Item Design III" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Prop</span>
+                            <h3 class="card-title">Item Design III</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="props" onclick="openLightbox('pred4.jpg', 'Item Design IV', 'Prop & Artifact')">
+                    <div class="image-wrapper">
+                        <img src="pred4.jpg" alt="Item Design IV" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Prop</span>
+                            <h3 class="card-title">Item Design IV</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="props" onclick="openLightbox('pred5.jpg', 'Item Design V', 'Prop & Artifact')">
+                    <div class="image-wrapper">
+                        <img src="pred5.jpg" alt="Item Design V" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Prop</span>
+                            <h3 class="card-title">Item Design V</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <!-- 4. BACKGROUNDS (fon1 - fon7) -->
+                <figure class="gallery-card" data-category="backgrounds" onclick="openLightbox('fon1.jpg', 'Environment I', 'Environment & Scenery')">
+                    <div class="image-wrapper">
+                        <img src="fon1.jpg" alt="Environment I" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Background</span>
+                            <h3 class="card-title">Environment I</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="backgrounds" onclick="openLightbox('fon2.jpg', 'Environment II', 'Environment & Scenery')">
+                    <div class="image-wrapper">
+                        <img src="fon2.jpg" alt="Environment II" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Background</span>
+                            <h3 class="card-title">Environment II</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="backgrounds" onclick="openLightbox('fon3.jpg', 'Environment III', 'Environment & Scenery')">
+                    <div class="image-wrapper">
+                        <img src="fon3.jpg" alt="Environment III" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Background</span>
+                            <h3 class="card-title">Environment III</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="backgrounds" onclick="openLightbox('fon4.jpg', 'Environment IV', 'Environment & Scenery')">
+                    <div class="image-wrapper">
+                        <img src="fon4.jpg" alt="Environment IV" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Background</span>
+                            <h3 class="card-title">Environment IV</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="backgrounds" onclick="openLightbox('fon5.jpg', 'Environment V', 'Environment & Scenery')">
+                    <div class="image-wrapper">
+                        <img src="fon5.jpg" alt="Environment V" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Background</span>
+                            <h3 class="card-title">Environment V</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="backgrounds" onclick="openLightbox('fon6.jpg', 'Environment VI', 'Environment & Scenery')">
+                    <div class="image-wrapper">
+                        <img src="fon6.jpg" alt="Environment VI" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Background</span>
+                            <h3 class="card-title">Environment VI</h3>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="gallery-card" data-category="backgrounds" onclick="openLightbox('fon7.jpg', 'Environment VII', 'Environment & Scenery')">
+                    <div class="image-wrapper">
+                        <img src="fon7.jpg" alt="Environment VII" loading="lazy">
+                        <div class="card-overlay">
+                            <span class="card-tag">Background</span>
+                            <h3 class="card-title">Environment VII</h3>
+                        </div>
+                    </div>
+                </figure>
+
+            </div>
         </main>
 
-        <!-- ОКНО ПАПКИ 1: ПЕРСОНАЖИ -->
-        <div id="modal-characters" class="folder-modal" onclick="closeFolderModal(event, 'characters')">
-            <div class="folder-modal-content">
-                <button class="modal-close-btn" onclick="closeFolderModalDirect('characters')">&times;</button>
-                <div class="modal-header">
-                    <h3>Персонажи</h3>
-                </div>
-                <div class="modal-gallery-grid">
-                    <div class="art-card" onclick="openLightbox('char1.jpg', 'Персонаж 1')">
-                        <img src="char1.jpg" alt="Персонаж 1" onerror="this.src='https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=600'">
-                        <div class="art-overlay">Просмотр</div>
-                    </div>
-                    <div class="art-card" onclick="openLightbox('char2.jpg', 'Персонаж 2')">
-                        <img src="char2.jpg" alt="Персонаж 2" onerror="this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600'">
-                        <div class="art-overlay">Просмотр</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ОКНО ПАПКИ 2: ИЛЛЮСТРАЦИИ -->
-        <div id="modal-arts" class="folder-modal" onclick="closeFolderModal(event, 'arts')">
-            <div class="folder-modal-content">
-                <button class="modal-close-btn" onclick="closeFolderModalDirect('arts')">&times;</button>
-                <div class="modal-header">
-                    <h3>Иллюстрации</h3>
-                </div>
-                <div class="modal-gallery-grid">
-                    <div class="art-card" onclick="openLightbox('art1.jpg', 'Иллюстрация 1')">
-                        <img src="art1.jpg" alt="Иллюстрация 1" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600'">
-                        <div class="art-overlay">Просмотр</div>
-                    </div>
-                    <div class="art-card" onclick="openLightbox('art2.jpg', 'Иллюстрация 2')">
-                        <img src="art2.jpg" alt="Иллюстрация 2" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600'">
-                        <div class="art-overlay">Просмотр</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ОКНО ПАПКИ 3: ПРЕДМЕТЫ -->
-        <div id="modal-props" class="folder-modal" onclick="closeFolderModal(event, 'props')">
-            <div class="folder-modal-content">
-                <button class="modal-close-btn" onclick="closeFolderModalDirect('props')">&times;</button>
-                <div class="modal-header">
-                    <h3>Предметы</h3>
-                </div>
-                <div class="modal-gallery-grid">
-                    <div class="art-card" onclick="openLightbox('prop1.jpg', 'Предмет 1')">
-                        <img src="prop1.jpg" alt="Предмет 1" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=600'">
-                        <div class="art-overlay">Просмотр</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ОКНО ПАПКИ 4: ОБЛОЖКИ -->
-        <div id="modal-covers" class="folder-modal" onclick="closeFolderModal(event, 'covers')">
-            <div class="folder-modal-content">
-                <button class="modal-close-btn" onclick="closeFolderModalDirect('covers')">&times;</button>
-                <div class="modal-header">
-                    <h3>Обложки</h3>
-                </div>
-                <div class="modal-gallery-grid">
-                    <div class="art-card" onclick="openLightbox('witch-cover.jpg', 'Цветы для ведьмы')">
-                        <img src="witch-cover.jpg" alt="Цветы для ведьмы" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400'">
-                        <div class="art-overlay">Просмотр</div>
-                    </div>
-                    <div class="art-card" onclick="openLightbox('loop-cover.jpg', 'Петля')">
-                        <img src="loop-cover.jpg" alt="Петля" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400'">
-                        <div class="art-overlay">Просмотр</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Лайтбокс Полноэкранного Просмотра -->
+        <!-- Fullscreen Lightbox Modal -->
         <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-            <div class="lightbox-content">
-                <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
-                <img id="lightboxImg" class="lightbox-img" src="" alt="Просмотр">
-                <div id="lightboxCaption" class="lightbox-caption"></div>
+            <button class="lightbox-close" onclick="forceCloseLightbox()" aria-label="Close image">&times;</button>
+            <div class="lightbox-dialog" onclick="event.stopPropagation()">
+                <div class="lightbox-img-wrap">
+                    <img id="lightboxImg" src="" alt="Full preview">
+                </div>
+                <div class="lightbox-meta">
+                    <span id="lightboxTag" class="meta-tag"></span>
+                    <h2 id="lightboxTitle" class="meta-title"></h2>
+                </div>
             </div>
         </div>
 
-        <!-- Подвал -->
+        <!-- Footer -->
         <footer class="footer">
-            <div class="container">
-                <p>© 2026 Fiona Moran ◆ Для связи: fionagaleren@gmail.com</p>
+            <div class="container footer-container">
+                <p class="copyright">© 2026 Fiona Moran. All rights reserved.</p>
+                <p class="inquiries">For commissions & inquiries: <a href="mailto:fionagaleren@gmail.com">fionagaleren@gmail.com</a></p>
             </div>
         </footer>
 
