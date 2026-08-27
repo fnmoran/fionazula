@@ -1,13 +1,13 @@
 :root {
-    --bg-deep: #051F20; /* Темно-зеленый фон сайта */
-    --ink-primary: #0B2B26; /* Цвет заголовков */
-    --ink-secondary: #163832; /* Цвет подзаголовков */
-    --text-muted: #235347; /* Цвет обычного текста */
+    --bg-deep: #051F20;
+    --ink-primary: #0B2B26;
+    --ink-secondary: #163832;
+    --text-muted: #235347;
     --border-ice: rgba(11, 43, 38, 0.14);
     --border-highlight: rgba(11, 43, 38, 0.38);
-    --accent-blue: #163832; /* Цвет кнопок */
+    --accent-blue: #163832;
     --accent-glow: rgba(142, 182, 155, 0.25);
-    --neon-teal: #8EB69B; /* Светло-шалфейный акцент (для светлячков и границ) */
+    --neon-teal: #8EB69B;
     --font-title: 'Cinzel', serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
     --font-italic: 'Playfair Display', Georgia, serif;
@@ -48,7 +48,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Холст с лесом и огоньками */
 #forestCanvas {
     position: fixed;
     top: 0;
@@ -59,9 +58,8 @@ body {
     z-index: 1;
 }
 
-/* Центральное полотно (светло-мятный фон) */
 .site-wrapper {
-    background-color: rgba(218, 241, 222, 0.96); /* #DAF1DE */
+    background-color: rgba(218, 241, 222, 0.96);
     background-image: 
         radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 45%),
         radial-gradient(circle at 90% 80%, rgba(142, 182, 155, 0.35) 0%, transparent 55%);
@@ -83,7 +81,7 @@ body {
     padding: 0 28px;
 }
 
-/* Header / Hero */
+/* Hero Section */
 .hero {
     padding: 75px 0 45px;
     text-align: center;
@@ -116,7 +114,6 @@ body {
     filter: drop-shadow(0 0 6px var(--neon-teal));
 }
 
-/* Выровненная плашка "пишу и рисую" */
 .hero-badge {
     display: block;
     text-align: center;
@@ -152,7 +149,7 @@ body {
     letter-spacing: 0.3px;
 }
 
-/* Кнопки переключения */
+/* Nav Buttons */
 .choice-nav {
     display: flex;
     gap: 12px;
@@ -192,7 +189,7 @@ body {
     box-shadow: 0 6px 20px rgba(5, 31, 32, 0.3);
 }
 
-/* Секции контента */
+/* Content */
 .content-display {
     padding: 20px 0 110px;
 }
@@ -223,7 +220,7 @@ body {
     text-transform: uppercase;
 }
 
-/* Книги */
+/* Books */
 .books-list {
     display: flex;
     flex-direction: column;
@@ -349,7 +346,7 @@ body {
     border-color: var(--neon-teal);
 }
 
-/* Папки-категории */
+/* Folders */
 .folders-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -409,7 +406,7 @@ body {
     letter-spacing: 0.2px;
 }
 
-/* Модальные окна папок */
+/* Modals */
 .folder-modal {
     position: fixed;
     top: 0;
@@ -433,7 +430,7 @@ body {
 }
 
 .folder-modal-content {
-    background: rgba(218, 241, 222, 0.96); /* #DAF1DE */
+    background: rgba(218, 241, 222, 0.96);
     backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: var(--radius-lg);
@@ -539,7 +536,7 @@ body {
     opacity: 1;
 }
 
-/* Соцсети */
+/* Socials */
 .socials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -609,7 +606,7 @@ body {
     font-weight: 500;
 }
 
-/* Лайтбокс */
+/* Lightbox */
 .lightbox {
     position: fixed;
     top: 0;
@@ -680,7 +677,7 @@ body {
     letter-spacing: 0.8px;
 }
 
-/* Мобильная адаптация */
+/* Responsive */
 @media (max-width: 768px) {
     body {
         padding: 12px 8px 60px;
