@@ -117,20 +117,21 @@ class TealWisp {
     draw() {
         const currentAlpha = Math.max(0.12, (Math.sin(this.pulse) + 1) * 0.5 * this.alpha);
         
+        // Цвет свечения: #8EB69B (шалфейный) вместо старого бирюзового
         const grad = ctx.createRadialGradient(
             this.x, this.y, 0,
             this.x, this.y, this.glowRadius
         );
-        grad.addColorStop(0, `rgba(45, 212, 191, ${currentAlpha * 0.95})`);
-        grad.addColorStop(0.35, `rgba(45, 212, 191, ${currentAlpha * 0.45})`);
-        grad.addColorStop(1, 'rgba(45, 212, 191, 0)');
+        grad.addColorStop(0, `rgba(142, 182, 155, ${currentAlpha * 0.95})`);
+        grad.addColorStop(0.35, `rgba(142, 182, 155, ${currentAlpha * 0.45})`);
+        grad.addColorStop(1, 'rgba(142, 182, 155, 0)');
 
         ctx.fillStyle = grad;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.glowRadius, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.fillStyle = `rgba(235, 255, 252, ${currentAlpha})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.baseRadius * 0.85, 0, Math.PI * 2);
         ctx.fill();
@@ -147,16 +148,18 @@ for (let i = 0; i < wispCount; i++) {
 function renderScene() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Глубокий зеленый градиент неба
     const skyGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    skyGrad.addColorStop(0, '#04070d');
-    skyGrad.addColorStop(0.4, '#091220');
-    skyGrad.addColorStop(1, '#0e192e');
+    skyGrad.addColorStop(0, '#020b0c');
+    skyGrad.addColorStop(0.4, '#051F20');
+    skyGrad.addColorStop(1, '#0B2B26');
     ctx.fillStyle = skyGrad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    drawForestLayer(canvas.height - 180, 420, '#0c182c', 38, 1.2);
-    drawForestLayer(canvas.height - 100, 480, '#08111f', 48, 2.5);
-    drawForestLayer(canvas.height, 540, '#040812', 60, 4.0);
+    // Слои леса в темно-зеленых тонах
+    drawForestLayer(canvas.height - 180, 420, '#0a241f', 38, 1.2);
+    drawForestLayer(canvas.height - 100, 480, '#061713', 48, 2.5);
+    drawForestLayer(canvas.height, 540, '#03100d', 60, 4.0);
 
     wisps.forEach(w => {
         w.update();
